@@ -1,4 +1,4 @@
-const BASE = 'https://www.nacosti.go.ke'
+const BASE = '/app/resource'
 
 export const contact = {
   phone: '0204007000',
@@ -20,7 +20,7 @@ export type NavGroup = { title?: string; links: NavLink[] }
 export type NavItem = { label: string; href?: string; groups?: NavGroup[] }
 
 export const navigation: NavItem[] = [
-  { label: 'Home', href: '#top' },
+  { label: 'Home', href: '/app#top' },
   {
     label: 'About Us',
     groups: [
@@ -68,12 +68,12 @@ export const navigation: NavItem[] = [
     groups: [
       {
         links: [
-          { label: 'Research Licensing', href: 'https://research-portal.nacosti.go.ke/', description: 'Apply online via RIMS' },
+          { label: 'Research Licensing', href: `${BASE}/research-licensing`, description: 'Apply online via RIMS' },
           { label: 'Registration of Research Institutions', href: `${BASE}/registration-of-research-institutions-in-kenya/` },
           { label: 'Accreditation of ISERCs', href: `${BASE}/accreditation-of-institutional-ethics-review-committees-iercs/` },
           { label: 'Accredited ISERCs in Kenya', href: `${BASE}/accredited-isercs-in-kenya/` },
           { label: 'Accreditation of Research Institutions', href: `${BASE}/accreditation-of-research-institutions/` },
-          { label: 'National Scientific & Ethics Review System', href: 'https://nsers.nacosti.go.ke/' },
+          { label: 'National Scientific & Ethics Review System', href: `${BASE}/national-scientific-ethics-review-system` },
         ],
       },
     ],
@@ -93,7 +93,8 @@ export const navigation: NavItem[] = [
       },
     ],
   },
-  { label: 'PC-MDAs', href: 'https://stipc.nacosti.go.ke/' },
+  { label: 'PC-MDAs', href: `${BASE}/pc-mdas` },
+  { label: 'Directions', href: '/app#location' },
   {
     label: 'News & Events',
     groups: [
@@ -107,15 +108,15 @@ export const navigation: NavItem[] = [
       {
         title: 'Conference',
         links: [
-          { label: '4th MS-CORSTI | 2025', href: 'https://ms-corsti.nacosti.go.ke/' },
-          { label: '3rd MS-CORSTI | 2024', href: 'https://ms-corsti2024.nacosti.go.ke/' },
-          { label: '2nd MS-CORSTI | 2023', href: 'https://ms-costi.nacosti.go.ke/' },
+          { label: '4th MS-CORSTI | 2025', href: `${BASE}/ms-corsti-2025` },
+          { label: '3rd MS-CORSTI | 2024', href: `${BASE}/ms-corsti-2024` },
+          { label: '2nd MS-CORSTI | 2023', href: `${BASE}/ms-corsti-2023` },
           { label: '1st MS-CORSTI | 2021', href: `${BASE}/nacosti/Docs/2021/Multisectoral%20STI%20Conference%20Resolutions.pdf` },
         ],
       },
     ],
   },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Contact', href: '/app#contact' },
 ]
 
 export const heroSlides = [
@@ -154,7 +155,7 @@ export const eServices = [
     description:
       'All persons intending to undertake research in the country are required to apply for a Research License. Applications are submitted online.',
     cta: 'Apply for a license',
-    href: 'https://research-portal.nacosti.go.ke/',
+    href: `${BASE}/research-licensing`,
     icon: 'microscope',
   },
   {
@@ -162,7 +163,7 @@ export const eServices = [
     description:
       'All MDAs are required to prepare and submit quarterly performance reports online to NACOSTI within 15 days following the end of a quarter.',
     cta: 'Submit STI report',
-    href: 'https://stipc.nacosti.go.ke/',
+    href: `${BASE}/pc-mdas`,
     icon: 'chart',
   },
   {
@@ -170,7 +171,7 @@ export const eServices = [
     description:
       'Apply and pay for certified, top-quality NACOSTI services conveniently through your eCitizen account.',
     cta: 'Access via eCitizen',
-    href: 'https://nacosti.ecitizen.go.ke/',
+    href: `${BASE}/ecitizen`,
     icon: 'id',
   },
 ] as const
@@ -242,7 +243,7 @@ export const priorities = [
 ] as const
 
 export const informationCentre = [
-  { label: 'STI Act No. 28 of 2013', href: 'https://kenyalaw.org/akn/ke/act/2013/28/eng@2026-06-16', type: 'Legislation' },
+  { label: 'STI Act No. 28 of 2013', href: `${BASE}/sti-act-2013`, type: 'Legislation' },
   { label: 'STI Regulations 2014', href: `${BASE}/nacosti/Docs/Information%20Centre/The-Science-Technology-and-Innovation-Regulations-2014.pdf`, type: 'PDF' },
   { label: 'National STI Priorities', href: `${BASE}/nacosti/Docs/2024/National%20STI%20Priorities.pdf`, type: 'PDF' },
   { label: 'Accredited ISERCs', href: `${BASE}/accredited-isercs-in-kenya/`, type: 'Directory' },
@@ -251,28 +252,27 @@ export const informationCentre = [
   { label: 'NACOSTI Service Charter', href: `${BASE}/nacosti/Docs/Information%20Centre/NACOSTI-SERVICE-CHARTER%20Dec%202018.pdf`, type: 'PDF' },
 ] as const
 
-export const serviceCharterAudio = `${BASE}/nacosti/Audio/Audio%20Output%20of%20NACOSTI%20Service%20Charter%20-Kiswahili.mp3`
 export const serviceChargesHref = `${BASE}/research-licensing-fees/`
 export const prioritiesPdf = `${BASE}/nacosti/Docs/2024/National%20STI%20Priorities.pdf`
 export const newsHref = `${BASE}/category/latest/`
 
 export const conferences = [
   { edition: '1st', year: '2021', label: 'Conference Resolutions', href: `${BASE}/nacosti/Docs/2021/Multisectoral%20STI%20Conference%20Resolutions.pdf` },
-  { edition: '2nd', year: '2023', label: 'MS-CORSTI 2023', href: 'https://ms-costi.nacosti.go.ke/' },
-  { edition: '3rd', year: '2024', label: 'MS-CORSTI 2024', href: 'https://ms-corsti2024.nacosti.go.ke/' },
-  { edition: '4th', year: '2025', label: 'MS-CORSTI 2025', href: 'https://ms-corsti.nacosti.go.ke/' },
+  { edition: '2nd', year: '2023', label: 'MS-CORSTI 2023', href: `${BASE}/ms-corsti-2023` },
+  { edition: '3rd', year: '2024', label: 'MS-CORSTI 2024', href: `${BASE}/ms-corsti-2024` },
+  { edition: '4th', year: '2025', label: 'MS-CORSTI 2025', href: `${BASE}/ms-corsti-2025` },
 ]
 
 export const partners = [
-  { name: 'Ministry of Education', short: 'MoE' },
-  { name: 'National Research Fund Kenya', short: 'NRF' },
-  { name: 'Kenya National Innovation Agency', short: 'KeNIA' },
-  { name: 'East African Science and Technology Commission', short: 'EASTECO' },
-  { name: 'African Regional Cooperative Agreement for Nuclear Science and Technology', short: 'AFRA' },
-  { name: 'Biological Weapons Convention', short: 'BWC' },
-  { name: 'International Science Council', short: 'ISC' },
-  { name: 'International Centre for Genetic Engineering and Biotechnology', short: 'ICGEB' },
-  { name: 'Comprehensive Nuclear-Test-Ban Treaty Organization', short: 'CTBTO' },
+  { name: 'Ministry of Education', short: 'MoE', image: '/partners/ministry-of-education.png' },
+  { name: 'National Research Fund Kenya', short: 'NRF', image: '/partners/national-research-fund.png' },
+  { name: 'Kenya National Innovation Agency', short: 'KeNIA', image: '/partners/kenia.png' },
+  { name: 'East African Science and Technology Commission', short: 'EASTECO', image: '/partners/easteco.png' },
+  { name: 'African Regional Cooperative Agreement for Nuclear Science and Technology', short: 'AFRA', image: '/partners/afra.png' },
+  { name: 'Biological Weapons Convention', short: 'BWC', image: '/partners/biological-weapons-convention.png' },
+  { name: 'International Science Council', short: 'ISC', image: '/partners/international-science-council.png' },
+  { name: 'International Centre for Genetic Engineering and Biotechnology', short: 'ICGEB', image: '/partners/icgeb.png' },
+  { name: 'Comprehensive Nuclear-Test-Ban Treaty Organization', short: 'CTBTO', image: '/partners/ctbto.png' },
 ]
 
 export const relatedSites = [
@@ -280,14 +280,14 @@ export const relatedSites = [
   { label: 'State Department for Science, Research and Innovation', href: 'https://sri.go.ke/' },
   { label: 'National Research Fund', href: 'https://www.nrf.go.ke/' },
   { label: 'Kenya National Innovation Agency', href: 'https://kenia.go.ke/' },
-  { label: 'National Scientific and Ethics Review System (NSERS)', href: 'https://nsers.nacosti.go.ke/' },
+  { label: 'National Scientific and Ethics Review System (NSERS)', href: `${BASE}/national-scientific-ethics-review-system` },
 ]
 
 export const eResources = [
-  { label: 'Research Licensing Portal', href: 'https://research-portal.nacosti.go.ke/' },
-  { label: 'STI-PC MDAs Portal', href: 'https://stipc.nacosti.go.ke/' },
-  { label: 'Staff Mail', href: 'https://www.office.com/' },
-  { label: 'E-Procurement', href: 'https://eprocurement.nacosti.go.ke:8099/' },
+  { label: 'Research Licensing Portal', href: `${BASE}/research-licensing` },
+  { label: 'STI-PC MDAs Portal', href: `${BASE}/pc-mdas` },
+  { label: 'Staff Mail', href: `${BASE}/staff-mail` },
+  { label: 'E-Procurement', href: `${BASE}/e-procurement` },
 ]
 
 export const icgebLinks = [

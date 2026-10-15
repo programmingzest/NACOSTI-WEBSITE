@@ -14,8 +14,6 @@ export function LatestNews() {
           </div>
           <a
             href={newsHref}
-            target="_blank"
-            rel="noopener noreferrer"
             className="group inline-flex shrink-0 items-center gap-2 rounded-full border bg-background px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:border-primary"
           >
             All news
@@ -37,7 +35,7 @@ export function LatestNews() {
                   {featured.tag}
                 </span>
                 <h3 className="mt-4 text-2xl font-bold leading-tight text-deep-foreground md:text-3xl">
-                  <a href={featured.href} target="_blank" rel="noopener noreferrer" className="after:absolute after:inset-0">
+                  <a href={featured.href} className="after:absolute after:inset-0">
                     {featured.title}
                   </a>
                 </h3>
@@ -63,7 +61,7 @@ export function LatestNews() {
                   <div className="flex flex-1 flex-col p-6">
                     <span className="text-xs font-bold uppercase tracking-wider text-primary">{post.tag}</span>
                     <h3 className="mt-2 text-lg font-bold leading-snug">
-                      <a href={post.href} target="_blank" rel="noopener noreferrer" className="after:absolute after:inset-0">
+                      <a href={post.href} className="after:absolute after:inset-0">
                         {post.title}
                       </a>
                     </h3>

@@ -1,5 +1,5 @@
 import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react'
-import { contact, eResources, navigation, relatedSites } from '@/lib/site-data'
+import { contact, navigation, relatedSites } from '@/lib/site-data'
 import { SocialIcons } from '@/components/SocialIcons'
 
 const services = navigation.find((n) => n.label === 'Services')?.groups?.[0].links.slice(0, 5) ?? []
@@ -55,9 +55,7 @@ export function SiteFooter() {
               Email us
             </a>
             <a
-              href="https://www.nacosti.go.ke/faqs/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/app/resource/faqs"
               className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 font-semibold transition-colors hover:bg-white/10"
             >
               Read FAQs
@@ -99,25 +97,7 @@ export function SiteFooter() {
           </div>
           <FooterList title="About" links={about} />
           <FooterList title="Services" links={services} />
-          <FooterList title="E-Resources" links={eResources} />
-        </div>
-
-        <div className="border-t border-white/10 py-8">
-          <h3 className="font-display text-sm font-bold uppercase tracking-wider text-accent">Related websites</h3>
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {relatedSites.map((site) => (
-              <li key={site.href}>
-                <a
-                  href={site.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex rounded-full border border-white/15 px-4 py-2 text-xs text-deep-foreground/75 transition-colors hover:border-accent hover:text-accent"
-                >
-                  {site.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <FooterList title="Related websites" links={relatedSites} />
         </div>
 
         <div className="flex flex-col justify-between gap-3 border-t border-white/10 py-6 text-xs text-deep-foreground/60 md:flex-row">

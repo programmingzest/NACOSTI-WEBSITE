@@ -35,8 +35,6 @@ export function StiPriorities() {
           </div>
           <a
             href={prioritiesPdf}
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-flex shrink-0 items-center gap-2 rounded-full border bg-background px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:border-primary"
           >
             Download full document

@@ -1,5 +1,27 @@
+import { useState } from 'react'
 import { partners } from '@/lib/site-data'
 import { cn } from '@/lib/utils'
+
+function PartnerMark({ partner }: { partner: (typeof partners)[number] }) {
+  const [imageFailed, setImageFailed] = useState(false)
+
+  if (partner.image && !imageFailed) {
+    return (
+      <img
+        src={partner.image}
+        alt={`${partner.name} logo`}
+        className="size-9 rounded-full object-contain"
+        onError={() => setImageFailed(true)}
+      />
+    )
+  }
+
+  return (
+    <span className="flex h-9 min-w-9 items-center justify-center rounded-full bg-primary px-2 font-display text-xs font-bold text-primary-foreground">
+      {partner.short}
+    </span>
+  )
+}
 
 function Row({ reverse = false }: { reverse?: boolean }) {
   const items = reverse ? [...partners].reverse() : partners
@@ -17,9 +39,7 @@ function Row({ reverse = false }: { reverse?: boolean }) {
             aria-hidden={i >= items.length}
             className="flex items-center gap-3 rounded-full border bg-background py-2 pl-2 pr-5 shadow-sm"
           >
-            <span className="flex h-9 min-w-9 items-center justify-center rounded-full bg-primary px-2 font-display text-xs font-bold text-primary-foreground">
-              {partner.short}
-            </span>
+            <PartnerMark partner={partner} />
             <span className="whitespace-nowrap text-sm font-medium text-foreground/80">{partner.name}</span>
           </li>
         ))}

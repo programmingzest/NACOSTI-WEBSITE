@@ -25,8 +25,6 @@ export function ConferenceTimeline() {
             <Reveal as="li" key={conf.year} delay={i * 100}>
               <a
                 href={conf.href}
-                target="_blank"
-                rel="noopener noreferrer"
                 className={cn(
                   'group relative flex h-full flex-col rounded-3xl border p-7 transition-all duration-300 hover:-translate-y-1.5',
                   i === latest

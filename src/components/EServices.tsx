@@ -10,7 +10,7 @@ const icons = {
 
 export function EServices() {
   return (
-    <section id="e-services" aria-labelledby="e-services-title" className="relative z-10 -mt-20 px-6">
+    <section id="e-services" aria-labelledby="e-services-title" className="relative z-10 px-6 py-16 md:py-20">
       <h2 id="e-services-title" className="sr-only">
         NACOSTI E-Services
       </h2>
@@ -22,8 +22,6 @@ export function EServices() {
             <Reveal key={service.title} delay={i * 100}>
               <a
                 href={service.href}
-                target="_blank"
-                rel="noopener noreferrer"
                 className={
                   featured
                     ? 'group flex h-full flex-col rounded-2xl bg-primary p-7 text-primary-foreground shadow-2xl shadow-primary/30 transition-all duration-300 hover:-translate-y-1.5'

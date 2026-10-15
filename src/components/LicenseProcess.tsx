@@ -44,9 +44,7 @@ export function LicenseProcess() {
           </div>
           <div className="flex flex-wrap gap-3">
             <a
-              href="https://research-portal.nacosti.go.ke/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/app/resource/research-licensing"
               className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5"
             >
               Start application
@@ -54,8 +52,6 @@ export function LicenseProcess() {
             </a>
             <a
               href={serviceChargesHref}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-deep-foreground transition-colors hover:bg-white/10"
             >
               View service charges

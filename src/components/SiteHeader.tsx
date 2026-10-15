@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { ArrowUpRight, ChevronDown, Mail, MapPin, Menu, Phone, Search, X } from 'lucide-react'
+import { ArrowUpRight, BriefcaseBusiness, ChevronDown, CircleHelp, Compass, FileText, Home, Mail, MapPin, Menu, Phone, Search, Settings2, Sparkles, Users, X } from 'lucide-react'
 import { contact, navigation, type NavItem, type NavLink } from '@/lib/site-data'
 import { SocialIcons } from '@/components/SocialIcons'
 import { cn } from '@/lib/utils'
@@ -14,6 +14,47 @@ const allLinks: NavLink[] = navigation.flatMap((item) =>
 
 function isExternal(href: string) {
   return href.startsWith('http')
+}
+
+const navIcons = {
+  Home,
+  'About Us': Users,
+  Programmes: Sparkles,
+  Services: Settings2,
+  Resources: FileText,
+  'PC-MDAs': BriefcaseBusiness,
+  'News & Events': CircleHelp,
+  Directions: Compass,
+  Contact: Mail,
+} as const
+
+function IconNavigation({ onSelect }: { onSelect: () => void }) {
+  return (
+    <nav aria-label="Main" className="absolute left-1/2 top-full hidden w-[min(96vw,76rem)] -translate-x-1/2 pt-3 xl:block">
+      <ul className="flex items-center justify-center gap-2 rounded-3xl border border-white/40 bg-background/75 p-3 shadow-2xl shadow-deep/15 backdrop-blur-xl">
+        {navigation.map((item) => {
+          const Icon = navIcons[item.label as keyof typeof navIcons] ?? FileText
+          return (
+            <li key={item.label} className="group/icon relative">
+              {item.groups ? (
+                <DesktopDropdown item={item} icon={Icon} />
+              ) : (
+                <a href={item.href} onClick={onSelect} className="flex size-16 flex-col items-center justify-center gap-1 rounded-2xl text-primary transition-colors hover:bg-primary hover:text-primary-foreground" title={item.label}>
+                  <Icon className="size-6 drop-shadow-[2px_3px_0_rgba(0,0,0,0.15)]" aria-hidden="true" />
+                  <span className={cn(
+                    'overflow-hidden whitespace-nowrap text-[10px] font-bold transition-all',
+                    ['Home', 'PC-MDAs', 'Directions', 'Contact'].includes(item.label)
+                      ? 'max-w-20 opacity-100'
+                      : 'max-w-0 opacity-0 group-hover/icon:max-w-20 group-hover/icon:opacity-100',
+                  )}>{item.label}</span>
+                </a>
+              )}
+            </li>
+          )
+        })}
+      </ul>
+    </nav>
+  )
 }
 
 function TopBar() {
@@ -43,7 +84,7 @@ function TopBar() {
   )
 }
 
-function DesktopDropdown({ item }: { item: NavItem }) {
+function DesktopDropdown({ item, icon: Icon }: { item: NavItem; icon?: typeof FileText }) {
   const groups = item.groups ?? []
   const wide = groups.length > 1
   return (
@@ -51,11 +92,12 @@ function DesktopDropdown({ item }: { item: NavItem }) {
       <button
         type="button"
         aria-haspopup="true"
-        className="flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-primary group-focus-within/nav:bg-secondary group-focus-within/nav:text-primary"
+        className="flex size-16 flex-col items-center justify-center gap-1 rounded-2xl text-primary transition-colors hover:bg-primary hover:text-primary-foreground group-focus-within/nav:bg-primary group-focus-within/nav:text-primary-foreground"
       >
-        {item.label}
+        {Icon ? <Icon className="size-6 drop-shadow-[2px_3px_0_rgba(0,0,0,0.15)]" aria-hidden="true" /> : null}
+        <span className="max-w-16 overflow-hidden text-ellipsis whitespace-nowrap text-[10px] font-bold">{item.label}</span>
         <ChevronDown
-          className="size-3.5 transition-transform duration-300 group-hover/nav:rotate-180 group-focus-within/nav:rotate-180"
+          className="absolute right-1 top-1 size-3 transition-transform duration-300 group-hover/nav:rotate-180 group-focus-within/nav:rotate-180"
           aria-hidden="true"
         />
       </button>
@@ -270,15 +312,6 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
             ),
           )}
         </ul>
-        <a
-          href="https://research-portal.nacosti.go.ke/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-6 flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 font-semibold text-accent-foreground"
-        >
-          Apply for Research License
-          <ArrowUpRight className="size-4" aria-hidden="true" />
-        </a>
         <div className="mt-8 flex flex-col gap-2 text-sm text-muted-foreground">
           <a href={contact.phoneHref}>{contact.phone}</a>
           <a href={`mailto:${contact.email}`}>{contact.email}</a>
@@ -333,26 +366,11 @@ export function SiteHeader() {
             />
           </a>
 
-          <nav aria-label="Main" className="hidden xl:block">
-            <ul className="flex items-center gap-0.5">
-              {navigation.map((item) =>
-                item.groups ? (
-                  <DesktopDropdown key={item.label} item={item} />
-                ) : (
-                  <li key={item.label}>
-                    <a
-                      href={item.href}
-                      target={item.href && isExternal(item.href) ? '_blank' : undefined}
-                      rel={item.href && isExternal(item.href) ? 'noopener noreferrer' : undefined}
-                      className="whitespace-nowrap rounded-full px-2.5 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-primary"
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ),
-              )}
-            </ul>
-          </nav>
+          <div className="hidden min-w-0 flex-1 px-4 xl:block">
+            <div className="overflow-hidden text-center text-sm font-bold uppercase tracking-[0.35em] text-primary">
+              <div className="animate-marquee whitespace-nowrap">NATIONAL COMMISSION FOR SCIENCE, TECHNOLOGY AND INNOVATION &nbsp; • &nbsp; NACOSTI</div>
+            </div>
+          </div>
 
           <div className="flex items-center gap-2">
             <button
@@ -363,27 +381,19 @@ export function SiteHeader() {
               <Search className="size-4" aria-hidden="true" />
               <span className="sr-only">Search</span>
             </button>
-            <a
-              href="https://research-portal.nacosti.go.ke/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-md shadow-primary/25 transition-all hover:-translate-y-0.5 hover:bg-deep sm:flex"
-            >
-              Apply Now
-              <ArrowUpRight className="size-4" aria-hidden="true" />
-            </a>
             <button
               type="button"
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               onClick={() => setMenuOpen((v) => !v)}
-              className="flex size-10 items-center justify-center rounded-full bg-secondary text-primary xl:hidden"
+              className="flex size-10 items-center justify-center rounded-full bg-secondary text-primary"
             >
               {menuOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
               <span className="sr-only">{menuOpen ? 'Close menu' : 'Open menu'}</span>
             </button>
           </div>
         </div>
+        {menuOpen ? <IconNavigation onSelect={closeMenu} /> : null}
         <MobileMenu open={menuOpen} onClose={closeMenu} />
       </header>
       <SearchDialog open={searchOpen} onClose={closeSearch} />

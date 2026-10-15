@@ -73,17 +73,13 @@ export function HeroCarousel() {
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <a
               href={heroSlides[index].href}
-              target="_blank"
-              rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 font-semibold text-accent-foreground shadow-xl shadow-accent/20 transition-all hover:-translate-y-0.5 hover:shadow-accent/40"
             >
               Read the story
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </a>
             <a
-              href="https://research-portal.nacosti.go.ke/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/app/resource/research-licensing"
               className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-3.5 font-semibold text-deep-foreground backdrop-blur transition-colors hover:border-white hover:bg-white/15"
             >
               Apply for Research License

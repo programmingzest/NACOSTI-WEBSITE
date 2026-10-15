@@ -1,5 +1,5 @@
-import { ArrowUpRight, BookOpen, FileText, Gavel, Headphones, Receipt } from 'lucide-react'
-import { informationCentre, serviceChargesHref, serviceCharterAudio } from '@/lib/site-data'
+import { ArrowUpRight, BookOpen, Download, FileText, Gavel, Receipt } from 'lucide-react'
+import { informationCentre, serviceChargesHref } from '@/lib/site-data'
 import { Reveal, SectionHeading } from '@/components/Reveal'
 
 const typeIcon = {
@@ -10,7 +10,8 @@ const typeIcon = {
 
 export function InformationCentre() {
   return (
-    <section id="information-centre" aria-labelledby="info-heading" className="px-6 py-24 md:py-32">
+    <section id="resources" aria-labelledby="info-heading" className="px-6 py-24 md:py-32">
+      <span id="information-centre" className="sr-only" aria-hidden="true" />
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
         <div>
           <Reveal>
@@ -29,8 +30,6 @@ export function InformationCentre() {
                 <Reveal as="li" key={doc.label} delay={i * 50}>
                   <a
                     href={doc.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="group flex items-center gap-4 px-5 py-4 transition-colors hover:bg-secondary/60"
                   >
                     <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
@@ -40,10 +39,8 @@ export function InformationCentre() {
                     <span className="hidden rounded-full border px-2.5 py-0.5 text-xs text-muted-foreground sm:inline">
                       {doc.type}
                     </span>
-                    <ArrowUpRight
-                      className="size-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
-                      aria-hidden="true"
-                    />
+                    {doc.type === 'PDF' ? <Download className="size-4 text-muted-foreground group-hover:text-primary" aria-hidden="true" /> : null}
+                    <ArrowUpRight className="size-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" aria-hidden="true" />
                   </a>
                 </Reveal>
               )
@@ -62,29 +59,11 @@ export function InformationCentre() {
               </p>
               <a
                 href={serviceChargesHref}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="mt-6 inline-flex items-center gap-2 rounded-full bg-deep px-6 py-3 text-sm font-semibold text-deep-foreground transition-transform hover:-translate-y-0.5"
               >
                 View charges
                 <ArrowUpRight className="size-4" aria-hidden="true" />
               </a>
-            </div>
-          </Reveal>
-          <Reveal delay={200}>
-            <div className="rounded-3xl border bg-card p-8">
-              <div className="flex items-center gap-3">
-                <span className="flex size-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                  <Headphones className="size-5" aria-hidden="true" />
-                </span>
-                <div>
-                  <h3 className="font-bold">Service Charter Audio</h3>
-                  <p className="text-xs text-muted-foreground">Listen in Kiswahili</p>
-                </div>
-              </div>
-              <audio controls preload="none" className="mt-5 w-full" aria-label="NACOSTI Service Charter audio in Kiswahili">
-                <source src={serviceCharterAudio} type="audio/mpeg" />
-              </audio>
             </div>
           </Reveal>
         </div>

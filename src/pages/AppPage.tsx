@@ -8,10 +8,10 @@ import { LicenseProcess } from '@/components/LicenseProcess'
 import { StiPriorities } from '@/components/StiPriorities'
 import { InformationCentre } from '@/components/InformationCentre'
 import { LatestNews } from '@/components/LatestNews'
-import { ConferenceTimeline } from '@/components/ConferenceTimeline'
 import { PartnersMarquee } from '@/components/PartnersMarquee'
 import { SiteFooter } from '@/components/SiteFooter'
 import { FloatingActions } from '@/components/FloatingActions'
+import { LocationGuide } from '@/components/LocationGuide'
 
 export default function AppPage() {
   useEffect(() => {
@@ -44,8 +44,8 @@ export default function AppPage() {
         <LicenseProcess />
         <StiPriorities />
         <InformationCentre />
+        <LocationGuide />
         <LatestNews />
-        <ConferenceTimeline />
         <PartnersMarquee />
       </main>
       <SiteFooter />

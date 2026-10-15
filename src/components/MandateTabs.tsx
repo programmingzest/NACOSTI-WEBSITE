@@ -20,9 +20,7 @@ export function MandateTabs() {
             />
           </div>
           <a
-            href="https://www.nacosti.go.ke/mandate-functions/"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/app/resource/mandate-functions"
             className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-primary hover:underline"
           >
             Mandate & functions
