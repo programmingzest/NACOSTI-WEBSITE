@@ -3,26 +3,7 @@ import { serviceChargesHref } from '@/lib/site-data'
 import { Reveal, SectionHeading } from '@/components/Reveal'
 
 const steps = [
-  {
-    icon: UserPlus,
-    title: 'Create your account',
-    description: 'Register on the Research Information Management System (RIMS) portal.',
-  },
-  {
-    icon: FileUp,
-    title: 'Submit your application',
-    description: 'Fill in research details and upload your proposal and supporting documents.',
-  },
-  {
-    icon: CreditCard,
-    title: 'Pay the service charge',
-    description: 'Settle the applicable research licensing fee securely online.',
-  },
-  {
-    icon: BadgeCheck,
-    title: 'Receive your license',
-    description: 'Once reviewed and approved, download your research license from the portal.',
-  },
+,
 ]
 
 export function LicenseProcess() {
@@ -71,9 +52,6 @@ export function LicenseProcess() {
                   <div className="flex items-center justify-between">
                     <span className="relative flex size-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground ring-8 ring-deep transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
                       <step.icon className="size-7" aria-hidden="true" />
-                    </span>
-                    <span className="font-display text-5xl font-extrabold text-white/10 transition-colors group-hover:text-accent/40">
-                      0{i + 1}
                     </span>
                   </div>
                   <h3 className="mt-6 text-lg font-bold text-deep-foreground">{step.title}</h3>
