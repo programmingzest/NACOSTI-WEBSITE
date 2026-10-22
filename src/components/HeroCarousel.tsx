@@ -75,7 +75,7 @@ export function HeroCarousel() {
               href={heroSlides[index].href}
               className="group inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 font-semibold text-accent-foreground shadow-xl shadow-accent/20 transition-all hover:-translate-y-0.5 hover:shadow-accent/40"
             >
-              Read the story
+              Learn more 
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </a>
             <a
