@@ -4,6 +4,7 @@ import { SocialIcons } from '@/components/SocialIcons'
 
 const services = navigation.find((n) => n.label === 'Services')?.groups?.[0].links.slice(0, 5) ?? []
 const about = navigation.find((n) => n.label === 'About Us')?.groups?.[0].links.slice(0, 5) ?? []
+const currentYear = new Date().getFullYear()
 
 function FooterList({ title, links }: { title: string; links: { label: string; href: string }[] }) {
   return (
@@ -102,7 +103,7 @@ export function SiteFooter() {
 
         <div className="flex flex-col justify-between gap-3 border-t border-white/10 py-6 text-xs text-deep-foreground/60 md:flex-row">
           <p>
-            &copy; {new Date().getFullYear()} National Commission for Science, Technology and Innovation. All rights
+            &copy; {currentYear} National Commission for Science, Technology and Innovation. All rights
             reserved.
           </p>
           <p>ISO 9001:2015 Certified &middot; Government of Kenya</p>

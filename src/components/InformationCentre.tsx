@@ -1,3 +1,4 @@
+import { useMemo, useState } from 'react'
 import { ArrowUpRight, BookOpen, Download, FileText, Gavel, Receipt } from 'lucide-react'
 import { informationCentre, serviceChargesHref } from '@/lib/site-data'
 import { Reveal, SectionHeading } from '@/components/Reveal'
@@ -9,6 +10,14 @@ const typeIcon = {
 }
 
 export function InformationCentre() {
+  const [filter, setFilter] = useState<'All' | 'Legal' | 'Plans & Charter' | 'Registers'>('All')
+  const visibleDocuments = useMemo(() => informationCentre.filter((doc) => {
+    if (filter === 'All') return true
+    if (filter === 'Legal') return doc.type === 'Legislation' || doc.label.includes('Regulations')
+    if (filter === 'Registers') return doc.type === 'Directory'
+    return doc.label.includes('Priorities') || doc.label.includes('Strategic') || doc.label.includes('Charter')
+  }), [filter])
+
   return (
     <section id="resources" aria-labelledby="info-heading" className="px-6 py-24 md:py-32">
       <span id="information-centre" className="sr-only" aria-hidden="true" />
@@ -18,19 +27,26 @@ export function InformationCentre() {
             <div id="info-heading">
               <SectionHeading
                 eyebrow="Information Centre"
-                title="Policies, regulations & key documents"
+                title="Laws, Plans & Documents"
                 description="Access the legal framework, registers and strategic documents that govern Kenya's STI sector."
               />
             </div>
           </Reveal>
-          <ul className="mt-10 divide-y rounded-2xl border bg-card">
-            {informationCentre.map((doc, i) => {
+          <div className="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Information Centre categories">
+            {(['All', 'Legal', 'Plans & Charter', 'Registers'] as const).map((tab) => (
+              <button key={tab} type="button" role="tab" aria-selected={filter === tab} onClick={() => setFilter(tab)} className={filter === tab ? 'rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground' : 'rounded-full border px-4 py-2 text-sm font-semibold text-muted-foreground hover:border-primary hover:text-primary'}>
+                {tab}
+              </button>
+            ))}
+          </div>
+          <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+            {visibleDocuments.map((doc, i) => {
               const Icon = typeIcon[doc.type]
               return (
                 <Reveal as="li" key={doc.label} delay={i * 50}>
                   <a
                     href={doc.href}
-                    className="group flex items-center gap-4 px-5 py-4 transition-colors hover:bg-secondary/60"
+                    className="group flex items-center gap-4 rounded-2xl border bg-card px-5 py-4 transition-colors hover:bg-secondary/60"
                   >
                     <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                       <Icon className="size-5" aria-hidden="true" />

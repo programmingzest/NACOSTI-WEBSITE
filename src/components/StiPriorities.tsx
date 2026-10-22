@@ -52,7 +52,7 @@ export function StiPriorities() {
                     <Icon className="size-5" aria-hidden="true" />
                   </span>
                   <h3 className="mt-4 text-sm font-bold leading-snug">{priority.title}</h3>
-                  <p className="mt-2 flex-1 text-xs leading-relaxed text-muted-foreground">{priority.detail}</p>
+                  <p className="mt-2 flex-1 text-sm leading-6 text-muted-foreground">{priority.detail}</p>
                 </div>
               </Reveal>
             )

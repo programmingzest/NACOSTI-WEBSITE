@@ -1,0 +1,52 @@
+[
+  { "label": "Home", "href": "/app#top" },
+  { "label": "About Us", "groups": [{ "title": "The Commission", "links": [
+    { "label": "History about NACOSTI", "href": "/app/resource/history-about-nacosti/", "description": "Our journey since inception" },
+    { "label": "Mandate & Functions", "href": "/app/resource/mandate-functions/", "description": "What the STI Act requires of us" },
+    { "label": "Vision, Mission & Core Values", "href": "/app/resource/vision-mission-core-values/", "description": "The principles that guide us" },
+    { "label": "Quality Policy", "href": "/app/resource/quality-policy/" },
+    { "label": "Corporate Objectives", "href": "/app/resource/corporate-objectives-2/" }
+  ]}, { "title": "Leadership", "links": [
+    { "label": "Board of the Commission", "href": "/app/resource/commisioners/" },
+    { "label": "Management", "href": "/app/resource/management/" },
+    { "label": "CEO's Corner", "href": "/app/resource/about-us/home/ceos-corner/" }
+  ]}, { "title": "Directorates", "links": [
+    { "label": "Research, Accreditation & Quality Assurance", "href": "/app/resource/directorate-of-research-accreditation-and-quality-assurance/" },
+    { "label": "Scheduled Sciences", "href": "/app/resource/directorate-of-s-s/" },
+    { "label": "Corporate Services", "href": "/app/resource/directorate-of-corporate-services/" }
+  ]}] },
+  { "label": "Programmes", "groups": [{ "links": [
+    { "label": "Advisory", "href": "/app/resource/advisory/", "description": "Policy advice on STI matters" },
+    { "label": "Collaborations and Partnership", "href": "/app/resource/collaborations-and-partnership/", "description": "Local and international cooperation" }
+  ]}] },
+  { "label": "Services", "groups": [{ "links": [
+    { "label": "Research Licensing", "href": "/app/resource/research-licensing", "description": "Apply online via RIMS" },
+    { "label": "Registration of Research Institutions", "href": "/app/resource/registration-of-research-institutions-in-kenya/" },
+    { "label": "Accreditation of ISERCs", "href": "/app/resource/accreditation-of-institutional-ethics-review-committees-iercs/" },
+    { "label": "Accredited ISERCs in Kenya", "href": "/app/resource/accredited-isercs-in-kenya/" },
+    { "label": "Accreditation of Research Institutions", "href": "/app/resource/accreditation-of-research-institutions/" },
+    { "label": "National Scientific & Ethics Review System", "href": "/app/resource/national-scientific-ethics-review-system" }
+  ]}] },
+  { "label": "Resources", "groups": [{ "links": [
+    { "label": "Information Centre", "href": "/app#information-centre", "description": "Laws, plans and key documents" },
+    { "label": "ICGEB Opportunities", "href": "https://www.icgeb.org/", "description": "Fellowships, grants and courses" },
+    { "label": "Careers", "href": "/app/resource/careers/" },
+    { "label": "FAQs", "href": "/app/resource/faqs/" },
+    { "label": "Newsletters", "href": "/app/resource/newletters/" },
+    { "label": "Reports on International Collaborations", "href": "/app/resource/reports-on-international-collaborations/" },
+    { "label": "Tenders", "href": "/app/resource/tenders/" },
+    { "label": "Videos & Audios", "href": "/app/resource/videos-audios/" }
+  ]}] },
+  { "label": "PC-MDAs", "href": "/app/resource/pc-mdas" },
+  { "label": "Directions", "href": "/app#location" },
+  { "label": "News & Events", "groups": [{ "title": "Updates", "links": [
+    { "label": "News", "href": "/app/resource/category/latest/" },
+    { "label": "Fellowships and Grants", "href": "/app/resource/resources/fellowships-and-grants/" }
+  ]}, { "title": "Conference", "links": [
+    { "label": "4th MS-CORSTI | 2025", "href": "/app/resource/ms-corsti-2025" },
+    { "label": "3rd MS-CORSTI | 2024", "href": "/app/resource/ms-corsti-2024" },
+    { "label": "2nd MS-CORSTI | 2023", "href": "/app/resource/ms-corsti-2023" },
+    { "label": "1st MS-CORSTI | 2021", "href": "/app/resource/nacosti/Docs/2021/Multisectoral%20STI%20Conference%20Resolutions.pdf" }
+  ]}] },
+  { "label": "Contact", "href": "/app#contact" }
+]
