@@ -1,176 +1,83 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react'
 import { heroSlides } from '@/lib/site-data'
 import { cn } from '@/lib/utils'
 
 export function HeroCarousel() {
+  const slides = heroSlides
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
   const [hovering, setHovering] = useState(false)
-  const total = heroSlides.length
-  const go = (next: number) => setIndex((next + total) % total)
+  const total = slides.length
+  const go = useCallback((next: number) => setIndex((next + total) % total), [total])
   const isPaused = paused || hovering
+
+  useEffect(() => {
+    if (isPaused) return
+    const timer = window.setInterval(() => go(index + 1), 7000)
+    return () => window.clearInterval(timer)
+  }, [go, index, isPaused])
 
   return (
     <section
       aria-roledescription="carousel"
       aria-label="Featured news"
-      className="relative isolate overflow-hidden bg-deep"
+      className="relative overflow-hidden bg-primary text-primary-foreground"
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
     >
-      {heroSlides.map((slide, i) => (
-        <div
-          key={slide.href}
-          aria-hidden={i !== index}
-          className={cn(
-            'absolute inset-0 -z-10 transition-opacity duration-1000',
-            i === index ? 'opacity-100' : 'opacity-0',
-          )}
-        >
-          <img
-            src={slide.image}
-            alt=""
-            className={cn(
-              'absolute inset-0 h-full w-full object-cover transition-transform duration-[8000ms] ease-out',
-              i === index ? 'scale-105' : 'scale-100',
-            )}
-          />
-        </div>
-      ))}
-      <div
-        className="absolute inset-0 -z-10 bg-gradient-to-r from-deep via-deep/85 to-deep/20"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute inset-0 -z-10 bg-gradient-to-t from-deep via-transparent to-transparent"
-        aria-hidden="true"
-      />
-
-      <div className="mx-auto flex min-h-[calc(100svh-4.5rem)] max-w-7xl flex-col justify-center px-6 pb-40 pt-16 md:min-h-[48rem] md:pb-72">
-        <div className="max-w-3xl" aria-live={isPaused ? 'polite' : 'off'}>
-          <div
-            key={`meta-${index}`}
-            className="flex flex-wrap items-center gap-3 animate-in fade-in slide-in-from-bottom-3 duration-700"
-          >
-            <span className="rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent-foreground">
-              {heroSlides[index].tag}
-            </span>
-            <span className="text-sm text-deep-foreground/70">{heroSlides[index].date}</span>
-          </div>
-          <h1
-            key={`title-${index}`}
-            className="mt-6 text-4xl font-extrabold leading-[1.05] tracking-tight text-deep-foreground animate-in fade-in slide-in-from-bottom-6 duration-700 md:text-5xl xl:text-6xl"
-          >
-            {heroSlides[index].title}
+      <div className="mx-auto grid min-h-[34rem] max-w-7xl gap-8 px-6 py-10 lg:grid-cols-[1fr_1.15fr] lg:items-center lg:py-12">
+        <div className="max-w-xl">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+            Kenya&apos;s Science, Technology &amp; Innovation Regulator
+          </p>
+          <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight md:text-5xl">
+            Advancing Kenya Through Research, Science &amp; Innovation
           </h1>
-          <p
-            key={`excerpt-${index}`}
-            className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-deep-foreground/80 animate-in fade-in slide-in-from-bottom-6 duration-1000"
-          >
-            {heroSlides[index].excerpt}
+          <p className="mt-5 max-w-lg text-base leading-relaxed text-primary-foreground/80">
+            NACOSTI regulates, advises, coordinates and promotes the STI and research sector, from research licensing to ethics review and accreditation.
           </p>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a
-              href={heroSlides[index].href}
-              className="group inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 font-semibold text-accent-foreground shadow-xl shadow-accent/20 transition-all hover:-translate-y-0.5 hover:shadow-accent/40"
-            >
-              Read the story
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+          <div className="mt-7 flex flex-wrap gap-3">
+            <a href="https://research-portal.nacosti.go.ke/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5">
+              Apply for a Research License <ArrowUpRight className="size-4" aria-hidden="true" />
             </a>
-            <a
-              href="/app/resource/research-licensing"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-3.5 font-semibold text-deep-foreground backdrop-blur transition-colors hover:border-white hover:bg-white/15"
-            >
-              Apply for Research License
-              <ArrowUpRight className="size-4" aria-hidden="true" />
+            <a href="/app/resource/mandate-functions/" className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 font-semibold transition-colors hover:bg-white/10">
+              Our Mandate <ArrowRight className="size-4" aria-hidden="true" />
             </a>
           </div>
         </div>
 
-        <div className="mt-10 flex items-center gap-3">
-          <button
-            type="button"
-            onClick={() => go(index - 1)}
-            className="flex size-11 items-center justify-center rounded-full border border-white/25 text-deep-foreground transition-colors hover:bg-white hover:text-deep"
-          >
-            <ChevronLeft className="size-5" aria-hidden="true" />
-            <span className="sr-only">Previous slide</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => go(index + 1)}
-            className="flex size-11 items-center justify-center rounded-full border border-white/25 text-deep-foreground transition-colors hover:bg-white hover:text-deep"
-          >
-            <ChevronRight className="size-5" aria-hidden="true" />
-            <span className="sr-only">Next slide</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setPaused((p) => !p)}
-            className="flex size-11 items-center justify-center rounded-full text-deep-foreground/70 transition-colors hover:text-accent"
-          >
-            {paused ? <Play className="size-4" aria-hidden="true" /> : <Pause className="size-4" aria-hidden="true" />}
-            <span className="sr-only">{paused ? 'Play slideshow' : 'Pause slideshow'}</span>
-          </button>
-          <p className="ml-2 font-display text-sm font-semibold tabular-nums text-deep-foreground/70">
-            <span className="text-accent">{String(index + 1).padStart(2, '0')}</span> / {String(total).padStart(2, '0')}
-          </p>
-        </div>
-      </div>
-
-      <div className="absolute inset-x-0 bottom-28 hidden md:block">
-        <div className="mx-auto grid max-w-7xl grid-cols-3 gap-4 px-6">
-          {heroSlides.map((slide, i) => (
-            <button
-              key={slide.href}
-              type="button"
-              onClick={() => go(i)}
-              aria-current={i === index}
-              className={cn(
-                'group relative overflow-hidden rounded-xl border p-4 text-left backdrop-blur-md transition-all',
-                i === index
-                  ? 'border-white/30 bg-white/15'
-                  : 'border-white/10 bg-white/5 hover:bg-white/10',
-              )}
-            >
-              <span className="block text-xs font-semibold uppercase tracking-wider text-accent">{slide.tag}</span>
-              <span className="mt-1 line-clamp-1 block text-sm font-medium text-deep-foreground">{slide.title}</span>
-              <span className="absolute inset-x-0 bottom-0 h-0.5 bg-white/10" aria-hidden="true">
-                {i === index ? (
-                  <span
-                    key={index}
-                    onAnimationEnd={() => go(index + 1)}
-                    style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
-                    className="block h-full origin-left animate-progress bg-accent"
-                  />
-                ) : null}
-              </span>
-            </button>
+        <div className="relative min-h-[23rem] overflow-hidden rounded-3xl border border-white/25 bg-white/10 shadow-2xl backdrop-blur-sm" aria-live={isPaused ? 'polite' : 'off'}>
+          {slides.map((slide, i) => (
+            <div key={slide.href} aria-hidden={i !== index} className={cn('absolute inset-0 transition-opacity duration-700', i === index ? 'opacity-100' : 'pointer-events-none opacity-0')}>
+              <img src={slide.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-deep via-deep/65 to-transparent" aria-hidden="true" />
+              <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+                <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-wider text-accent">
+                  <span>{slide.tag}</span><span className="text-primary-foreground/60">{slide.date}</span>
+                </div>
+                <h2 className="mt-3 max-w-2xl text-2xl font-bold leading-tight text-deep-foreground md:text-3xl">{slide.title}</h2>
+                <p className="mt-3 max-w-2xl text-sm leading-relaxed text-deep-foreground/80">{slide.excerpt}</p>
+                <a href={slide.href} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline">
+                  Read the story <ArrowRight className="size-4" aria-hidden="true" />
+                </a>
+              </div>
+            </div>
           ))}
+          <div className="absolute inset-x-0 top-0 flex items-center justify-between p-5">
+            <span className="text-sm font-semibold text-deep-foreground">Latest news</span>
+            <a href="/app/resource/category/latest/" className="text-xs font-semibold text-accent hover:underline">Other news</a>
+          </div>
+          <div className="absolute bottom-5 right-6 flex items-center gap-2">
+            <button type="button" onClick={() => go(index - 1)} className="flex size-9 items-center justify-center rounded-full border border-white/40 text-deep-foreground hover:bg-white/20" aria-label="Previous story"><ChevronLeft className="size-4" /></button>
+            <button type="button" onClick={() => go(index + 1)} className="flex size-9 items-center justify-center rounded-full border border-white/40 text-deep-foreground hover:bg-white/20" aria-label="Next story"><ChevronRight className="size-4" /></button>
+            <button type="button" onClick={() => setPaused((p) => !p)} className="flex size-9 items-center justify-center rounded-full text-deep-foreground/80 hover:text-white" aria-label={paused ? 'Play slideshow' : 'Pause slideshow'}>
+              {paused ? <Play className="size-4" /> : <Pause className="size-4" />}
+            </button>
+            <span className="ml-1 text-xs font-semibold text-deep-foreground/80">{String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
+          </div>
         </div>
-      </div>
-
-      <div className="absolute inset-x-0 bottom-28 flex justify-center gap-2 md:hidden">
-        {heroSlides.map((slide, i) => (
-          <button
-            key={slide.href}
-            type="button"
-            onClick={() => go(i)}
-            className="relative h-1.5 w-10 overflow-hidden rounded-full bg-white/25"
-          >
-            <span className="sr-only">Go to slide {i + 1}</span>
-            {i === index ? (
-              <span
-                key={index}
-                onAnimationEnd={() => go(index + 1)}
-                style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
-                className="absolute inset-0 origin-left animate-progress bg-accent"
-              />
-            ) : null}
-          </button>
-        ))}
       </div>
     </section>
   )
-}   
+}

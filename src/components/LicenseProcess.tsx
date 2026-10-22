@@ -1,10 +1,12 @@
-import { ArrowUpRight, BadgeCheck, CreditCard, FileUp, UserPlus } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import { serviceChargesHref } from '@/lib/site-data'
 import { Reveal, SectionHeading } from '@/components/Reveal'
 
-const steps = [
-,
-]
+const steps: Array<{
+  title: string
+  description: string
+  icon: React.ComponentType<{ className?: string }>
+}> = []
 
 export function LicenseProcess() {
   return (

@@ -4,13 +4,10 @@ import { HeroCarousel } from '@/components/HeroCarousel'
 import { EServices } from '@/components/EServices'
 import { MandateTabs } from '@/components/MandateTabs'
 import { StatsBand } from '@/components/StatsBand'
-import { LicenseProcess } from '@/components/LicenseProcess'
 import { StiPriorities } from '@/components/StiPriorities'
 import { InformationCentre } from '@/components/InformationCentre'
-import { LatestNews } from '@/components/LatestNews'
 import { PartnersMarquee } from '@/components/PartnersMarquee'
 import { SiteFooter } from '@/components/SiteFooter'
-import { FloatingActions } from '@/components/FloatingActions'
 import { LocationGuide } from '@/components/LocationGuide'
 
 export default function AppPage() {
@@ -40,16 +37,12 @@ export default function AppPage() {
         <EServices />
         <MandateTabs />
         <StatsBand />
-        <div className="h-24 md:h-32" aria-hidden="true" />
-        <LicenseProcess />
         <StiPriorities />
         <InformationCentre />
-        <LocationGuide />
-        <LatestNews />
         <PartnersMarquee />
+        <LocationGuide />
       </main>
       <SiteFooter />
-      <FloatingActions />
     </div>
   )
 }   

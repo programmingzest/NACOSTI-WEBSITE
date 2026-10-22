@@ -1,6 +1,7 @@
 import { ArrowLeft, ArrowUpRight, Download, FileText, KeyRound, MapPinned } from 'lucide-react'
 import { Link, useParams } from 'react-router'
 import { informationCentre, navigation } from '@/lib/site-data'
+import resourcePages from '@/content/resource-pages.json'
 import { SiteFooter } from '@/components/SiteFooter'
 import { SiteHeader } from '@/components/SiteHeader'
 
@@ -14,49 +15,6 @@ const allResources = [
 
 function slugFromHref(href: string) {
   return href.split('/').filter(Boolean).pop()?.replace(/%20/g, '-').replace(/\.pdf$/, '') ?? ''
-}
-
-const staticContent: Record<string, { intro: string; sections: { title: string; body: string }[] }> = {
-  'history-about-nacosti': {
-    intro: 'NACOSTI is Kenya’s national institution responsible for coordinating, regulating and promoting science, technology and innovation.',
-    sections: [
-      { title: 'Our history', body: 'The Commission was established under the Science, Technology and Innovation Act No. 28 of 2013 to provide leadership for Kenya’s national STI system.' },
-      { title: 'Our role today', body: 'NACOSTI assures quality in research, advises government on STI matters, coordinates national priorities and supports collaboration across institutions.' },
-    ],
-  },
-  'mandate-functions': {
-    intro: 'The Commission’s mandate is to regulate, coordinate and advise on science, technology and innovation in Kenya.',
-    sections: [
-      { title: 'Core functions', body: 'NACOSTI licenses research, registers research institutions, accredits ethics review committees, develops STI priorities and advises national and county governments.' },
-      { title: 'Public value', body: 'These functions protect research participants, improve quality and connect research, innovation and national development.' },
-    ],
-  },
-  'vision-mission-core-values': {
-    intro: 'NACOSTI provides a values-led framework for a productive and ethical national STI ecosystem.',
-    sections: [
-      { title: 'Vision', body: 'A globally competitive science, technology and innovation system for sustainable development.' },
-      { title: 'Mission and values', body: 'We coordinate and regulate STI through excellence, integrity, inclusivity, accountability, professionalism and service to the public.' },
-    ],
-  },
-  'quality-policy': {
-    intro: 'NACOSTI is committed to delivering consistent, impartial and continually improving services to the STI community.',
-    sections: [
-      { title: 'Quality commitment', body: 'The Commission applies documented processes, legal requirements, evidence-based decisions and stakeholder feedback across its services.' },
-    ],
-  },
-  'corporate-objectives-2': {
-    intro: 'NACOSTI’s corporate objectives translate the national STI mandate into measurable programmes and services.',
-    sections: [
-      { title: 'Strategic direction', body: 'Objectives focus on effective regulation, research quality, policy advice, partnerships, institutional performance and accessible public services.' },
-    ],
-  },
-  faqs: {
-    intro: 'Find answers about research licensing, institutional registration, ethics review and NACOSTI services.',
-    sections: [
-      { title: 'Research licensing', body: 'Applicants should create an account, provide the required research information and supporting documents, then follow the assessment and payment instructions in the licensing portal.' },
-      { title: 'Need more help?', body: 'Use the contact details in the footer to reach NACOSTI support.' },
-    ],
-  },
 }
 
 const portalDestinations: Record<string, { label: string; href: string; description: string }> = {
@@ -73,11 +31,14 @@ export default function ResourcePage() {
   const requestedSlug = requestedPath?.split('/').filter(Boolean).pop() ?? ''
   const resource = allResources.find((item) => slugFromHref(item.href) === requestedSlug)
   const title = resource?.label ?? 'NACOSTI resource library'
-  const content = staticContent[requestedSlug]
+  const content = resourcePages.pages.find((page) => page.slug === requestedSlug)
   const portal = portalDestinations[requestedSlug]
   const intro = content?.intro ?? resource?.description ?? 'This endpoint is managed inside the NACOSTI revamp and does not redirect automatically to the legacy website.'
   const downloadText = `${title}\n\n${intro}\n\nThis document is available from the NACOSTI revamp resource library.`
-  const downloadHref = `data:text/plain;charset=utf-8,${encodeURIComponent(downloadText)}`
+  const sourceHref = resource?.href ?? ''
+  const uploadedExtension = sourceHref.match(/\.[a-z0-9]+(?:\?.*)?$/i)?.[0].split('?')[0] ?? ''
+  const downloadHref = uploadedExtension ? sourceHref : `data:text/plain;charset=utf-8,${encodeURIComponent(downloadText)}`
+  const downloadName = `${requestedSlug || 'nacosti-resource'}${uploadedExtension || '.txt'}`
 
   return (
     <>
@@ -123,7 +84,9 @@ export default function ResourcePage() {
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href={downloadHref}
-              download={`${requestedSlug || 'nacosti-resource'}.txt`}
+              download={downloadName}
+              target={uploadedExtension ? '_blank' : undefined}
+              rel={uploadedExtension ? 'noopener noreferrer' : undefined}
               className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground hover:bg-deep"
             >
               <Download className="size-4" aria-hidden="true" />

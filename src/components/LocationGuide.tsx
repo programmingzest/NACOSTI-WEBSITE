@@ -23,12 +23,12 @@ export function LocationGuide() {
     : `https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=${NACOSTI.latitude},${NACOSTI.longitude}`
 
   return (
-    <section id="location" aria-labelledby="location-heading" className="bg-secondary/40 px-6 py-24 md:py-32">
-      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_1.15fr] lg:items-center">
+    <section id="location" aria-labelledby="location-heading" className="bg-secondary/40 px-6 py-12 md:py-16">
+      <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.8fr_1fr] lg:items-center">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Visit NACOSTI</p>
-          <h2 id="location-heading" className="mt-3 text-3xl font-extrabold md:text-4xl">Find us at Upper Kabete</h2>
-          <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
+          <h2 id="location-heading" className="mt-3 text-2xl font-extrabold md:text-3xl">Find us at Upper Kabete</h2>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
             Use the interactive map to locate the Commission off Waiyaki Way, or get turn-by-turn directions from your current position.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
@@ -44,7 +44,7 @@ export function LocationGuide() {
           {location ? <p className="mt-4 text-sm text-muted-foreground">{location.includes(',') ? 'Starting directions from your current location.' : location}</p> : null}
         </div>
         <div className="overflow-hidden rounded-3xl border bg-card p-2 shadow-xl">
-          <iframe title="Map showing NACOSTI at Upper Kabete" src={mapUrl} className="h-[22rem] w-full rounded-2xl border-0" loading="lazy" />
+          <iframe title="Map showing NACOSTI at Upper Kabete" src={mapUrl} className="h-64 w-full rounded-2xl border-0" loading="lazy" />
           <p className="flex items-center gap-2 px-3 py-3 text-xs text-muted-foreground">
             <MapPinned className="size-4 text-primary" aria-hidden="true" />
             Off Waiyaki Way, Upper Kabete, Nairobi

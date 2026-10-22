@@ -1,0 +1,156 @@
+media:
+  input: public
+  output: /
+
+content:
+  - name: site-content
+    label: Site content
+    type: file
+    path: src/content/site.json
+    format: json
+    fields:
+      - name: contact
+        label: Contact details
+        type: object
+        fields:
+          - { name: phone, label: Phone, type: string }
+          - { name: phoneHref, label: Phone link, type: string }
+          - { name: email, label: Email, type: string }
+          - { name: address, label: Address, type: string }
+      - name: socials
+        label: Social links
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Network, type: string }
+          - { name: href, label: URL, type: string }
+      - name: heroSlides
+        label: Latest news and hero slides
+        type: object
+        list: true
+        fields:
+          - { name: title, label: Headline, type: string }
+          - { name: excerpt, label: Summary, type: text }
+          - { name: image, label: Image, type: image }
+          - { name: tag, label: Category, type: string }
+          - { name: date, label: Publication date, type: date }
+          - { name: href, label: Article URL, type: string }
+      - name: eServices
+        label: E-services
+        type: object
+        list: true
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: description, label: Description, type: text }
+          - { name: cta, label: Call to action, type: string }
+          - { name: href, label: Link, type: string }
+          - { name: icon, label: Icon key, type: string }
+      - name: mandates
+        label: Mandates
+        type: object
+        list: true
+        fields:
+          - { name: key, label: Key, type: string }
+          - { name: title, label: Title, type: string }
+          - { name: image, label: Image, type: image }
+          - { name: summary, label: Summary, type: text }
+          - name: points
+            label: Key activities
+            type: string
+            list: true
+      - name: priorities
+        label: National STI priorities
+        type: object
+        list: true
+        fields:
+          - { name: title, label: Priority title, type: string }
+          - { name: detail, label: Explanation, type: text }
+          - { name: icon, label: Icon key, type: string }
+      - name: informationCentre
+        label: Information Centre documents
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Document name, type: string }
+          - { name: href, label: Document or page URL, type: string }
+          - { name: type, label: Type, type: string }
+      - name: conferences
+        label: Conferences
+        type: object
+        list: true
+        fields:
+          - { name: edition, label: Edition, type: string }
+          - { name: year, label: Year, type: number }
+          - { name: label, label: Label, type: string }
+          - { name: href, label: Link, type: string }
+      - name: partners
+        label: Partners
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Partner name, type: string }
+          - { name: short, label: Short name, type: string }
+          - { name: image, label: Logo, type: image }
+      - name: relatedSites
+        label: Related websites
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Name, type: string }
+          - { name: href, label: URL, type: string }
+      - name: icgebLinks
+        label: ICGEB links
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Link label, type: string }
+          - { name: href, label: URL, type: string }
+
+  - name: navigation
+    label: Navigation
+    type: file
+    path: src/content/navigation.json
+    format: json
+    fields:
+      - name: navigation
+        label: Navigation items
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: href, label: Link, type: string }
+          - name: groups
+            label: Dropdown groups
+            type: object
+            list: true
+            fields:
+              - { name: title, label: Group title, type: string }
+              - name: links
+                label: Links
+                type: object
+                list: true
+                fields:
+                  - { name: label, label: Label, type: string }
+                  - { name: href, label: Link, type: string }
+                  - { name: description, label: Description, type: text }
+
+  - name: resource-pages
+    label: Static resource pages
+    type: file
+    path: src/content/resource-pages.json
+    format: json
+    fields:
+      - name: pages
+        label: Resource page content
+        type: object
+        list: true
+        fields:
+          - { name: slug, label: Page slug, type: string }
+          - { name: intro, label: Introduction, type: rich-text }
+          - name: sections
+            label: Sections
+            type: object
+            list: true
+            fields:
+              - { name: title, label: Heading, type: string }
+              - { name: body, label: Body, type: rich-text }
