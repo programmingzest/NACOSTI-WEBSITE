@@ -146,6 +146,7 @@ content:
         list: true
         fields:
           - { name: slug, label: Page slug, type: string }
+          - { name: title, label: Page title, type: string }
           - { name: intro, label: Introduction, type: rich-text }
           - name: sections
             label: Sections

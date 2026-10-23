@@ -106,7 +106,7 @@ export function SiteFooter() {
             &copy; {currentYear} National Commission for Science, Technology and Innovation. All rights
             reserved.
           </p>
-          <p>ISO 9001:2015 Certified &middot; Government of Kenya</p>
+         
         </div>
       </div>
     </footer>
