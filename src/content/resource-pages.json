@@ -1,8 +1,568 @@
-{ "pages": [
-  { "slug": "history-about-nacosti", "intro": "NACOSTI is Kenya’s national institution responsible for coordinating, regulating and promoting science, technology and innovation.", "sections": [{ "title": "Our history", "body": "The Commission was established under the Science, Technology and Innovation Act No. 28 of 2013 to provide leadership for Kenya’s national STI system." }, { "title": "Our role today", "body": "NACOSTI assures quality in research, advises government on STI matters, coordinates national priorities and supports collaboration across institutions." }] },
-  { "slug": "mandate-functions", "intro": "The Commission’s mandate is to regulate, coordinate and advise on science, technology and innovation in Kenya.", "sections": [{ "title": "Core functions", "body": "NACOSTI licenses research, registers research institutions, accredits ethics review committees, develops STI priorities and advises national and county governments." }, { "title": "Public value", "body": "These functions protect research participants, improve quality and connect research, innovation and national development." }] },
-  { "slug": "vision-mission-core-values", "intro": "NACOSTI provides a values-led framework for a productive and ethical national STI ecosystem.", "sections": [{ "title": "Vision", "body": "A globally competitive science, technology and innovation system for sustainable development." }, { "title": "Mission and values", "body": "We coordinate and regulate STI through excellence, integrity, inclusivity, accountability, professionalism and service to the public." }] },
-  { "slug": "quality-policy", "intro": "NACOSTI is committed to delivering consistent, impartial and continually improving services to the STI community.", "sections": [{ "title": "Quality commitment", "body": "The Commission applies documented processes, legal requirements, evidence-based decisions and stakeholder feedback across its services." }] },
-  { "slug": "corporate-objectives-2", "intro": "NACOSTI’s corporate objectives translate the national STI mandate into measurable programmes and services.", "sections": [{ "title": "Strategic direction", "body": "Objectives focus on effective regulation, research quality, policy advice, partnerships, institutional performance and accessible public services." }] },
-  { "slug": "faqs", "intro": "Find answers about research licensing, institutional registration, ethics review and NACOSTI services.", "sections": [{ "title": "Research licensing", "body": "Applicants should create an account, provide the required research information and supporting documents, then follow the assessment and payment instructions in the licensing portal." }, { "title": "Need more help?", "body": "Use the contact details in the footer to reach NACOSTI support." }] }
-] }
+{
+  "pages": [
+    {
+      "slug": "history-about-nacosti",
+      "title": "History about NACOSTI",
+      "intro": "NACOSTI is Kenya's apex national institution responsible for coordinating, regulating, advising and promoting science, technology and innovation.",
+      "sections": [
+        {
+          "title": "Origins and Evolution",
+          "body": "The Commission traces its history to the National Council for Science and Technology (NCST), established under the Science and Technology Act Cap 250 of 1977. NCST laid the groundwork for Kenya's national scientific infrastructure and research advisory mechanisms."
+        },
+        {
+          "title": "Establishment under STI Act 2013",
+          "body": "In 2013, the enactment of the Science, Technology and Innovation Act No. 28 transformed NCST into the National Commission for Science, Technology and Innovation (NACOSTI), granting modern regulatory, coordination, and quality assurance powers."
+        },
+        {
+          "title": "Our Role Today",
+          "body": "NACOSTI assures quality in research, advises national and county governments on STI matters, coordinates national research priorities, and spearheads Kenya's transition into an innovation-driven knowledge economy."
+        }
+      ]
+    },
+    {
+      "slug": "mandate-functions",
+      "title": "Mandate & Functions",
+      "intro": "The Commission's statutory mandate is to regulate and assure quality in the science, technology and innovation sector and advise the Government in matters related thereto.",
+      "sections": [
+        {
+          "title": "Core Functions",
+          "body": "Under Section 6 of the STI Act No. 28 of 2013, NACOSTI develops national STI priorities, registers research institutions, licenses research activities, and accredits Institutional Scientific and Ethics Review Committees (ISERCs)."
+        },
+        {
+          "title": "Coordination and Promotion",
+          "body": "The Commission coordinates multi-agency research programs, monitors STI mainstreaming across Ministries, Departments and Agencies (MDAs), and champions public awareness of science and technology."
+        },
+        {
+          "title": "Socio-Economic Value",
+          "body": "By assuring research integrity and ethical standards, NACOSTI safeguards the Kenyan public, protects research participants, and aligns scientific innovation with national development goals."
+        }
+      ]
+    },
+    {
+      "slug": "vision-mission-core-values",
+      "title": "Vision, Mission & Core Values",
+      "intro": "NACOSTI is committed to leadership, integrity, and excellence in guiding Kenya's national science, technology, and innovation ecosystem.",
+      "sections": [
+        {
+          "title": "Vision",
+          "body": "A globally competitive science, technology and innovation system for sustainable development."
+        },
+        {
+          "title": "Mission",
+          "body": "To facilitate, coordinate, regulate and assure quality in science, technology and innovation through policy leadership, research coordination, and multi-sectoral collaboration."
+        },
+        {
+          "title": "Core Values",
+          "body": "Integrity, Professionalism, Excellence, Inclusivity, Accountability, and Customer-Centric Service Delivery guide all decisions and operations of the Commission."
+        }
+      ]
+    },
+    {
+      "slug": "quality-policy",
+      "title": "Quality Policy",
+      "intro": "NACOSTI is committed to delivering consistent, impartial, transparent and continually improving regulatory and advisory services to the scientific and research community.",
+      "sections": [
+        {
+          "title": "Quality Commitment",
+          "body": "The Commission maintains a Quality Management System aligned with international standards (ISO 9001:2015), ensuring that regulatory, licensing, accreditation, and advisory services meet statutory and customer requirements."
+        },
+        {
+          "title": "Continual Improvement",
+          "body": "We review our operational processes regularly through internal quality audits, risk assessments, and stakeholder feedback to enhance institutional effectiveness and service delivery."
+        }
+      ]
+    },
+    {
+      "slug": "corporate-objectives-2",
+      "title": "Corporate Objectives",
+      "intro": "NACOSTI's corporate objectives translate the statutory mandate into concrete strategic goals and measurable performance indicators.",
+      "sections": [
+        {
+          "title": "Strategic Regulation and Quality Assurance",
+          "body": "To enhance efficiency and transparency in research licensing, ethical clearance accreditation, and institutional registration across Kenya."
+        },
+        {
+          "title": "Evidence-Based Advisory Leadership",
+          "body": "To generate policy advisories and scientific intelligence that inform national development plans, Vision 2030, and county development frameworks."
+        },
+        {
+          "title": "Institutional Strengthening",
+          "body": "To optimize organizational capacity, digital infrastructure, financial sustainability, and human resource competencies for world-class public service."
+        }
+      ]
+    },
+    {
+      "slug": "commisioners",
+      "title": "Board of the Commission",
+      "intro": "The Board of Commissioners provides strategic governance, policy leadership, and fiduciary oversight for NACOSTI.",
+      "sections": [
+        {
+          "title": "Governance Mandate",
+          "body": "Appointed pursuant to Section 4 of the STI Act No. 28 of 2013, the Board is responsible for policy direction, strategic resource allocation, institutional risk management, and overall stewardship of Kenya's STI regulatory framework."
+        },
+        {
+          "title": "Board Composition and Committees",
+          "body": "The Board comprises distinguished Kenyan scientists, academic leaders, private sector innovators, and key government representatives. Governance is executed through specialized committees including Audit & Risk, Strategy & Finance, and Technical & Quality Assurance."
+        }
+      ]
+    },
+    {
+      "slug": "management",
+      "title": "Management",
+      "intro": "The executive management team is responsible for operationalizing Commission policies and driving day-to-day regulatory and advisory excellence.",
+      "sections": [
+        {
+          "title": "Executive Leadership",
+          "body": "Headed by the Director General and Chief Executive Officer, the management team executes the Board's strategic priorities, ensures regulatory compliance, and oversees public service delivery across all directorates."
+        },
+        {
+          "title": "Cross-Directorate Execution",
+          "body": "Management coordinates the Directorates of Research Accreditation & Quality Assurance, Scheduled Sciences, and Corporate Services to assure integrated performance and timely response to stakeholder needs."
+        }
+      ]
+    },
+    {
+      "slug": "ceos-corner",
+      "title": "CEO's Corner",
+      "intro": "Perspectives, strategic priorities, and communiqués from the Director General / CEO of NACOSTI.",
+      "sections": [
+        {
+          "title": "A Word from the Director General",
+          "body": "Science, technology, and innovation are the indispensable engines of sustainable national prosperity. NACOSTI is steadfast in creating an enabling regulatory environment that safeguards ethics while accelerating discovery, technology diffusion, and industrial commercialization."
+        },
+        {
+          "title": "Strategic Focus Areas",
+          "body": "Our current focus centers on digital modernization of licensing systems, expanding research funding partnerships, mainstreaming emerging technologies like artificial intelligence and biotechnology, and inspiring the next generation of STEM researchers."
+        }
+      ]
+    },
+    {
+      "slug": "directorate-of-research-accreditation-and-quality-assurance",
+      "title": "Research, Accreditation & Quality Assurance",
+      "intro": "The Directorate ensures the integrity, safety, and quality of all scientific research conducted within the borders of Kenya.",
+      "sections": [
+        {
+          "title": "Mandate and Responsibilities",
+          "body": "Oversees the administration of the Research Information Management System (RIMS), issues research licenses, registers public and private research institutions, and accredits Institutional Scientific and Ethics Review Committees (ISERCs)."
+        },
+        {
+          "title": "Quality Assurance and Compliance Audits",
+          "body": "Conducts post-licensing monitoring, institutional inspections, and bioethics compliance evaluations to ensure that research adheres strictly to statutory protocols and international ethical standards."
+        }
+      ]
+    },
+    {
+      "slug": "directorate-of-s-s",
+      "title": "Scheduled Sciences",
+      "intro": "The Directorate coordinates scientific disciplines to drive technological progress and evidence-based policy formulation.",
+      "sections": [
+        {
+          "title": "Disciplines Covered",
+          "body": "Coordinates programs and scientific panels across Agricultural & Natural Sciences, Physical & Industrial Sciences, Health Sciences, and Humanities & Social Sciences."
+        },
+        {
+          "title": "Scientific Advisories and Priority Setting",
+          "body": "Engages scientific communities, analyzes sectoral data, and formulates technical advisories that guide the national research agenda and address pressing socio-economic challenges."
+        }
+      ]
+    },
+    {
+      "slug": "directorate-of-corporate-services",
+      "title": "Corporate Services",
+      "intro": "The Directorate provides institutional, financial, legal, and operational infrastructure to support the Commission's mandate.",
+      "sections": [
+        {
+          "title": "Core Departments",
+          "body": "Encompasses Human Resource Management, Finance and Accounting, Information and Communication Technology (ICT), Supply Chain Management, Legal Services, and Corporate Communications."
+        },
+        {
+          "title": "Service Standards and Governance",
+          "body": "Ensures prudent stewardship of public resources, compliance with public financial laws, robust digital infrastructure, and adherence to the NACOSTI Service Charter."
+        }
+      ]
+    },
+    {
+      "slug": "advisory",
+      "title": "Advisory",
+      "intro": "Providing high-level policy guidance and scientific intelligence to the National Government, County Governments, and the public.",
+      "sections": [
+        {
+          "title": "Statutory Advisory Role",
+          "body": "Pursuant to the STI Act 2013, NACOSTI advises government ministries and regional administrations on national science priorities, STI investments, and technological readiness."
+        },
+        {
+          "title": "Evidence-Based Policy Development",
+          "body": "Produces policy briefs, national research reports, and technical forecasts to guide national legislation, economic planning, and emergency preparedness."
+        }
+      ]
+    },
+    {
+      "slug": "collaborations-and-partnership",
+      "title": "Collaborations and Partnership",
+      "intro": "Fostering strategic alliances with regional and international science organizations to advance Kenya's STI capacity.",
+      "sections": [
+        {
+          "title": "International Scientific Diplomacy",
+          "body": "NACOSTI serves as Kenya's liaison and focal point for major global scientific treaties and bodies, including the International Atomic Energy Agency (IAEA), International Centre for Genetic Engineering and Biotechnology (ICGEB), and the Biological Weapons Convention (BWC)."
+        },
+        {
+          "title": "Regional Alliances and Research Consortia",
+          "body": "Collaborates with the East African Science and Technology Commission (EASTECO), the African Union, and bilateral research councils to unlock collaborative grants, cross-border research, and talent exchange."
+        }
+      ]
+    },
+    {
+      "slug": "research-licensing",
+      "title": "Research Licensing",
+      "intro": "All researchers, institutions, and scholars seeking to conduct research in Kenya must obtain a statutory Research License.",
+      "sections": [
+        {
+          "title": "Mandatory Legal Requirement",
+          "body": "Under Section 12 of the STI Act No. 28 of 2013, conducting research in Kenya without a valid license issued by NACOSTI is an offence punishable by law."
+        },
+        {
+          "title": "Application via RIMS",
+          "body": "Applications are submitted entirely online via the Research Information Management System (RIMS). Applicants submit research proposals, institutional endorsement letters, and ethical review approvals."
+        },
+        {
+          "title": "Processing Timelines and Support",
+          "body": "Applications undergo thorough peer review and administrative assessment, with processed licenses issued digitally upon approval and fee verification."
+        }
+      ]
+    },
+    {
+      "slug": "registration-of-research-institutions-in-kenya",
+      "title": "Registration of Research Institutions",
+      "intro": "Formal statutory registration and certification of public and private research institutions operating in Kenya.",
+      "sections": [
+        {
+          "title": "Regulatory Framework",
+          "body": "Sections 16 to 22 of the STI Act 2013 require every institution intending to undertake research in Kenya to be formally registered by NACOSTI."
+        },
+        {
+          "title": "Evaluation Criteria",
+          "body": "Institutions are evaluated on governance frameworks, qualified human resources, physical laboratory infrastructure, safety standards, and institutional financial sustainability."
+        }
+      ]
+    },
+    {
+      "slug": "accreditation-of-institutional-ethics-review-committees-iercs",
+      "title": "Accreditation of ISERCs",
+      "intro": "Accrediting and overseeing Institutional Scientific and Ethics Review Committees (ISERCs) across Kenya.",
+      "sections": [
+        {
+          "title": "Ethics Oversight",
+          "body": "NACOSTI accredits institutional ethics committees to review and approve research proposals involving human subjects, animal models, or sensitive environmental ecosystems."
+        },
+        {
+          "title": "Standards and Annual Audits",
+          "body": "Accredited ISERCs must adhere to national bioethics guidelines, maintain diverse committee composition, and submit annual performance and monitoring reports to NACOSTI."
+        }
+      ]
+    },
+    {
+      "slug": "accredited-isercs-in-kenya",
+      "title": "Accredited ISERCs in Kenya",
+      "intro": "Official directory of NACOSTI-accredited Institutional Scientific and Ethics Review Committees.",
+      "sections": [
+        {
+          "title": "Accredited Committees Directory",
+          "body": "A curated roster of approved ethics review committees situated in universities, research institutes, hospitals, and specialized public health agencies."
+        },
+        {
+          "title": "Jurisdiction and Validation",
+          "body": "Researchers must submit protocols to accredited ISERCs with corresponding jurisdiction before seeking national licensing from NACOSTI."
+        }
+      ]
+    },
+    {
+      "slug": "accreditation-of-research-institutions",
+      "title": "Accreditation of Research Institutions",
+      "intro": "Formal peer assessment recognizing research institutions that maintain exceptional standards of scientific quality.",
+      "sections": [
+        {
+          "title": "Accreditation Standards",
+          "body": "Rigorous evaluation assessing research governance, laboratory calibration, peer-reviewed outputs, researcher credentials, and safety standards."
+        },
+        {
+          "title": "Institutional Recognition",
+          "body": "Accredited status grants formal recognition of technical competence, enhances international funding eligibility, and assures collaborative partners of research excellence."
+        }
+      ]
+    },
+    {
+      "slug": "national-scientific-ethics-review-system",
+      "title": "National Scientific & Ethics Review System (NSERS)",
+      "intro": "An integrated national digital portal connecting researchers, ethics review committees, and the Commission.",
+      "sections": [
+        {
+          "title": "Digital Review Workflow",
+          "body": "NSERS automates the submission, tracking, peer review, and clearance of ethical research protocols across Kenya."
+        },
+        {
+          "title": "Efficiency and Oversight",
+          "body": "Reduces review turnaround times, eliminates duplication of submissions, and provides the Commission with real-time oversight of national bioethics compliance."
+        }
+      ]
+    },
+    {
+      "slug": "information-centre",
+      "title": "Information Centre",
+      "intro": "The central repository for statutory legislation, national STI regulations, policies, and strategic documents.",
+      "sections": [
+        {
+          "title": "Legislation and Guidelines",
+          "body": "Access foundational legal instruments including the STI Act No. 28 of 2013, STI Regulations 2014, and National Research Ethics Guidelines."
+        },
+        {
+          "title": "Strategic Reports and Publications",
+          "body": "Explore NACOSTI's Strategic Plan 2023–2027, the National STI Priorities, Service Charters, and official institutional directories."
+        }
+      ]
+    },
+    {
+      "slug": "icgeb-opportunities",
+      "title": "ICGEB Opportunities",
+      "intro": "International research fellowships, collaborative research grants, and training workshops offered through ICGEB.",
+      "sections": [
+        {
+          "title": "About ICGEB and NACOSTI's Role",
+          "body": "NACOSTI is the National Liaison Office for the International Centre for Genetic Engineering and Biotechnology (ICGEB), facilitating Kenyan scholars' participation in international research."
+        },
+        {
+          "title": "Available Programs",
+          "body": "Kenyan researchers and postgraduate students are eligible to apply for Arturo Falaschi fellowships, early-career grants, and sponsored scientific courses globally."
+        }
+      ]
+    },
+    {
+      "slug": "careers",
+      "title": "Careers",
+      "intro": "Join our team of dedicated professionals advancing science, technology and innovation in Kenya.",
+      "sections": [
+        {
+          "title": "Employment at NACOSTI",
+          "body": "NACOSTI is an equal opportunity employer that values competence, diversity, and dedication to national service. Vacancies are advertised openly in the national press and on this portal."
+        },
+        {
+          "title": "Internships and Attachment Opportunities",
+          "body": "The Commission provides structured industrial attachment opportunities for undergraduate students and paid graduate internships to develop national capacity in STI management."
+        }
+      ]
+    },
+    {
+      "slug": "faqs",
+      "title": "Frequently Asked Questions (FAQs)",
+      "intro": "Find answers to common questions regarding research licensing, institutional registration, ethics review, and NACOSTI services.",
+      "sections": [
+        {
+          "title": "Research Licensing",
+          "body": "Applicants should create an account on RIMS, provide research information, institutional endorsement, and ethical clearance, and follow payment instructions."
+        },
+        {
+          "title": "Institutional Registration & Accreditation",
+          "body": "Research institutions must submit formal documentation through the portal. Audits and site inspections are conducted before certificates are issued."
+        },
+        {
+          "title": "Need More Help?",
+          "body": "For specialized inquiries, contact our customer support team via info@nacosti.go.ke or call 020 400 7000."
+        }
+      ]
+    },
+    {
+      "slug": "newletters",
+      "title": "Newsletters",
+      "intro": "Official quarterly publications, STI bulletins, and digests highlighting Commission initiatives and scientific breakthroughs.",
+      "sections": [
+        {
+          "title": "NACOSTI STI Bulletin",
+          "body": "Our quarterly newsletter covers research highlights, conference proceedings, interviews with leading Kenyan scientists, and updates on national priority programs."
+        },
+        {
+          "title": "Archive and Downloads",
+          "body": "Browse and download complete digital editions of past newsletters and special publications for academic and public reference."
+        }
+      ]
+    },
+    {
+      "slug": "reports-on-international-collaborations",
+      "title": "Reports on International Collaborations",
+      "intro": "Comprehensive reports and documentation on Kenya's bilateral and multilateral scientific partnerships.",
+      "sections": [
+        {
+          "title": "International Cooperation Outcomes",
+          "body": "Detailed outcomes from scientific treaties and technical cooperation frameworks with global partners, including the IAEA, ICGEB, and the United Nations."
+        },
+        {
+          "title": "Capacity Transfer and Research Grants",
+          "body": "Reports documenting technology transfer, researcher exchanges, and international grant funding secured for Kenyan universities and research institutes."
+        }
+      ]
+    },
+    {
+      "slug": "tenders",
+      "title": "Tenders",
+      "intro": "Official public procurement opportunities, invitations to tender, and notices of contract awards at NACOSTI.",
+      "sections": [
+        {
+          "title": "Procurement Notices",
+          "body": "All procurement opportunities are conducted in accordance with the Public Procurement and Asset Disposal Act (PPADA) 2015 and Public Procurement Regulatory Authority (PPRA) guidelines."
+        },
+        {
+          "title": "Bidding and Submission Guidelines",
+          "body": "Tender documents can be downloaded free of charge. Bids must be submitted in sealed envelopes to NACOSTI headquarters before the specified closing deadlines."
+        }
+      ]
+    },
+    {
+      "slug": "videos-audios",
+      "title": "Videos & Audios",
+      "intro": "Multimedia resources including recordings of scientific conferences, informative briefings, and audio resources.",
+      "sections": [
+        {
+          "title": "Conference and Event Recordings",
+          "body": "Watch keynote addresses, technical sessions, and panel debates from the annual Multi-Sectoral Conference on Science, Technology and Innovation (MS-CORSTI)."
+        },
+        {
+          "title": "Audio Resources and Podcasts",
+          "body": "Listen to audio recordings of the NACOSTI Service Charter in English and Kiswahili, as well as insightful podcasts on research ethics and scientific discoveries."
+        }
+      ]
+    },
+    {
+      "slug": "latest",
+      "title": "News & Announcements",
+      "intro": "Timely news updates, press releases, communiqués, and announcements from NACOSTI and the national STI community.",
+      "sections": [
+        {
+          "title": "Latest News",
+          "body": "Stay informed about the latest policy directives, capacity building workshops, scientific breakthroughs, and stakeholder engagements across Kenya."
+        },
+        {
+          "title": "Press Communiqués",
+          "body": "Official statements and announcements from the Commission regarding regulatory requirements, conference schedules, and international collaborations."
+        }
+      ]
+    },
+    {
+      "slug": "fellowships-and-grants",
+      "title": "Fellowships and Grants",
+      "intro": "Funding opportunities, research grants, postdoctoral fellowships, and travel awards for Kenyan researchers.",
+      "sections": [
+        {
+          "title": "International and Regional Opportunities",
+          "body": "Explore funding from ICGEB, IAEA Technical Cooperation, and international scientific consortia supporting research in priority national areas."
+        },
+        {
+          "title": "Application Guidelines",
+          "body": "Information on eligibility criteria, call deadlines, application procedures, and institutional endorsement requirements."
+        }
+      ]
+    },
+    {
+      "slug": "ms-corsti-2025",
+      "title": "4th MS-CORSTI | 2025",
+      "intro": "The 4th Multi-Sectoral Conference on Science, Technology and Innovation (MS-CORSTI 2025) brings together researchers, industry, and policymakers.",
+      "sections": [
+        {
+          "title": "Conference Theme and Tracks",
+          "body": "Highlighting cutting-edge research, commercialization, digital transformation, and sustainable development solutions tailored for Kenya and the region."
+        },
+        {
+          "title": "Call for Papers and Registration",
+          "body": "Guidelines for abstract submissions, peer review timelines, exhibition bookings, and registration instructions for delegates and presenters."
+        }
+      ]
+    },
+    {
+      "slug": "ms-corsti-2024",
+      "title": "3rd MS-CORSTI | 2024",
+      "intro": "Proceedings, scientific papers, and resolutions from the 3rd Multi-Sectoral Conference on Science, Technology and Innovation.",
+      "sections": [
+        {
+          "title": "Conference Highlights",
+          "body": "Over 500 delegates from academia, industry, and government convened to discuss research commercialization, youth innovation, and STI mainstreaming."
+        },
+        {
+          "title": "Resolutions and Policy Recommendations",
+          "body": "Adopted resolutions focused on expanding domestic R&D expenditure, strengthening research ethics oversight, and incentivizing industry-academia partnerships."
+        }
+      ]
+    },
+    {
+      "slug": "ms-corsti-2023",
+      "title": "2nd MS-CORSTI | 2023",
+      "intro": "Documentation and outcomes from the 2nd Multi-Sectoral Conference on Science, Technology and Innovation.",
+      "sections": [
+        {
+          "title": "Focus Areas",
+          "body": "Addressed post-pandemic resilience, food security technologies, climate change mitigation, and national innovation system alignment."
+        },
+        {
+          "title": "Stakeholder Communiqué",
+          "body": "Strategic commitments by public and private partners to accelerate science, technology, and innovation in socio-economic recovery."
+        }
+      ]
+    },
+    {
+      "slug": "Multisectoral-STI-Conference-Resolutions",
+      "title": "1st MS-CORSTI | 2021 Resolutions",
+      "intro": "Landmark resolutions and strategic roadmap adopted during the inaugural Multi-Sectoral Conference on Science, Technology and Innovation.",
+      "sections": [
+        {
+          "title": "Inaugural Conference Roadmap",
+          "body": "Established Kenya's premier annual platform for multi-agency STI dialogue, research alignment, and collaborative policy innovation."
+        },
+        {
+          "title": "Key Recommendations",
+          "body": "Detailed resolutions recommending enhanced STI financing mechanisms, research mainstreaming across counties, and institutional capacity development."
+        }
+      ]
+    },
+    {
+      "slug": "pc-mdas",
+      "title": "STI-PC MDAs Portal",
+      "intro": "Guidance and reporting systems for the Science, Technology and Innovation indicator in Performance Contracting for public sector agencies.",
+      "sections": [
+        {
+          "title": "STI Mainstreaming Indicator",
+          "body": "Mandates public institutions, ministries, departments, state agencies, and counties to institutionalize science, technology, and innovation into annual operations."
+        },
+        {
+          "title": "Reporting Guidelines and Evaluation",
+          "body": "Institutions must submit quarterly progress reports and verification evidence via the STI Mainstreaming portal within 15 days following the close of each quarter."
+        }
+      ]
+    },
+    {
+      "slug": "sti-act-2013",
+      "title": "Science, Technology and Innovation Act No. 28 of 2013",
+      "intro": "The principal legislation governing the promotion, coordination and regulation of science, technology and innovation in Kenya.",
+      "sections": [
+        {
+          "title": "Statutory Foundations",
+          "body": "Enacted to facilitate the promotion, coordination and regulation of the progress of science, technology and innovation in Kenya, and to assign priority to the development of STI."
+        },
+        {
+          "title": "Key Institutional Mandates",
+          "body": "Established NACOSTI as the regulator, the National Research Fund (NRF) to finance research, and the Kenya National Innovation Agency (KeNIA) to promote commercialization."
+        }
+      ]
+    },
+    {
+      "slug": "research-licensing-fees",
+      "title": "Research Licensing Fees",
+      "intro": "Schedule of statutory fees for research licensing applications in Kenya.",
+      "sections": [
+        {
+          "title": "Prescribed Fee Structure",
+          "body": "Prescribed by the Science, Technology and Innovation Regulations, differentiating between Kenyan citizens, East African Community residents, and non-citizens across academic and commercial categories."
+        },
+        {
+          "title": "Payment Channels",
+          "body": "Payments must be made through official government payment channels, including eCitizen and authorized Commission accounts, with automated receipt issuance."
+        }
+      ]
+    }
+  ]
+}

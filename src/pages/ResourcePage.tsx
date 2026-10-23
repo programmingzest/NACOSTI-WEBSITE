@@ -14,7 +14,14 @@ const allResources = [
 ]
 
 function slugFromHref(href: string) {
-  return href.split('/').filter(Boolean).pop()?.replace(/%20/g, '-').replace(/\.pdf$/, '') ?? ''
+  try {
+    const decoded = decodeURIComponent(href)
+    const lastPart = decoded.split('/').filter(Boolean).pop() ?? ''
+    return lastPart.replace(/\.pdf$/i, '').trim().replace(/\s+/g, '-')
+  } catch {
+    const lastPart = href.split('/').filter(Boolean).pop() ?? ''
+    return lastPart.replace(/\.pdf$/i, '').trim().replace(/\s+/g, '-')
+  }
 }
 
 const portalDestinations: Record<string, { label: string; href: string; description: string }> = {
@@ -28,13 +35,16 @@ const portalDestinations: Record<string, { label: string; href: string; descript
 
 export default function ResourcePage() {
   const { '*': requestedPath } = useParams()
-  const requestedSlug = requestedPath?.split('/').filter(Boolean).pop() ?? ''
+  const requestedSlug = slugFromHref(requestedPath ?? '')
   const resource = allResources.find((item) => slugFromHref(item.href) === requestedSlug)
-  const title = resource?.label ?? 'NACOSTI resource library'
+
   const content = resourcePages.pages.find((page) => page.slug === requestedSlug)
+  const title = (content as { title?: string } | undefined)?.title ?? resource?.label ?? 'NACOSTI resource library'
+
   const portal = portalDestinations[requestedSlug]
   const intro = content?.intro ?? resource?.description ?? 'This endpoint is managed inside the NACOSTI revamp and does not redirect automatically to the legacy website.'
-  const downloadText = `${title}\n\n${intro}\n\nThis document is available from the NACOSTI revamp resource library.`
+  const sectionsText = content?.sections?.map((s) => `${s.title}\n${s.body}`).join('\n\n') ?? ''
+  const downloadText = `${title}\n\n${intro}${sectionsText ? `\n\n${sectionsText}` : ''}\n\nThis document is available from the NACOSTI revamp resource library.`
   const sourceHref = resource?.href ?? ''
   const uploadedExtension = sourceHref.match(/\.[a-z0-9]+(?:\?.*)?$/i)?.[0].split('?')[0] ?? ''
   const downloadHref = uploadedExtension ? sourceHref : `data:text/plain;charset=utf-8,${encodeURIComponent(downloadText)}`
