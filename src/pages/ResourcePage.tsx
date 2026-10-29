@@ -1,7 +1,9 @@
-import { ArrowLeft, ArrowUpRight, Download, FileText, KeyRound, MapPinned } from 'lucide-react'
+import { ArrowLeft, ArrowUpRight, KeyRound } from 'lucide-react'
 import { Link, useParams } from 'react-router'
 import { informationCentre, navigation } from '@/lib/site-data'
 import resourcePages from '@/content/resource-pages.json'
+import { additionalResourcePages } from '@/content/additional-resource-pages'
+import { requestedResourcePages, type RequestedResourcePage } from '@/content/requested-resource-pages'
 import { SiteFooter } from '@/components/SiteFooter'
 import { SiteHeader } from '@/components/SiteHeader'
 
@@ -38,17 +40,17 @@ export default function ResourcePage() {
   const requestedSlug = slugFromHref(requestedPath ?? '')
   const resource = allResources.find((item) => slugFromHref(item.href) === requestedSlug)
 
-  const content = resourcePages.pages.find((page) => page.slug === requestedSlug)
+  const content: RequestedResourcePage | (typeof additionalResourcePages)[number] | (typeof resourcePages.pages)[number] | undefined =
+    requestedResourcePages.find((page) => page.slug === requestedSlug)
+    ?? additionalResourcePages.find((page) => page.slug === requestedSlug)
+    ?? resourcePages.pages.find((page) => page.slug === requestedSlug)
   const title = (content as { title?: string } | undefined)?.title ?? resource?.label ?? 'NACOSTI resource library'
 
   const portal = portalDestinations[requestedSlug]
   const intro = content?.intro ?? resource?.description ?? 'This endpoint is managed inside the NACOSTI revamp and does not redirect automatically to the legacy website.'
-  const sectionsText = content?.sections?.map((s) => `${s.title}\n${s.body}`).join('\n\n') ?? ''
-  const downloadText = `${title}\n\n${intro}${sectionsText ? `\n\n${sectionsText}` : ''}\n\nThis document is available from the NACOSTI revamp resource library.`
   const sourceHref = resource?.href ?? ''
-  const uploadedExtension = sourceHref.match(/\.[a-z0-9]+(?:\?.*)?$/i)?.[0].split('?')[0] ?? ''
-  const downloadHref = uploadedExtension ? sourceHref : `data:text/plain;charset=utf-8,${encodeURIComponent(downloadText)}`
-  const downloadName = `${requestedSlug || 'nacosti-resource'}${uploadedExtension || '.txt'}`
+  const downloadHref = sourceHref.startsWith('/documents/') ? sourceHref : undefined
+  const images = content && 'images' in content ? content.images : undefined
 
   return (
     <>
@@ -60,20 +62,59 @@ export default function ResourcePage() {
           Back to NACOSTI
         </Link>
         <div className="mt-10 rounded-3xl border bg-card p-8 shadow-xl md:p-12">
-          <span className="flex size-14 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
-            {requestedSlug.includes('map') ? <MapPinned className="size-7" /> : <FileText className="size-7" />}
-          </span>
-          <p className="mt-8 text-xs font-bold uppercase tracking-[0.2em] text-primary">Local resource endpoint</p>
           <h1 className="mt-3 text-4xl font-extrabold tracking-tight">{title}</h1>
           <p className="mt-5 max-w-2xl leading-relaxed text-muted-foreground">{intro}</p>
-          {content ? (
-            <div className="mt-8 grid gap-4 md:grid-cols-2">
-              {content.sections.map((section) => (
-                <section key={section.title} className="rounded-2xl bg-secondary/60 p-5">
-                  <h2 className="font-bold">{section.title}</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{section.body}</p>
-                </section>
+          {images ? (
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+              {images.map((image) => (
+                <figure key={image.filename} className="overflow-hidden rounded-2xl border bg-secondary/40">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="aspect-[4/3] w-full object-cover"
+                    onError={(event) => {
+                      event.currentTarget.style.display = 'none'
+                    }}
+                  />
+                  <figcaption className="p-4 text-sm text-muted-foreground">
+                    Add <code className="font-semibold text-foreground">{image.filename}</code> to <code className="font-semibold text-foreground">public/images/</code> to display this image.
+                  </figcaption>
+                </figure>
               ))}
+            </div>
+          ) : null}
+          {content ? (
+            <div className="mt-8 flex flex-col gap-6">
+              {content.sections.map((section) => {
+                const sectionLink = 'link' in section && typeof section.link === 'string' ? section.link : undefined
+                return (
+                  <section key={section.title} className="rounded-2xl bg-secondary/60 p-5 md:p-7">
+                    <h2 className="text-xl font-bold">{section.title}</h2>
+                    <p className="mt-3 whitespace-pre-line text-sm leading-7 text-muted-foreground">{section.body}</p>
+                    {'table' in section && section.table ? (
+                      <div className="mt-5 overflow-x-auto rounded-xl border bg-card">
+                        <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+                          <thead className="bg-primary text-primary-foreground">
+                            <tr>{section.table.headers.map((header) => <th key={header} className="px-4 py-3 font-semibold">{header}</th>)}</tr>
+                          </thead>
+                          <tbody>
+                            {section.table.rows.map((row) => (
+                              <tr key={row[0]} className="border-t even:bg-secondary/40">
+                                {row.map((cell, index) => <td key={`${row[0]}-${index}`} className="px-4 py-3 whitespace-nowrap">{cell}</td>)}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    ) : null}
+                    {sectionLink ? (
+                      <a href={sectionLink} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-deep">
+                        Apply for a Research License
+                      </a>
+                    ) : null}
+                  </section>
+                )
+              })}
             </div>
           ) : null}
           {portal ? (
@@ -91,21 +132,13 @@ export default function ResourcePage() {
               </div>
             </div>
           ) : null}
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href={downloadHref}
-              download={downloadName}
-              target={uploadedExtension ? '_blank' : undefined}
-              rel={uploadedExtension ? 'noopener noreferrer' : undefined}
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground hover:bg-deep"
-            >
-              <Download className="size-4" aria-hidden="true" />
-              Download resource
-            </a>
-            <Link to="/app#resources" className="inline-flex items-center rounded-full border px-6 py-3 font-semibold hover:border-primary">
-              Browse resources
-            </Link>
-          </div>
+          {downloadHref ? (
+            <div className="mt-8">
+              <a href={downloadHref} download className="inline-flex rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground hover:bg-deep">
+                Download resource
+              </a>
+            </div>
+          ) : null}
         </div>
         </div>
       </main>

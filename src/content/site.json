@@ -57,14 +57,14 @@
     {
       "title": "Research Information Management System (RIMS)",
       "description": "All persons intending to undertake research in the country are required to apply for a Research License. Applications are submitted online.",
-      "cta": "Apply for a license",
-      "href": "/app/resource/research-licensing",
+      "cta": "Research guidelines and requirements",
+      "href": "/app/resource/research-guidelines-and-requirements",
       "icon": "microscope"
     },
     {
       "title": "STI Mainstreaming Tool",
       "description": "All MDAs are required to prepare and submit quarterly performance reports online to NACOSTI within 15 days following the end of a quarter.",
-      "cta": "Submit STI report",
+      "cta": "More on STIs",
       "href": "/app/resource/pc-mdas",
       "icon": "chart"
     },
@@ -72,7 +72,7 @@
       "title": "NACOSTI on eCitizen",
       "description": "Apply and pay for certified, top-quality NACOSTI services conveniently through your eCitizen account.",
       "cta": "Access via eCitizen",
-      "href": "/app/resource/ecitizen",
+      "href": "https://nacosti.ecitizen.go.ke/",
       "icon": "id"
     }
   ],
@@ -192,12 +192,12 @@
     },
     {
       "label": "STI Regulations 2014",
-      "href": "https://www.nacosti.go.ke/nacosti/Docs/Information%20Centre/The-Science-Technology-and-Innovation-Regulations-2014.pdf",
+      "href": "/documents/The-Science-Technology-and-Innovation-Regulations-2014.pdf",
       "type": "PDF"
     },
     {
       "label": "STI Priorities",
-      "href": "https://www.nacosti.go.ke/nacosti/Docs/2024/National%20STI%20Priorities.pdf",
+      "href": "/documents/National-STI-Priorities.pdf",
       "type": "PDF"
     },
     {
@@ -207,17 +207,17 @@
     },
     {
       "label": "Registered Research Institutions",
-      "href": "https://www.nacosti.go.ke/nacosti/Docs/Information%20Centre/Registered%20Research%20Institutions.pdf",
+      "href": "/documents/Registered-Research-Institutions.pdf",
       "type": "PDF"
     },
     {
       "label": "NACOSTI Strategic Plan 2023–2027",
-      "href": "https://www.nacosti.go.ke/nacosti/Docs/Information%20Centre/NACOSTI%20Strategic%20Plan%202023-2027.pdf",
+      "href": "/documents/NACOSTI-Strategic-Plan-2023-2027.pdf",
       "type": "PDF"
     },
     {
       "label": "NACOSTI Service Charter",
-      "href": "https://www.nacosti.go.ke/nacosti/Docs/Information%20Centre/NACOSTI-SERVICE-CHARTER%20Dec%202018.pdf",
+      "href": "/documents/NACOSTI-Service-Charter-Dec-2018.pdf",
       "type": "PDF"
     }
   ],
@@ -226,7 +226,7 @@
       "edition": "1st",
       "year": 2021,
       "label": "Conference Resolutions",
-      "href": "/app/resource/nacosti/Docs/2021/Multisectoral%20STI%20Conference%20Resolutions.pdf"
+      "href": "/documents/Multisectoral-STI-Conference-Resolutions.pdf"
     },
     {
       "edition": "2nd",

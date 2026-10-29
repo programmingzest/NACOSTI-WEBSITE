@@ -46,6 +46,7 @@ export function InformationCentre() {
                 <Reveal as="li" key={doc.label} delay={i * 50}>
                   <a
                     href={doc.href}
+                    download={doc.type === 'PDF' && doc.href.startsWith('/documents/') ? true : undefined}
                     className="group flex items-center gap-4 rounded-2xl border bg-card px-5 py-4 transition-colors hover:bg-secondary/60"
                   >
                     <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">

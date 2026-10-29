@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react'
+import { ArrowRight, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react'
 import { heroSlides } from '@/lib/site-data'
 import { cn } from '@/lib/utils'
 
@@ -38,9 +38,6 @@ export function HeroCarousel() {
             NACOSTI regulates, advises, coordinates and promotes the STI and research sector, from research licensing to ethics review and accreditation.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <a href="https://research-portal.nacosti.go.ke/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5">
-              Apply for a Research License <ArrowUpRight className="size-4" aria-hidden="true" />
-            </a>
             <a href="/app/resource/mandate-functions/" className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 font-semibold transition-colors hover:bg-white/10">
               Our Mandate <ArrowRight className="size-4" aria-hidden="true" />
             </a>

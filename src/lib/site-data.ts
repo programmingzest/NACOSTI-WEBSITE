@@ -38,7 +38,7 @@ export const relatedSites = siteContent.relatedSites
 export const icgebLinks = siteContent.icgebLinks
 
 export const serviceChargesHref = `${BASE}/research-licensing-fees/`
-export const prioritiesPdf = `${BASE}/nacosti/Docs/2024/National%20STI%20Priorities.pdf`
+export const prioritiesPdf = '/documents/National-STI-Priorities.pdf'
 export const newsHref = `${BASE}/category/latest/`
 
 export const eResources = [

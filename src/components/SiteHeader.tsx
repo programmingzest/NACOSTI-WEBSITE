@@ -62,21 +62,44 @@ function TopBar() {
 }
 
 function DesktopDropdown({ item }: { item: NavItem }) {
+  const [open, setOpen] = useState(false)
+  const [hovered, setHovered] = useState(false)
+  const [hoverSuppressed, setHoverSuppressed] = useState(false)
   const groups = item.groups ?? []
   const wide = groups.length > 1
+  const visible = open || (hovered && !hoverSuppressed)
   return (
-    <li className="group/nav relative">
+    <li
+      className="group/nav relative"
+      onMouseEnter={() => {
+        setHovered(true)
+        setHoverSuppressed(false)
+      }}
+      onMouseLeave={() => {
+        setHovered(false)
+        setHoverSuppressed(false)
+      }}
+    >
       <button
         type="button"
         aria-haspopup="true"
-        className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-secondary group-focus-within/nav:bg-secondary"
+        aria-expanded={open}
+        onClick={() => {
+          setOpen((value) => {
+            const next = !value
+            setHoverSuppressed(!next)
+            return next
+          })
+        }}
+        className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-secondary"
       >
         {item.label}
-        <ChevronDown className="size-3 transition-transform duration-300 group-hover/nav:rotate-180 group-focus-within/nav:rotate-180" aria-hidden="true" />
+        <ChevronDown className={cn('size-3 transition-transform duration-300', open && 'rotate-180')} aria-hidden="true" />
       </button>
       <div
         className={cn(
-          'invisible absolute left-1/2 top-full z-50 -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition-all duration-200 group-hover/nav:visible group-hover/nav:translate-y-0 group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:translate-y-0 group-focus-within/nav:opacity-100',
+          'invisible absolute left-1/2 top-full z-50 -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition-all duration-200',
+          visible && 'visible translate-y-0 opacity-100',
         )}
       >
         <div
@@ -99,6 +122,7 @@ function DesktopDropdown({ item }: { item: NavItem }) {
                   <li key={link.href}>
                     <a
                       href={link.href}
+                      onClick={() => setOpen(false)}
                       target={isExternal(link.href) ? '_blank' : undefined}
                       rel={isExternal(link.href) ? 'noopener noreferrer' : undefined}
                       className="group/link flex items-start justify-between gap-3 rounded-xl px-3 py-2 transition-colors hover:bg-secondary"
@@ -232,8 +256,8 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
     <div
       id="mobile-menu"
       className={cn(
-        'fixed inset-x-0 bottom-0 top-[4.5rem] z-40 overflow-y-auto bg-background transition-all duration-300 xl:hidden',
-        open ? 'visible opacity-100' : 'invisible -translate-y-2 opacity-0',
+        'pointer-events-none fixed inset-x-0 bottom-0 top-[4.5rem] z-[55] overflow-y-auto bg-background transition-all duration-300 xl:hidden',
+        open ? 'pointer-events-auto visible opacity-100' : 'invisible -translate-y-2 opacity-0',
       )}
     >
       <nav aria-label="Mobile" className="px-6 py-6">
@@ -255,7 +279,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
                 </button>
                 <div
                   className={cn(
-                    'grid transition-all duration-300',
+                    'grid min-h-0 transition-all duration-300',
                     expanded === item.label ? 'grid-rows-[1fr] pb-4' : 'grid-rows-[0fr]',
                   )}
                 >
@@ -325,8 +349,10 @@ export function SiteHeader() {
       <header
         className={cn(
           'sticky top-0 z-50 transition-all duration-300',
-          scrolled || menuOpen
-            ? 'border-b bg-background/90 shadow-lg shadow-deep/5 backdrop-blur-xl'
+          menuOpen
+            ? 'border-b bg-background shadow-lg shadow-deep/5'
+            : scrolled
+              ? 'border-b bg-background/90 shadow-lg shadow-deep/5 backdrop-blur-xl'
             : 'bg-background',
         )}
       >
