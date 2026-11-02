@@ -40,7 +40,7 @@ export const icgebLinks = siteContent.icgebLinks
 
 export const serviceChargesHref = `${BASE}/research-licensing-fees/`
 export const prioritiesPdf = '/documents/National STI Priorities.pdf'
-export const newsHref = `${BASE}/category/latest/`
+export const newsHref = '/app/news'
 
 export const eResources = [
   { label: 'Research Licensing Portal', href: `${BASE}/research-licensing` },

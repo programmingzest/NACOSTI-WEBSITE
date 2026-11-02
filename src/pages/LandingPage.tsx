@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import type { ChangeEvent } from 'react'
 import { useNavigate } from 'react-router'
 
 const ArrowUpRight = () => (
@@ -13,25 +11,13 @@ const landingNav = [
   { label: 'Services', icon: '◎', target: '/app#licensing' },
   { label: 'Innovation', icon: '⌁', target: '/app#priorities' },
   { label: 'E-Resources', icon: '▤', target: '/app#information-centre' },
-  { label: 'Updates', icon: '↗', target: '/app#news' },
+  { label: 'Updates', icon: '↗', target: '/app/news' },
   { label: 'Contact', icon: '◇', target: '/app/contact/' },
   { label: 'Home', icon: '⌂', target: '/app' },
 ]
 
 export default function LandingPage() {
   const navigate = useNavigate()
-  const [logoUrl, setLogoUrl] = useState('')
-
-  const handleLogoUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (!file) return
-
-    const reader = new FileReader()
-    reader.addEventListener('load', () => {
-      if (typeof reader.result === 'string') setLogoUrl(reader.result)
-    })
-    reader.readAsDataURL(file)
-  }
 
   const enterSite = (target: string) => navigate(target)
 
@@ -48,17 +34,12 @@ export default function LandingPage() {
             <span className="gateway-kicker"><i /> Welcome to NACOSTI</span>
             <h1>Knowledge<br /><em>in motion.</em></h1>
             <p>Explore the people, policies and partnerships shaping Kenya's future through science, technology and innovation.</p>
-            <label className="logo-upload">
-              <span className="upload-icon">＋</span>
-              <span><strong>Personalise the wheel</strong><small>Upload a NACOSTI logo or seal</small></span>
-              <input type="file" accept="image/*" onChange={handleLogoUpload} />
-            </label>
           </div>
           <div className="gateway-wheel-wrap">
-            <div className="gateway-wheel" style={logoUrl ? { backgroundImage: `url(${logoUrl})` } : undefined}>
+            <div className="gateway-wheel">
               <div className="wheel-glass" />
               <div className="wheel-logo">
-                {logoUrl ? <span className="uploaded-logo" style={{ backgroundImage: `url(${logoUrl})` }} aria-label="Uploaded NACOSTI logo" /> : <><span className="wheel-bars"><i /><i /><i /></span><strong>NACOSTI</strong><small>Science • Technology • Innovation</small></>}
+                <img src="/nacosti-logo.jpg" alt="NACOSTI official logo" />
               </div>
               <div className="wheel-ring ring-a" />
               <div className="wheel-ring ring-b" />
@@ -69,7 +50,6 @@ export default function LandingPage() {
                 </a>
               ))}
             </div>
-            <span className="wheel-caption">Choose a direction <b>↗</b></span>
           </div>
         </div>
         <button className="gateway-enter" type="button" onClick={() => enterSite('/app')}>Enter NACOSTI <ArrowUpRight /></button>
