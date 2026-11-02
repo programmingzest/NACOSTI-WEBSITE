@@ -18,7 +18,7 @@ function isExternal(href: string) {
 
 function DesktopNavigation({ onSelect }: { onSelect: () => void }) {
   return (
-    <nav aria-label="Main" className="hidden min-w-0 flex-1 xl:block">
+    <nav aria-label="Main" className="hidden min-w-0 flex-1 lg:block">
       <ul className="flex items-center justify-end gap-1">
         {navigation.map((item) => (
           <li key={item.label} className="group/nav relative">
@@ -256,7 +256,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
     <div
       id="mobile-menu"
       className={cn(
-        'pointer-events-none fixed inset-x-0 bottom-0 top-[4.5rem] z-[55] overflow-y-auto bg-background transition-all duration-300 xl:hidden',
+        'pointer-events-none fixed inset-x-0 bottom-0 top-[4.5rem] z-[55] overflow-y-auto bg-background transition-all duration-300 lg:hidden',
         open ? 'pointer-events-auto visible opacity-100' : 'invisible -translate-y-2 opacity-0',
       )}
     >
@@ -381,7 +381,7 @@ export function SiteHeader() {
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               onClick={() => setMenuOpen((v) => !v)}
-              className="flex size-10 items-center justify-center rounded-full bg-secondary text-primary"
+              className="flex size-10 items-center justify-center rounded-full bg-secondary text-primary lg:hidden"
             >
               {menuOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
               <span className="sr-only">{menuOpen ? 'Close menu' : 'Open menu'}</span>

@@ -29,6 +29,7 @@ export type InformationResource = {
   label: string
   href: string
   type: 'Legislation' | 'PDF' | 'Directory'
+  available?: boolean
 }
 
 export const informationCentre = siteContent.informationCentre as InformationResource[]
@@ -38,7 +39,7 @@ export const relatedSites = siteContent.relatedSites
 export const icgebLinks = siteContent.icgebLinks
 
 export const serviceChargesHref = `${BASE}/research-licensing-fees/`
-export const prioritiesPdf = '/documents/National-STI-Priorities.pdf'
+export const prioritiesPdf = '/documents/National STI Priorities.pdf'
 export const newsHref = `${BASE}/category/latest/`
 
 export const eResources = [

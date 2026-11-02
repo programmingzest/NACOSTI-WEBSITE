@@ -193,12 +193,14 @@
     {
       "label": "STI Regulations 2014",
       "href": "/documents/The-Science-Technology-and-Innovation-Regulations-2014.pdf",
-      "type": "PDF"
+      "type": "PDF",
+      "available": true
     },
     {
       "label": "STI Priorities",
-      "href": "/documents/National-STI-Priorities.pdf",
-      "type": "PDF"
+      "href": "/documents/National STI Priorities.pdf",
+      "type": "PDF",
+      "available": true
     },
     {
       "label": "Accredited ISERCs",
@@ -207,18 +209,21 @@
     },
     {
       "label": "Registered Research Institutions",
-      "href": "/documents/Registered-Research-Institutions.pdf",
-      "type": "PDF"
+      "href": "/documents/Registered Research Institutions.pdf",
+      "type": "PDF",
+      "available": true
     },
     {
       "label": "NACOSTI Strategic Plan 2023–2027",
-      "href": "/documents/NACOSTI-Strategic-Plan-2023-2027.pdf",
-      "type": "PDF"
+      "href": "/documents/NACOSTI Strategic Plan 2023-2027.pdf",
+      "type": "PDF",
+      "available": true
     },
     {
       "label": "NACOSTI Service Charter",
-      "href": "/documents/NACOSTI-Service-Charter-Dec-2018.pdf",
-      "type": "PDF"
+      "href": "/documents/NACOSTI-SERVICE-CHARTER Dec 2018.pdf",
+      "type": "PDF",
+      "available": true
     }
   ],
   "conferences": [
