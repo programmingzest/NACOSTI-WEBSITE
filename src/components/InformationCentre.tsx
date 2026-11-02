@@ -19,7 +19,7 @@ export function InformationCentre() {
   }), [filter])
 
   return (
-    <section id="resources" aria-labelledby="info-heading" className="px-6 py-24 md:py-32">
+    <section id="resources" aria-labelledby="info-heading" className="px-6 py-14 md:py-20">
       <span id="information-centre" className="sr-only" aria-hidden="true" />
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
         <div>

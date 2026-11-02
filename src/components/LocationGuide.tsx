@@ -23,7 +23,7 @@ export function LocationGuide() {
     : `https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=${NACOSTI.latitude},${NACOSTI.longitude}`
 
   return (
-    <section id="location" aria-labelledby="location-heading" className="bg-secondary/40 px-6 py-12 md:py-16">
+    <section id="location" aria-labelledby="location-heading" className="bg-secondary/40 px-6 py-10 md:py-12">
       <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.8fr_1fr] lg:items-center">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Visit NACOSTI</p>

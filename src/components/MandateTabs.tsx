@@ -9,7 +9,7 @@ export function MandateTabs() {
   const current = mandates[active]
 
   return (
-    <section id="mandate" aria-labelledby="mandate-heading" className="px-6 py-24 md:py-32">
+    <section id="mandate" aria-labelledby="mandate-heading" className="px-6 py-14 md:py-20">
       <div className="mx-auto max-w-7xl">
         <Reveal className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div id="mandate-heading">
@@ -28,7 +28,7 @@ export function MandateTabs() {
           </a>
         </Reveal>
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-12">
+        <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-10">
           <div role="tablist" aria-label="NACOSTI mandates" aria-orientation="vertical" className="flex flex-col gap-3">
             {mandates.map((mandate, i) => (
               <button

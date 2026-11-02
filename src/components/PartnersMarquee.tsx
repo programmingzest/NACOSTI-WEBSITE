@@ -50,7 +50,7 @@ function Row({ reverse = false }: { reverse?: boolean }) {
 
 export function PartnersMarquee() {
   return (
-    <section aria-labelledby="partners-heading" className="border-y bg-secondary/40 py-16">
+    <section aria-labelledby="partners-heading" className="border-y bg-secondary/40 py-10">
       <h2
         id="partners-heading"
         className="px-6 text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
