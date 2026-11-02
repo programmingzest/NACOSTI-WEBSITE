@@ -58,40 +58,6 @@
       ]
     },
     {
-      "slug": "quality-policy",
-      "title": "Quality Policy",
-      "intro": "NACOSTI is committed to delivering consistent, impartial, transparent and continually improving regulatory and advisory services to the scientific and research community.",
-      "sections": [
-        {
-          "title": "Quality Commitment",
-          "body": "The Commission maintains a Quality Management System aligned with international standards (ISO 9001:2015), ensuring that regulatory, licensing, accreditation, and advisory services meet statutory and customer requirements."
-        },
-        {
-          "title": "Continual Improvement",
-          "body": "We review our operational processes regularly through internal quality audits, risk assessments, and stakeholder feedback to enhance institutional effectiveness and service delivery."
-        }
-      ]
-    },
-    {
-      "slug": "corporate-objectives-2",
-      "title": "Corporate Objectives",
-      "intro": "NACOSTI's corporate objectives translate the statutory mandate into concrete strategic goals and measurable performance indicators.",
-      "sections": [
-        {
-          "title": "Strategic Regulation and Quality Assurance",
-          "body": "To enhance efficiency and transparency in research licensing, ethical clearance accreditation, and institutional registration across Kenya."
-        },
-        {
-          "title": "Evidence-Based Advisory Leadership",
-          "body": "To generate policy advisories and scientific intelligence that inform national development plans, Vision 2030, and county development frameworks."
-        },
-        {
-          "title": "Institutional Strengthening",
-          "body": "To optimize organizational capacity, digital infrastructure, financial sustainability, and human resource competencies for world-class public service."
-        }
-      ]
-    },
-    {
       "slug": "commisioners",
       "title": "Board of the Commission",
       "intro": "The Board of Commissioners provides strategic governance, policy leadership, and fiduciary oversight for NACOSTI.",
