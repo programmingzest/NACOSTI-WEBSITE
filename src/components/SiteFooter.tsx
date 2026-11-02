@@ -32,7 +32,7 @@ function FooterList({ title, links }: { title: string; links: { label: string; h
   )
 }
 
-export function SiteFooter() {
+export function SiteFooter({ hideContactDetails = false }: { hideContactDetails?: boolean }) {
   return (
     <footer id="contact" className="relative overflow-hidden bg-deep text-deep-foreground">
       <div className="pointer-events-none absolute -right-40 -top-40 size-[30rem] rounded-full bg-primary/30 blur-3xl" aria-hidden="true" />
@@ -73,28 +73,32 @@ export function SiteFooter() {
                 className="h-10 w-auto"
               />
             </div>
-            <ul className="mt-6 flex flex-col gap-3 text-sm text-deep-foreground/75">
-              <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
-                {contact.address}, Nairobi, Kenya
-              </li>
-              <li>
-                <a href={contact.phoneHref} className="flex items-center gap-3 hover:text-deep-foreground">
-                  <Phone className="size-4 text-accent" aria-hidden="true" />
-                  {contact.phone}
-                </a>
-              </li>
-              <li>
-                <a href={`mailto:${contact.email}`} className="flex items-center gap-3 hover:text-deep-foreground">
-                  <Mail className="size-4 text-accent" aria-hidden="true" />
-                  {contact.email}
-                </a>
-              </li>
-            </ul>
-            <SocialIcons
-              className="mt-6"
-              itemClassName="size-9 bg-white/10 text-deep-foreground hover:bg-accent hover:text-accent-foreground"
-            />
+            {!hideContactDetails ? (
+              <>
+                <ul className="mt-6 flex flex-col gap-3 text-sm text-deep-foreground/75">
+                  <li className="flex items-start gap-3">
+                    <MapPin className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
+                    {contact.address}, Nairobi, Kenya
+                  </li>
+                  <li>
+                    <a href={contact.phoneHref} className="flex items-center gap-3 hover:text-deep-foreground">
+                      <Phone className="size-4 text-accent" aria-hidden="true" />
+                      {contact.phone}
+                    </a>
+                  </li>
+                  <li>
+                    <a href={`mailto:${contact.email}`} className="flex items-center gap-3 hover:text-deep-foreground">
+                      <Mail className="size-4 text-accent" aria-hidden="true" />
+                      {contact.email}
+                    </a>
+                  </li>
+                </ul>
+                <SocialIcons
+                  className="mt-6"
+                  itemClassName="size-9 bg-white/10 text-deep-foreground hover:bg-accent hover:text-accent-foreground"
+                />
+              </>
+            ) : null}
           </div>
           <FooterList title="About" links={about} />
           <FooterList title="Services" links={services} />
