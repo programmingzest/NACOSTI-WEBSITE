@@ -23,7 +23,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 export function StiPriorities() {
   return (
-    <section id="priorities" aria-labelledby="priorities-heading" className="px-6 py-24 md:py-32">
+    <section id="priorities" aria-labelledby="priorities-heading" className="px-6 py-14 md:py-20">
       <div className="mx-auto max-w-7xl">
         <Reveal className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div id="priorities-heading">
@@ -42,7 +42,7 @@ export function StiPriorities() {
           </a>
         </Reveal>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {priorities.map((priority, i) => {
             const Icon = iconMap[priority.icon] ?? FlaskConical
             return (

@@ -22,19 +22,19 @@ export function HeroCarousel() {
     <section
       aria-roledescription="carousel"
       aria-label="Featured news"
-      className="relative overflow-hidden bg-primary text-primary-foreground"
+      className="featured-hero relative overflow-hidden bg-primary text-primary-foreground"
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
     >
-      <div className="mx-auto grid min-h-[34rem] max-w-7xl gap-8 px-6 py-10 lg:grid-cols-[1fr_1.15fr] lg:items-center lg:py-12">
+      <div className="featured-hero-inner mx-auto grid max-w-7xl gap-5 px-6 py-6 lg:grid-cols-[1fr_1.15fr] lg:items-center lg:py-8">
         <div className="max-w-xl">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
             Kenya&apos;s Science, Technology &amp; Innovation Regulator
           </p>
-          <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight md:text-5xl">
+          <h1 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight md:text-4xl">
             Advancing Kenya Through Research, Science &amp; Innovation
           </h1>
-          <p className="mt-5 max-w-lg text-base leading-relaxed text-primary-foreground/80">
+          <p className="mt-4 max-w-lg text-sm leading-relaxed text-primary-foreground/80">
             NACOSTI regulates, advises, coordinates and promotes the STI and research sector, from research licensing to ethics review and accreditation.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
@@ -44,18 +44,18 @@ export function HeroCarousel() {
           </div>
         </div>
 
-        <div className="relative min-h-[23rem] overflow-hidden rounded-3xl border border-white/25 bg-white/10 shadow-2xl backdrop-blur-sm" aria-live={isPaused ? 'polite' : 'off'}>
+        <div className="featured-news-card relative min-h-[16rem] overflow-hidden rounded-3xl border border-white/25 bg-white/10 shadow-2xl backdrop-blur-sm" aria-live={isPaused ? 'polite' : 'off'}>
           {slides.map((slide, i) => (
             <div key={slide.href} aria-hidden={i !== index} className={cn('absolute inset-0 transition-opacity duration-700', i === index ? 'opacity-100' : 'pointer-events-none opacity-0')}>
               <img src={slide.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-deep via-deep/65 to-transparent" aria-hidden="true" />
-              <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+              <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
                 <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-wider text-accent">
                   <span>{slide.tag}</span><span className="text-primary-foreground/60">{slide.date}</span>
                 </div>
-                <h2 className="mt-3 max-w-2xl text-2xl font-bold leading-tight text-deep-foreground md:text-3xl">{slide.title}</h2>
-                <p className="mt-3 max-w-2xl text-sm leading-relaxed text-deep-foreground/80">{slide.excerpt}</p>
-                <a href={slide.href} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline">
+                <h2 className="mt-2 max-w-2xl text-xl font-bold leading-tight text-deep-foreground md:text-2xl">{slide.title}</h2>
+                <p className="mt-2 max-w-2xl text-xs leading-relaxed text-deep-foreground/80 md:text-sm">{slide.excerpt}</p>
+                <a href={slide.href} className="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-accent hover:underline md:text-sm">
                   Read the story <ArrowRight className="size-4" aria-hidden="true" />
                 </a>
               </div>

@@ -7,7 +7,7 @@ export function ConferenceTimeline() {
   const latest = conferences.length - 1
 
   return (
-    <section id="conference" aria-labelledby="conference-heading" className="px-6 py-24 md:py-32">
+    <section id="conference" aria-labelledby="conference-heading" className="px-6 py-14 md:py-20">
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <div id="conference-heading">
