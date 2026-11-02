@@ -14,7 +14,7 @@ const landingNav = [
   { label: 'Innovation', icon: '⌁', target: '/app#priorities' },
   { label: 'E-Resources', icon: '▤', target: '/app#information-centre' },
   { label: 'Updates', icon: '↗', target: '/app#news' },
-  { label: 'Contact', icon: '◇', target: '/app#contact' },
+  { label: 'Contact', icon: '◇', target: '/app/contact/' },
   { label: 'Home', icon: '⌂', target: '/app' },
 ]
 
