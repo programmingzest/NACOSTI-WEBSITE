@@ -1,16 +1,19 @@
+import { useState } from 'react'
 import { ArrowLeft, ArrowUpRight, KeyRound } from 'lucide-react'
 import { Link, useParams } from 'react-router'
 import { informationCentre, navigation } from '@/lib/site-data'
 import resourcePages from '@/content/resource-pages.json'
 import { additionalResourcePages } from '@/content/additional-resource-pages'
-import { requestedResourcePages, type RequestedResourcePage } from '@/content/requested-resource-pages'
+import { requestedResourcePages, type RequestedResourcePage, type ResourceProfile } from '@/content/requested-resource-pages'
 import { SiteFooter } from '@/components/SiteFooter'
 import { SiteHeader } from '@/components/SiteHeader'
 
 const links = navigation.flatMap((item) =>
   item.groups?.flatMap((group) => group.links) ?? (item.href ? [{ label: item.label, href: item.href }] : []),
 )
-const allResources = [
+type ResourceLookup = { label: string; href: string; description?: string; available?: boolean }
+
+const allResources: ResourceLookup[] = [
   ...links.map((link) => ({ ...link, description: link.description ?? 'NACOSTI service and information resource.' })),
   ...informationCentre.map((resource) => ({ ...resource, description: 'Download or read this NACOSTI reference document.' })),
 ]
@@ -35,22 +38,73 @@ const portalDestinations: Record<string, { label: string; href: string; descript
   'staff-mail': { label: 'Open Staff Mail', href: 'https://www.office.com/', description: 'Staff authentication is handled by the official Microsoft service.' },
 }
 
+function ProfileCards({ profiles }: { profiles: ResourceProfile[] }) {
+  const [selected, setSelected] = useState<string | null>(null)
+
+  return (
+    <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {profiles.map((profile) => {
+        const isSelected = selected === profile.name
+        return (
+          <article key={profile.name} className="overflow-hidden rounded-2xl border bg-card shadow-sm">
+            <div className="relative flex aspect-[4/3] items-center justify-center bg-secondary/60 p-4">
+              <img
+                src={profile.image}
+                alt={profile.name}
+                className="h-full w-full object-contain"
+                onError={(event) => {
+                  event.currentTarget.style.display = 'none'
+                  event.currentTarget.parentElement?.classList.add('profile-image-missing')
+                }}
+              />
+              <span className="pointer-events-none absolute px-6 text-center text-xs text-muted-foreground opacity-0 [.profile-image-missing_&]:opacity-100">
+                Add <code className="font-semibold text-foreground">{profile.imageFilename}</code> to <code className="font-semibold text-foreground">public/images/{profile.image.includes('/commissioners/') ? 'commissioners' : 'management'}/</code>.
+              </span>
+            </div>
+            <div className="p-5">
+              <h2 className="text-lg font-bold">{profile.name}</h2>
+              <p className="mt-1 text-sm font-semibold text-primary">{profile.role}</p>
+              <button
+                type="button"
+                aria-expanded={isSelected}
+                onClick={() => setSelected(isSelected ? null : profile.name)}
+                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+              >
+                {isSelected ? 'Hide brief bio' : 'View brief bio'}
+                <span aria-hidden="true">{isSelected ? '↑' : '↓'}</span>
+              </button>
+              {isSelected ? <p className="mt-4 border-t pt-4 text-sm leading-7 text-muted-foreground">{profile.bio}</p> : null}
+            </div>
+          </article>
+        )
+      })}
+    </div>
+  )
+}
+
 export default function ResourcePage() {
   const { '*': requestedPath } = useParams()
   const requestedSlug = slugFromHref(requestedPath ?? '')
-  const resource = allResources.find((item) => slugFromHref(item.href) === requestedSlug)
+  const resourceSlug = {
+    'history-about-nacosti': 'about-nacosti',
+    'mandate-functions': 'about-nacosti',
+    'vision-mission-core-values': 'about-nacosti',
+  }[requestedSlug] ?? requestedSlug
+  const resource = allResources.find((item) => slugFromHref(item.href) === resourceSlug)
 
   const content: RequestedResourcePage | (typeof additionalResourcePages)[number] | (typeof resourcePages.pages)[number] | undefined =
-    requestedResourcePages.find((page) => page.slug === requestedSlug)
-    ?? additionalResourcePages.find((page) => page.slug === requestedSlug)
-    ?? resourcePages.pages.find((page) => page.slug === requestedSlug)
+    requestedResourcePages.find((page) => page.slug === resourceSlug)
+    ?? additionalResourcePages.find((page) => page.slug === resourceSlug)
+    ?? resourcePages.pages.find((page) => page.slug === resourceSlug)
   const title = (content as { title?: string } | undefined)?.title ?? resource?.label ?? 'NACOSTI resource library'
 
-  const portal = portalDestinations[requestedSlug]
+  const portal = portalDestinations[resourceSlug]
   const intro = content?.intro ?? resource?.description ?? 'This endpoint is managed inside the NACOSTI revamp and does not redirect automatically to the legacy website.'
   const sourceHref = resource?.href ?? ''
-  const downloadHref = sourceHref.startsWith('/documents/') ? sourceHref : undefined
+  const isLocalDocument = sourceHref.startsWith('/documents/')
+  const downloadHref = isLocalDocument && resource?.available === true ? sourceHref : undefined
   const images = content && 'images' in content ? content.images : undefined
+  const profiles = content && 'profiles' in content ? content.profiles : undefined
 
   return (
     <>
@@ -77,16 +131,19 @@ export default function ResourcePage() {
                     }}
                   />
                   <figcaption className="p-4 text-sm text-muted-foreground">
-                    Add <code className="font-semibold text-foreground">{image.filename}</code> to <code className="font-semibold text-foreground">public/images/</code> to display this image.
+                    Add <code className="font-semibold text-foreground">{image.filename}</code> to <code className="font-semibold text-foreground">public/images/</code>
                   </figcaption>
                 </figure>
               ))}
             </div>
           ) : null}
+          {profiles ? <ProfileCards profiles={profiles} /> : null}
           {content ? (
             <div className="mt-8 flex flex-col gap-6">
               {content.sections.map((section) => {
                 const sectionLink = 'link' in section && typeof section.link === 'string' ? section.link : undefined
+                const sectionLinkLabel = 'linkLabel' in section && typeof section.linkLabel === 'string' ? section.linkLabel : 'Open resource'
+                const sectionIsExternal = sectionLink?.startsWith('http') ?? false
                 return (
                   <section key={section.title} className="rounded-2xl bg-secondary/60 p-5 md:p-7">
                     <h2 className="text-xl font-bold">{section.title}</h2>
@@ -108,8 +165,8 @@ export default function ResourcePage() {
                       </div>
                     ) : null}
                     {sectionLink ? (
-                      <a href={sectionLink} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-deep">
-                        Apply for a Research License
+                      <a href={sectionLink} target={sectionIsExternal ? '_blank' : undefined} rel={sectionIsExternal ? 'noopener noreferrer' : undefined} className="mt-4 inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-deep">
+                        {sectionLinkLabel}
                       </a>
                     ) : null}
                   </section>
@@ -138,6 +195,10 @@ export default function ResourcePage() {
                 Download resource
               </a>
             </div>
+          ) : isLocalDocument ? (
+            <p className="mt-8 rounded-xl border border-dashed bg-muted/40 p-4 text-sm text-muted-foreground">
+              This document is not available for download yet. Add the approved PDF to <code className="font-semibold text-foreground">public/documents/</code>; the link will be enabled once the asset is registered as available.
+            </p>
           ) : null}
         </div>
         </div>
