@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
   ArrowRight,
   ArrowUpRight,
@@ -11,8 +10,6 @@ import { newsHref } from '@/lib/site-data'
 import { Reveal } from '@/components/Reveal'
 
 type NewsStory = (typeof newsStories)[number]
-
-const categories = ['All updates', ...new Set(newsStories.map((story) => story.tag))]
 
 function StoryDetails({ story }: { story: NewsStory }) {
   return (
@@ -90,7 +87,7 @@ function StoryCard({ story, index }: { story: NewsStory; index: number }) {
 }
 
 export function LatestNews({ showAllLink = true }: { showAllLink?: boolean }) {
-  const [selectedCategory, setSelectedCategory] = useState('All updates')
+  const selectedCategory = 'All updates'
   const stories = selectedCategory === 'All updates'
     ? newsStories
     : newsStories.filter((story) => story.tag === selectedCategory)
