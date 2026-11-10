@@ -33,7 +33,7 @@
   ]}] },
   { "label": "PC-MDAs", "href": "/app/resource/pc-mdas" },
   { "label": "News & Events", "groups": [{ "title": "Updates", "links": [
-    { "label": "News", "href": "/app/resource/category/latest/" },
+    { "label": "News", "href": "/app/news" },
     { "label": "Fellowships and Grants", "href": "/app/resource/resources/fellowships-and-grants/" }
   ]}, { "title": "Conference", "links": [
     { "label": "4th MS-CORSTI | 2025", "href": "/app/resource/ms-corsti-2025" },
