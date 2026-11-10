@@ -41,10 +41,10 @@ export function SiteFooter({ hideContactDetails = false }: { hideContactDetails?
         <div className="flex flex-col items-start justify-between gap-8 rounded-3xl bg-primary p-8 md:flex-row md:items-center md:p-12">
           <div className="max-w-xl">
             <h2 className="text-3xl font-extrabold tracking-tight md:text-4xl">
-              Have a question about research in Kenya?
+              Have a question about Nacosti?
             </h2>
             <p className="mt-3 text-primary-foreground/80">
-              Our team is ready to assist with licensing, accreditation and STI enquiries.
+              Our team is ready to assist.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
