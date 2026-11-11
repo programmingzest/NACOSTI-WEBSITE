@@ -1,4 +1,5 @@
 import { ArrowUpRight } from 'lucide-react'
+import { Link } from 'react-router'
 import { serviceChargesHref } from '@/lib/site-data'
 import { Reveal, SectionHeading } from '@/components/Reveal'
 
@@ -26,19 +27,19 @@ export function LicenseProcess() {
             />
           </div>
           <div className="flex flex-wrap gap-3">
-            <a
-              href="/app/resource/research-licensing"
+            <Link
+              to="/app/resource/research-licensing"
               className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5"
             >
               Start application
               <ArrowUpRight className="size-4" aria-hidden="true" />
-            </a>
-            <a
-              href={serviceChargesHref}
+            </Link>
+            <Link
+              to={serviceChargesHref}
               className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-deep-foreground transition-colors hover:bg-white/10"
             >
               View service charges
-            </a>
+            </Link>
           </div>
         </Reveal>
 

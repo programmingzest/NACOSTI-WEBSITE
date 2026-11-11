@@ -1,4 +1,5 @@
 import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react'
+import { Link } from 'react-router'
 import { contact, navigation, relatedSites } from '@/lib/site-data'
 import { SocialIcons } from '@/components/SocialIcons'
 
@@ -13,18 +14,31 @@ function FooterList({ title, links }: { title: string; links: { label: string; h
       <ul className="mt-5 flex flex-col gap-3">
         {links.map((link) => (
           <li key={link.href}>
-            <a
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-start gap-1 text-sm text-deep-foreground/70 transition-colors hover:text-deep-foreground"
-            >
-              {link.label}
-              <ArrowUpRight
-                className="mt-0.5 size-3 shrink-0 opacity-0 transition-opacity group-hover:opacity-100"
-                aria-hidden="true"
-              />
-            </a>
+            {link.href.startsWith('/app') ? (
+              <Link
+                to={link.href}
+                className="group inline-flex items-start gap-1 text-sm text-deep-foreground/70 transition-colors hover:text-deep-foreground"
+              >
+                {link.label}
+                <ArrowUpRight
+                  className="mt-0.5 size-3 shrink-0 opacity-0 transition-opacity group-hover:opacity-100"
+                  aria-hidden="true"
+                />
+              </Link>
+            ) : (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-start gap-1 text-sm text-deep-foreground/70 transition-colors hover:text-deep-foreground"
+              >
+                {link.label}
+                <ArrowUpRight
+                  className="mt-0.5 size-3 shrink-0 opacity-0 transition-opacity group-hover:opacity-100"
+                  aria-hidden="true"
+                />
+              </a>
+            )}
           </li>
         ))}
       </ul>
@@ -55,12 +69,12 @@ export function SiteFooter({ hideContactDetails = false }: { hideContactDetails?
               <Mail className="size-4" aria-hidden="true" />
               Email us
             </a>
-            <a
-              href="/app/resource/faqs"
+            <Link
+              to="/app/resource/faqs"
               className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 font-semibold transition-colors hover:bg-white/10"
             >
               Read FAQs
-            </a>
+            </Link>
           </div>
         </div>
 

@@ -1,4 +1,5 @@
 import { ArrowUpRight, ChartNoAxesCombined, IdCard, Microscope } from 'lucide-react'
+import { Link } from 'react-router'
 import { eServices } from '@/lib/site-data'
 import { Reveal } from '@/components/Reveal'
 
@@ -34,10 +35,10 @@ export function EServices() {
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
                   {service.description}
                 </p>
-                <a href={service.href} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                <Link to={service.href} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
                   {service.cta}
                   <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
-                </a>
+                </Link>
               </div>
             </Reveal>
           )

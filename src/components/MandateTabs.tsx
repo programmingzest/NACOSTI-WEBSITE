@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ArrowUpRight, Check } from 'lucide-react'
+import { Link } from 'react-router'
 import { mandates } from '@/lib/site-data'
 import { Reveal, SectionHeading } from '@/components/Reveal'
 import { cn } from '@/lib/utils'
@@ -19,13 +20,13 @@ export function MandateTabs() {
               description="Established under the Science, Technology and Innovation Act No. 28 of 2013, NACOSTI assures quality in the STI sector and advises Government on related matters."
             />
           </div>
-          <a
-            href="/app/resource/mandate-functions"
+          <Link
+            to="/app/resource/mandate-functions"
             className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-primary hover:underline"
           >
             Mandate & functions
             <ArrowUpRight className="size-4" aria-hidden="true" />
-          </a>
+          </Link>
         </Reveal>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-10">

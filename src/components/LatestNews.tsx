@@ -5,6 +5,7 @@ import {
   ChevronDown,
   Newspaper,
 } from 'lucide-react'
+import { Link } from 'react-router'
 import newsStories from '@/content/news.json'
 import { newsHref } from '@/lib/site-data'
 import { Reveal } from '@/components/Reveal'
@@ -20,15 +21,13 @@ function StoryDetails({ story }: { story: NewsStory }) {
       </summary>
       <div className="mt-3 space-y-4 text-sm leading-6 text-white/80">
         <p>{story.details}</p>
-        <a
-          href={story.href}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          to={story.href}
           className="inline-flex items-center gap-2 font-semibold text-accent hover:underline"
         >
           Read full story on NACOSTI
           <ArrowUpRight className="size-4" aria-hidden="true" />
-        </a>
+        </Link>
       </div>
     </details>
   )
@@ -38,7 +37,7 @@ function StoryCard({ story, index }: { story: NewsStory; index: number }) {
   return (
     <Reveal delay={index * 100}>
       <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border/70 bg-card shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10">
-        <a href={story.href} target="_blank" rel="noopener noreferrer" className="relative block aspect-[16/10] overflow-hidden" aria-label={`Read ${story.title} on NACOSTI`}>
+        <Link to={story.href} className="relative block aspect-[16/10] overflow-hidden" aria-label={`Read ${story.title} on NACOSTI`}>
           <img
             src={story.image}
             alt=""
@@ -48,16 +47,16 @@ function StoryCard({ story, index }: { story: NewsStory; index: number }) {
           <span className="absolute left-5 top-5 rounded-full bg-white/95 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-primary shadow-sm">
             {story.tag}
           </span>
-        </a>
+        </Link>
         <div className="flex flex-1 flex-col p-6 md:p-7">
           <p className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
             <CalendarDays className="size-4 text-primary" aria-hidden="true" />
             {story.date}
           </p>
           <h3 className="mt-4 text-xl font-bold leading-snug tracking-tight">
-            <a href={story.href} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-primary">
+            <Link to={story.href} className="transition-colors hover:text-primary">
               {story.title}
-            </a>
+            </Link>
           </h3>
           <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted-foreground">{story.excerpt}</p>
           <div className="mt-auto pt-2">
@@ -68,15 +67,13 @@ function StoryCard({ story, index }: { story: NewsStory; index: number }) {
               </summary>
               <div className="mt-3 space-y-3 text-sm leading-6 text-muted-foreground">
                 <p>{story.details}</p>
-                <a
-                  href={story.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to={story.href}
                   className="inline-flex items-center gap-2 font-semibold text-primary hover:underline"
                 >
                   Read full story on NACOSTI
                   <ArrowUpRight className="size-4" aria-hidden="true" />
-                </a>
+                </Link>
               </div>
             </details>
           </div>
@@ -123,13 +120,13 @@ export function LatestNews({ showAllLink = true }: { showAllLink?: boolean }) {
           <div className="-mt-1 flex flex-col gap-5 border-b border-border/80 py-6 md:flex-row md:items-center md:justify-between">
            
             {showAllLink ? (
-              <a
-                href={newsHref}
+              <Link
+                to={newsHref}
                 className="group inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
               >
                 View all updates
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-              </a>
+              </Link>
             ) : null}
           </div>
 
@@ -143,8 +140,8 @@ export function LatestNews({ showAllLink = true }: { showAllLink?: boolean }) {
               </div>
               <Reveal>
                 <article className="grid overflow-hidden rounded-[2rem] bg-[#174b36] text-white shadow-xl shadow-[#174b36]/10 md:min-h-[26rem] md:grid-cols-[1.05fr_0.95fr]">
-                  <a
-                    href={featured.href}
+                  <Link
+                    to={featured.href}
                     className="group relative block min-h-64 overflow-hidden md:min-h-full"
                     aria-label={`Read ${featured.title}`}
                   >
@@ -157,16 +154,16 @@ export function LatestNews({ showAllLink = true }: { showAllLink?: boolean }) {
                     <span className="absolute left-6 top-6 rounded-full bg-accent px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#173c2c]">
                       {featured.tag}
                     </span>
-                  </a>
+                  </Link>
                   <div className="flex flex-col justify-center p-7 md:p-10 lg:p-12">
                     <p className="flex items-center gap-2 text-xs font-medium text-white/60">
                       <CalendarDays className="size-4 text-accent" aria-hidden="true" />
                       {featured.date}
                     </p>
                     <h2 className="mt-5 text-2xl font-bold leading-tight tracking-tight md:text-3xl lg:text-4xl">
-                      <a href={featured.href} target="_blank" rel="noopener noreferrer" className="hover:text-accent">
+                      <Link to={featured.href} className="hover:text-accent">
                         {featured.title}
-                      </a>
+                      </Link>
                     </h2>
                     <p className="mt-4 text-sm leading-7 text-white/75 md:text-base">{featured.excerpt}</p>
                     <StoryDetails story={featured} />

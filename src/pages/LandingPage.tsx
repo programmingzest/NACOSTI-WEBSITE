@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 
 const ArrowUpRight = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -44,10 +44,10 @@ export default function LandingPage() {
               <div className="wheel-ring ring-a" />
               <div className="wheel-ring ring-b" />
               {landingNav.map((item, index) => (
-                <a key={item.label} className={`arc-nav arc-nav-${index + 1}`} href={item.target} onClick={(e) => { e.preventDefault(); enterSite(item.target) }}>
+                <Link key={item.label} className={`arc-nav arc-nav-${index + 1}`} to={item.target} onClick={(e) => { e.preventDefault(); enterSite(item.target) }}>
                   <span className="arc-icon">{item.icon}</span>
                   <span>{item.label}</span>
-                </a>
+                </Link>
               ))}
             </div>
           </div>

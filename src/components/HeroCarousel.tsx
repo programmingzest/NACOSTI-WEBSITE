@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { ArrowRight, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react'
+import { Link } from 'react-router'
 import { heroSlides, newsHref } from '@/lib/site-data'
 import { cn } from '@/lib/utils'
 
@@ -38,9 +39,9 @@ export function HeroCarousel() {
             NACOSTI regulates, advises, coordinates and promotes the STI and research sector, from research licensing to ethics review and accreditation.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <a href="/app/resource/mandate-functions/" className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 font-semibold transition-colors hover:bg-white/10">
+            <Link to="/app/resource/mandate-functions/" className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 font-semibold transition-colors hover:bg-white/10">
               Our Mandate <ArrowRight className="size-4" aria-hidden="true" />
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -55,15 +56,15 @@ export function HeroCarousel() {
                 </div>
                 <h2 className="mt-2 max-w-2xl text-xl font-bold leading-tight text-deep-foreground md:text-2xl">{slide.title}</h2>
                 <p className="mt-2 max-w-2xl text-xs leading-relaxed text-deep-foreground/80 md:text-sm">{slide.excerpt}</p>
-                <a href={newsHref} className="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-accent hover:underline md:text-sm">
+                <Link to={newsHref} className="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-accent hover:underline md:text-sm">
                   Read more <ArrowRight className="size-4" aria-hidden="true" />
-                </a>
+                </Link>
               </div>
             </div>
           ))}
           <div className="absolute inset-x-0 top-0 flex items-center justify-between p-5">
             <span className="text-sm font-semibold text-deep-foreground">Latest news</span>
-            <a href={newsHref} className="text-xs font-semibold text-accent hover:underline">Other news</a>
+            <Link to={newsHref} className="text-xs font-semibold text-accent hover:underline">Other news</Link>
           </div>
           <div className="absolute bottom-5 right-6 flex items-center gap-2">
             <button type="button" onClick={() => go(index - 1)} className="flex size-9 items-center justify-center rounded-full border border-white/40 text-deep-foreground hover:bg-white/20" aria-label="Previous story"><ChevronLeft className="size-4" /></button>
