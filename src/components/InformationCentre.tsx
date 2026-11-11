@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { ArrowUpRight, BookOpen, Download, FileText, Gavel, Receipt } from 'lucide-react'
+import { Link } from 'react-router'
 import { informationCentre, serviceChargesHref } from '@/lib/site-data'
 import { Reveal, SectionHeading } from '@/components/Reveal'
 
@@ -46,11 +47,11 @@ export function InformationCentre() {
               return (
                 <Reveal as="li" key={doc.label} delay={i * 50}>
                   {isAvailable ? (
-                    <a
-                      href={doc.href}
-                      download={doc.type === 'PDF' && doc.href.startsWith('/documents/') ? true : undefined}
-                      className="group flex items-center gap-4 rounded-2xl border bg-card px-5 py-4 transition-colors hover:bg-secondary/60"
-                    >
+                    doc.href.startsWith('/app') ? (
+                      <Link
+                        to={doc.href}
+                        className="group flex items-center gap-4 rounded-2xl border bg-card px-5 py-4 transition-colors hover:bg-secondary/60"
+                      >
                       <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                         <Icon className="size-5" aria-hidden="true" />
                       </span>
@@ -58,7 +59,22 @@ export function InformationCentre() {
                       <span className="hidden rounded-full border px-2.5 py-0.5 text-xs text-muted-foreground sm:inline">{doc.type}</span>
                       {doc.type === 'PDF' ? <Download className="size-4 text-muted-foreground group-hover:text-primary" aria-hidden="true" /> : null}
                       <ArrowUpRight className="size-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" aria-hidden="true" />
-                    </a>
+                      </Link>
+                    ) : (
+                      <a
+                        href={doc.href}
+                        download={doc.type === 'PDF' && doc.href.startsWith('/documents/') ? true : undefined}
+                        className="group flex items-center gap-4 rounded-2xl border bg-card px-5 py-4 transition-colors hover:bg-secondary/60"
+                      >
+                        <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                          <Icon className="size-5" aria-hidden="true" />
+                        </span>
+                        <span className="flex-1 font-medium">{doc.label}</span>
+                        <span className="hidden rounded-full border px-2.5 py-0.5 text-xs text-muted-foreground sm:inline">{doc.type}</span>
+                        {doc.type === 'PDF' ? <Download className="size-4 text-muted-foreground group-hover:text-primary" aria-hidden="true" /> : null}
+                        <ArrowUpRight className="size-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" aria-hidden="true" />
+                      </a>
+                    )
                   ) : (
                     <div className="flex items-center gap-4 rounded-2xl border border-dashed bg-muted/40 px-5 py-4 text-muted-foreground">
                       <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-secondary"><Icon className="size-5" aria-hidden="true" /></span>
@@ -81,13 +97,13 @@ export function InformationCentre() {
               <p className="mt-3 text-sm leading-relaxed text-accent-foreground/75">
                 Review the current fee schedule for local and foreign researchers before you apply.
               </p>
-              <a
-                href={serviceChargesHref}
+              <Link
+                to={serviceChargesHref}
                 className="mt-6 inline-flex items-center gap-2 rounded-full bg-deep px-6 py-3 text-sm font-semibold text-deep-foreground transition-transform hover:-translate-y-0.5"
               >
                 View charges
                 <ArrowUpRight className="size-4" aria-hidden="true" />
-              </a>
+              </Link>
             </div>
           </Reveal>
         </div>

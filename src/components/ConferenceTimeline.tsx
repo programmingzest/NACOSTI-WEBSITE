@@ -1,4 +1,5 @@
 import { ArrowUpRight, Sparkles } from 'lucide-react'
+import { Link } from 'react-router'
 import { conferences } from '@/lib/site-data'
 import { Reveal, SectionHeading } from '@/components/Reveal'
 import { cn } from '@/lib/utils'
@@ -23,15 +24,9 @@ export function ConferenceTimeline() {
         <ol className="relative mt-16 grid gap-6 md:grid-cols-4">
           {conferences.map((conf, i) => (
             <Reveal as="li" key={conf.year} delay={i * 100}>
-              <a
-                href={conf.href}
-                className={cn(
-                  'group relative flex h-full flex-col rounded-3xl border p-7 transition-all duration-300 hover:-translate-y-1.5',
-                  i === latest
-                    ? 'border-primary bg-primary text-primary-foreground shadow-2xl shadow-primary/30'
-                    : 'bg-card hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10',
-                )}
-              >
+              {(() => {
+                const card = (
+                  <>
                 {i === latest ? (
                   <span className="absolute -top-3 right-6 inline-flex items-center gap-1 rounded-full bg-accent px-3 py-1 text-xs font-bold text-accent-foreground">
                     <Sparkles className="size-3" aria-hidden="true" />
@@ -59,7 +54,18 @@ export function ConferenceTimeline() {
                   Visit
                   <ArrowUpRight className="size-4" aria-hidden="true" />
                 </span>
-              </a>
+                  </>
+                )
+                const className = cn(
+                  'group relative flex h-full flex-col rounded-3xl border p-7 transition-all duration-300 hover:-translate-y-1.5',
+                  i === latest
+                    ? 'border-primary bg-primary text-primary-foreground shadow-2xl shadow-primary/30'
+                    : 'bg-card hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10',
+                )
+                return conf.href.startsWith('/app')
+                  ? <Link to={conf.href} className={className}>{card}</Link>
+                  : <a href={conf.href} className={className}>{card}</a>
+              })()}
             </Reveal>
           ))}
         </ol>

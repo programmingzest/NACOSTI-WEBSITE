@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowUpRight, ChevronDown, Mail, MapPin, Menu, Phone, Search, X } from 'lucide-react'
+import { Link } from 'react-router'
 import { contact, navigation, type NavItem, type NavLink } from '@/lib/site-data'
 import { SocialIcons } from '@/components/SocialIcons'
 import { cn } from '@/lib/utils'
@@ -16,6 +17,10 @@ function isExternal(href: string) {
   return href.startsWith('http')
 }
 
+function isInternalRoute(href: string) {
+  return href.startsWith('/app')
+}
+
 function DesktopNavigation({ onSelect }: { onSelect: () => void }) {
   return (
     <nav aria-label="Main" className="hidden min-w-0 flex-1 lg:block">
@@ -23,9 +28,9 @@ function DesktopNavigation({ onSelect }: { onSelect: () => void }) {
         {navigation.map((item) => (
           <li key={item.label} className="group/nav relative">
             {item.groups ? <DesktopDropdown item={item} /> : (
-              <a href={item.href} onClick={onSelect} className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-secondary">
+              <Link to={item.href ?? ''} onClick={onSelect} className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-secondary">
                 {item.label}
-              </a>
+              </Link>
             )}
           </li>
         ))}
@@ -120,26 +125,47 @@ function DesktopDropdown({ item }: { item: NavItem }) {
               <ul className="flex flex-col gap-0.5">
                 {group.links.map((link) => (
                   <li key={link.href}>
-                    <a
-                      href={link.href}
-                      onClick={() => setOpen(false)}
-                      target={isExternal(link.href) ? '_blank' : undefined}
-                      rel={isExternal(link.href) ? 'noopener noreferrer' : undefined}
-                      className="group/link flex items-start justify-between gap-3 rounded-xl px-3 py-2 transition-colors hover:bg-secondary"
-                    >
-                      <span>
-                        <span className="block text-sm font-medium text-foreground group-hover/link:text-primary">
-                          {link.label}
+                    {isInternalRoute(link.href) ? (
+                      <Link
+                        to={link.href}
+                        onClick={() => setOpen(false)}
+                        className="group/link flex items-start justify-between gap-3 rounded-xl px-3 py-2 transition-colors hover:bg-secondary"
+                      >
+                        <span>
+                          <span className="block text-sm font-medium text-foreground group-hover/link:text-primary">
+                            {link.label}
+                          </span>
+                          {link.description ? (
+                            <span className="mt-0.5 block text-xs text-muted-foreground">{link.description}</span>
+                          ) : null}
                         </span>
-                        {link.description ? (
-                          <span className="mt-0.5 block text-xs text-muted-foreground">{link.description}</span>
-                        ) : null}
-                      </span>
-                      <ArrowUpRight
-                        className="mt-0.5 size-3.5 shrink-0 text-primary opacity-0 transition-opacity group-hover/link:opacity-100"
-                        aria-hidden="true"
-                      />
-                    </a>
+                        <ArrowUpRight
+                          className="mt-0.5 size-3.5 shrink-0 text-primary opacity-0 transition-opacity group-hover/link:opacity-100"
+                          aria-hidden="true"
+                        />
+                      </Link>
+                    ) : (
+                      <a
+                        href={link.href}
+                        onClick={() => setOpen(false)}
+                        target={isExternal(link.href) ? '_blank' : undefined}
+                        rel={isExternal(link.href) ? 'noopener noreferrer' : undefined}
+                        className="group/link flex items-start justify-between gap-3 rounded-xl px-3 py-2 transition-colors hover:bg-secondary"
+                      >
+                        <span>
+                          <span className="block text-sm font-medium text-foreground group-hover/link:text-primary">
+                            {link.label}
+                          </span>
+                          {link.description ? (
+                            <span className="mt-0.5 block text-xs text-muted-foreground">{link.description}</span>
+                          ) : null}
+                        </span>
+                        <ArrowUpRight
+                          className="mt-0.5 size-3.5 shrink-0 text-primary opacity-0 transition-opacity group-hover/link:opacity-100"
+                          aria-hidden="true"
+                        />
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -286,15 +312,25 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
                   <ul className="overflow-hidden">
                     {item.groups.flatMap((g) => g.links).map((link) => (
                       <li key={link.href}>
-                        <a
-                          href={link.href}
-                          onClick={onClose}
-                          target={isExternal(link.href) ? '_blank' : undefined}
-                          rel={isExternal(link.href) ? 'noopener noreferrer' : undefined}
-                          className="block rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-primary"
-                        >
-                          {link.label}
-                        </a>
+                        {isInternalRoute(link.href) ? (
+                          <Link
+                            to={link.href}
+                            onClick={onClose}
+                            className="block rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-primary"
+                          >
+                            {link.label}
+                          </Link>
+                        ) : (
+                          <a
+                            href={link.href}
+                            onClick={onClose}
+                            target={isExternal(link.href) ? '_blank' : undefined}
+                            rel={isExternal(link.href) ? 'noopener noreferrer' : undefined}
+                            className="block rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-primary"
+                          >
+                            {link.label}
+                          </a>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -302,9 +338,9 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
               </li>
             ) : (
               <li key={item.label}>
-                <a href={item.href} onClick={onClose} className="block py-4 text-lg font-semibold">
+                <Link to={item.href ?? ''} onClick={onClose} className="block py-4 text-lg font-semibold">
                   {item.label}
-                </a>
+                </Link>
               </li>
             ),
           )}

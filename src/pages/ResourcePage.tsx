@@ -176,7 +176,11 @@ export default function ResourcePage() {
                           </table>
                         </div>
                       ) : null}
-                      {sectionLink ? (
+                      {sectionLink?.startsWith('/app') ? (
+                        <Link to={sectionLink} className="mt-4 inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-deep">
+                          {sectionLinkLabel}
+                        </Link>
+                      ) : sectionLink ? (
                         <a href={sectionLink} className="mt-4 inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-deep">
                           {sectionLinkLabel}
                         </a>
