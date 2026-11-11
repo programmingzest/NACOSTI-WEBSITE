@@ -13,7 +13,7 @@ import { LocationGuide } from '@/components/LocationGuide'
 export default function AppPage() {
   useEffect(() => {
     const hash = window.location.hash
-    if (hash) {
+    if (hash && !hash.startsWith('#/')) {
       const el = document.querySelector(hash)
       if (el) {
         window.setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100)
