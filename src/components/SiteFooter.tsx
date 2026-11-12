@@ -82,7 +82,7 @@ export function SiteFooter({ hideContactDetails = false }: { hideContactDetails?
           <div>
             <div className="inline-block rounded-2xl bg-white p-3">
               <img
-                src="/nacosti-logo.jpg"
+                src={`${import.meta.env.BASE_URL}nacosti-logo.jpg`}
                 alt="NACOSTI - National Commission for Science, Technology and Innovation"
                 className="h-10 w-auto"
               />

@@ -48,7 +48,7 @@ export function HeroCarousel() {
         <div className="featured-news-card relative min-h-[16rem] overflow-hidden rounded-3xl border border-white/25 bg-white/10 shadow-2xl backdrop-blur-sm" aria-live={isPaused ? 'polite' : 'off'}>
           {slides.map((slide, i) => (
             <div key={slide.href} aria-hidden={i !== index} className={cn('absolute inset-0 transition-opacity duration-700', i === index ? 'opacity-100' : 'pointer-events-none opacity-0')}>
-              <img src={slide.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
+              <img src={`${import.meta.env.BASE_URL}${slide.image}`} alt="" className="absolute inset-0 h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-deep via-deep/65 to-transparent" aria-hidden="true" />
               <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
                 <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-wider text-accent">

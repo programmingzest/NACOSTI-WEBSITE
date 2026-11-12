@@ -39,7 +39,7 @@ export default function LandingPage() {
             <div className="gateway-wheel">
               <div className="wheel-glass" />
               <div className="wheel-logo">
-                <img src="/nacosti-logo.jpg" alt="NACOSTI official logo" />
+                <img src={`${import.meta.env.BASE_URL}nacosti-logo.jpg`} alt="NACOSTI official logo" />
               </div>
               <div className="wheel-ring ring-a" />
               <div className="wheel-ring ring-b" />

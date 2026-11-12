@@ -31,7 +31,7 @@
     {
       "title": "NACOSTI Strengthens Research Ethics and Integrity Capacity through Five-day Training",
       "excerpt": "The Commission convened a five-day Research Ethics and Integrity Capacity Strengthening Programme bringing together experts, researchers, ethics review committees and universities.",
-      "image": "/hero-ethics-training.png",
+      "image": "hero-ethics-training.png",
       "tag": "Research Ethics",
       "date": "2026-10-26",
       "href": "/app/resource/2026/09/24/nacosti-strengthens-research-ethics-and-integrity-capacity-through-five-day-training/"
@@ -39,7 +39,7 @@
     {
       "title": "Africa Rallies to Inspire Next-Generation Nuclear Scientists",
       "excerpt": "Kenya hosted a major regional summit bringing together educators, researchers, policymakers and African scientists to transform public perception and education in nuclear science and technology.",
-      "image": "/hero-nuclear-science.png",
+      "image": "hero-nuclear-science.png",
       "tag": "Scheduled Sciences",
       "date": "2026-10-26",
       "href": "/app/resource/2026/09/10/africa-rallies-to-inspire-next-generation-nuclear-scientists/"
@@ -47,7 +47,7 @@
     {
       "title": "IAEA Regional Meeting on Climate, Land-Use, Energy and Water Systems Opens in Nairobi",
       "excerpt": "The International Atomic Energy Agency Regional Meeting on the Development of Approaches to Climate, Land-Use, Energy and Water Systems (CLEWS) officially commenced in Nairobi.",
-      "image": "/hero-climate-meeting.png",
+      "image": "hero-climate-meeting.png",
       "tag": "Partnerships",
       "date": "2026-10-26",
       "href": "/app/resource/2026/08/05/nacosti-hosts-iaea-regional-meeting-on-climate-land-use-energy-and-water-systems/"
@@ -80,7 +80,7 @@
     {
       "key": "regulate",
       "title": "Regulate",
-      "image": "/mandate-regulate.png",
+      "image": "mandate-regulate.png",
       "summary": "We license research, register research institutions and accredit ethics review committees to assure quality and integrity across the STI sector.",
       "points": [
         "Research licensing through RIMS",
@@ -91,7 +91,7 @@
     {
       "key": "advise",
       "title": "Advise",
-      "image": "/mandate-advise.png",
+      "image": "mandate-advise.png",
       "summary": "We advise the national and county governments on STI policy, priorities and investments that drive Kenya's socio-economic transformation.",
       "points": [
         "Development of national STI priorities",
@@ -102,7 +102,7 @@
     {
       "key": "coordinate",
       "title": "Coordinate",
-      "image": "/mandate-coordinate.png",
+      "image": "mandate-coordinate.png",
       "summary": "We bring together ministries, counties, institutions and international partners to align efforts and strengthen the national innovation system.",
       "points": [
         "STI mainstreaming in MDAs and counties",
@@ -113,7 +113,7 @@
     {
       "key": "promote",
       "title": "Promote",
-      "image": "/mandate-promote.png",
+      "image": "mandate-promote.png",
       "summary": "We champion a culture of science, technology and innovation by celebrating discovery, supporting talent and communicating STI to the public.",
       "points": [
         "STI awareness, communication and outreach",
@@ -256,47 +256,47 @@
     {
       "name": "Ministry of Education",
       "short": "MoE",
-      "image": "/partners/ministry-of-education.png"
+      "image": "partners/ministry-of-education.png"
     },
     {
       "name": "National Research Fund Kenya",
       "short": "NRF",
-      "image": "/partners/national-research-fund.png"
+      "image": "partners/national-research-fund.png"
     },
     {
       "name": "Kenya National Innovation Agency",
       "short": "KeNIA",
-      "image": "/partners/kenia.png"
+      "image": "partners/kenia.png"
     },
     {
       "name": "East African Science and Technology Commission",
       "short": "EASTECO",
-      "image": "/partners/easteco.png"
+      "image": "partners/easteco.png"
     },
     {
       "name": "African Regional Cooperative Agreement for Nuclear Science and Technology",
       "short": "AFRA",
-      "image": "/partners/afra.png"
+      "image": "partners/afra.png"
     },
     {
       "name": "Biological Weapons Convention",
       "short": "BWC",
-      "image": "/partners/biological-weapons-convention.png"
+      "image": "partners/biological-weapons-convention.png"
     },
     {
       "name": "International Science Council",
       "short": "ISC",
-      "image": "/partners/international-science-council.png"
+      "image": "partners/international-science-council.png"
     },
     {
       "name": "International Centre for Genetic Engineering and Biotechnology",
       "short": "ICGEB",
-      "image": "/partners/icgeb.png"
+      "image": "partners/icgeb.png"
     },
     {
       "name": "Comprehensive Nuclear-Test- Ban Treaty Organization",
       "short": "CTBTO",
-      "image": "/partners/ctbto.png"
+      "image": "partners/ctbto.png"
     }
   ],
   "relatedSites": [
