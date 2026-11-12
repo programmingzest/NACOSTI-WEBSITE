@@ -188,41 +188,48 @@
     {
       "label": "STI Act No. 28 of 2013",
       "href": "/app/resource/sti-act-2013",
-      "type": "Legislation"
+      "type": "Legislation",
+      "description": "The law establishing NACOSTI and setting Kenya's framework for science, technology and innovation."
     },
     {
       "label": "STI Regulations 2014",
       "href": "/documents/The-Science-Technology-and-Innovation-Regulations-2014.pdf",
       "type": "PDF",
+      "description": "Regulations supporting implementation of the Science, Technology and Innovation Act.",
       "available": true
     },
     {
       "label": "STI Priorities",
       "href": "/documents/National STI Priorities.pdf",
       "type": "PDF",
+      "description": "National priority areas guiding science, technology and innovation activities.",
       "available": true
     },
     {
       "label": "Accredited ISERCs",
       "href": "/app/resource/accredited-isercs-in-kenya/",
-      "type": "Directory"
+      "type": "Directory",
+      "description": "Find accredited institutional ethics review committees and their research review scope."
     },
     {
       "label": "Registered Research Institutions",
       "href": "/documents/Registered Research Institutions.pdf",
       "type": "PDF",
+      "description": "A directory of research institutions registered with NACOSTI.",
       "available": true
     },
     {
       "label": "NACOSTI Strategic Plan 2023–2027",
       "href": "/documents/NACOSTI Strategic Plan 2023-2027.pdf",
       "type": "PDF",
+      "description": "NACOSTI's strategic direction, objectives and priorities for 2023–2027.",
       "available": true
     },
     {
       "label": "NACOSTI Service Charter",
       "href": "/documents/NACOSTI-SERVICE-CHARTER Dec 2018.pdf",
       "type": "PDF",
+      "description": "Service standards and commitments for people and organisations engaging with NACOSTI.",
       "available": true
     }
   ],
