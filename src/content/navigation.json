@@ -23,6 +23,7 @@
     { "label": "National Scientific & Ethics Review System", "href": "/app/resource/national-scientific-ethics-review-system" }
   ]}] },
   { "label": "Resources", "groups": [{ "links": [
+    { "label": "Resources Downloads", "href": "/app/resource/resources-downloads/", "description": "Download official NACOSTI documents and access resource information" },
     { "label": "Information Centre", "href": "/app#information-centre", "description": "Laws, plans and key documents" },
     { "label": "Careers", "href": "/app/resource/careers/" },
     { "label": "FAQs", "href": "/app/resource/faqs/" },

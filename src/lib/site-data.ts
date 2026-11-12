@@ -29,6 +29,7 @@ export type InformationResource = {
   label: string
   href: string
   type: 'Legislation' | 'PDF' | 'Directory'
+  description?: string
   available?: boolean
 }
 
