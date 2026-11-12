@@ -49,7 +49,7 @@ function ProfileCards({ profiles }: { profiles: ResourceProfile[] }) {
           <article key={profile.name} className="overflow-hidden rounded-2xl border bg-card shadow-sm">
             <div className="relative flex aspect-[4/3] items-center justify-center bg-secondary/60 p-4">
               <img
-                src={profile.image}
+                src={`${import.meta.env.BASE_URL}${profile.image}`}
                 alt={profile.name}
                 className="h-full w-full object-contain"
                 onError={(event) => {
@@ -123,7 +123,7 @@ export default function ResourcePage() {
                 {images.map((image) => (
                   <figure key={image.filename} className="overflow-hidden rounded-2xl border bg-secondary/40">
                     <img
-                      src={image.src}
+                      src={`${import.meta.env.BASE_URL}${image.src}`}
                       alt={image.alt}
                       className="aspect-[4/3] w-full object-cover"
                       onError={(event) => {

@@ -395,7 +395,7 @@ export function SiteHeader() {
         <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between gap-6 px-6">
           <a href="#top" className="flex shrink-0 items-center" aria-label="NACOSTI home">
             <img
-              src="/nacosti-logo.jpg"
+              src={`${import.meta.env.BASE_URL}nacosti-logo.jpg`}
               alt="NACOSTI - National Commission for Science, Technology and Innovation"
               className="h-11 w-auto md:h-12"
             />

@@ -96,7 +96,7 @@ export function MandateTabs() {
             <div key={current.key} className="grid h-full animate-in fade-in duration-500 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
               <div className="relative min-h-64 md:min-h-full lg:min-h-72 xl:min-h-full">
                 <img
-                  src={current.image}
+                  src={`${import.meta.env.BASE_URL}${current.image}`}
                   alt={`NACOSTI ${current.title} mandate in action`}
                   className="absolute inset-0 h-full w-full object-cover animate-in zoom-in-105 duration-700"
                 />

@@ -8,7 +8,7 @@ function PartnerMark({ partner }: { partner: (typeof partners)[number] }) {
   if (partner.image && !imageFailed) {
     return (
       <img
-        src={partner.image}
+        src={`${import.meta.env.BASE_URL}${partner.image}`}
         alt={`${partner.name} logo`}
         className="size-9 rounded-full object-contain"
         onError={() => setImageFailed(true)}
