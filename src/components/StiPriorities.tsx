@@ -5,6 +5,7 @@ import {
 import { priorities, prioritiesPdf } from '@/lib/site-data'
 import { Reveal, SectionHeading } from '@/components/Reveal'
 import { ArrowUpRight } from 'lucide-react'
+import { SafeDownloadLink } from '@/components/SafeDownloadLink'
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   flask: FlaskConical,
@@ -33,13 +34,15 @@ export function StiPriorities() {
               description="The National STI Priorities guide public investment, research funding and policy development across the country."
             />
           </div>
-          <a
-            href={prioritiesPdf}
+          <SafeDownloadLink
+            path={prioritiesPdf}
+            aria-label="Download full National STI Priorities document"
+            data-analytics="document-download"
             className="inline-flex shrink-0 items-center gap-2 rounded-full border bg-background px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:border-primary"
           >
             Download full document
             <ArrowUpRight className="size-4" aria-hidden="true" />
-          </a>
+          </SafeDownloadLink>
         </Reveal>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

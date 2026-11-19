@@ -4,6 +4,8 @@ import { Link } from 'react-router'
 import { contact, navigation, type NavItem, type NavLink } from '@/lib/site-data'
 import { SocialIcons } from '@/components/SocialIcons'
 import { cn } from '@/lib/utils'
+import { isInternalRoute, routeHref } from '@/lib/routes'
+import { SafeDownloadLink } from '@/components/SafeDownloadLink'
 
 const allLinks: NavLink[] = navigation.flatMap((item) =>
   item.groups
@@ -17,10 +19,6 @@ function isExternal(href: string) {
   return href.startsWith('http')
 }
 
-function isInternalRoute(href: string) {
-  return href.startsWith('/app')
-}
-
 function DesktopNavigation({ onSelect }: { onSelect: () => void }) {
   return (
     <nav aria-label="Main" className="hidden min-w-0 flex-1 lg:block">
@@ -28,7 +26,7 @@ function DesktopNavigation({ onSelect }: { onSelect: () => void }) {
         {navigation.map((item) => (
           <li key={item.label} className="group/nav relative">
             {item.groups ? <DesktopDropdown item={item} /> : (
-              <Link to={item.href ?? ''} onClick={onSelect} className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-secondary">
+              <Link to={routeHref(item.href ?? '')} onClick={onSelect} data-analytics="navigation" className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-secondary">
                 {item.label}
               </Link>
             )}
@@ -127,7 +125,8 @@ function DesktopDropdown({ item }: { item: NavItem }) {
                   <li key={link.href}>
                     {isInternalRoute(link.href) ? (
                       <Link
-                        to={link.href}
+                        to={routeHref(link.href)}
+                        data-analytics="navigation"
                         onClick={() => setOpen(false)}
                         className="group/link flex items-start justify-between gap-3 rounded-xl px-3 py-2 transition-colors hover:bg-secondary"
                       >
@@ -144,6 +143,14 @@ function DesktopDropdown({ item }: { item: NavItem }) {
                           aria-hidden="true"
                         />
                       </Link>
+                    ) : link.href.startsWith('/documents/') ? (
+                      <SafeDownloadLink path={link.href} aria-label={link.label} data-analytics="document-download" className="group/link flex items-start justify-between gap-3 rounded-xl px-3 py-2 transition-colors hover:bg-secondary">
+                        <span>
+                          <span className="block text-sm font-medium text-foreground group-hover/link:text-primary">{link.label}</span>
+                          {link.description ? <span className="mt-0.5 block text-xs text-muted-foreground">{link.description}</span> : null}
+                        </span>
+                        <ArrowUpRight className="mt-0.5 size-3.5 shrink-0 text-primary" aria-hidden="true" />
+                      </SafeDownloadLink>
                     ) : (
                       <a
                         href={link.href}
@@ -228,7 +235,10 @@ function SearchDialog({ open, onClose }: { open: boolean; onClose: () => void })
             onKeyDown={(e) => {
               if (e.key !== 'Enter' || e.nativeEvent.isComposing || e.keyCode === 229) return
               const first = results[0]
-              if (first) window.open(first.href, isExternal(first.href) ? '_blank' : '_self')
+              if (first) {
+                if (isInternalRoute(first.href)) window.location.hash = first.href
+                else window.open(first.href, '_blank')
+              }
             }}
             placeholder="Search services, pages, conferences..."
             className="h-14 flex-1 bg-transparent text-base outline-none placeholder:text-muted-foreground"
@@ -249,16 +259,21 @@ function SearchDialog({ open, onClose }: { open: boolean; onClose: () => void })
           ) : (
             results.map((link) => (
               <li key={link.href + link.label}>
-                <a
-                  href={link.href}
-                  target={isExternal(link.href) ? '_blank' : undefined}
-                  rel={isExternal(link.href) ? 'noopener noreferrer' : undefined}
-                  onClick={onClose}
-                  className="flex items-center justify-between rounded-xl px-4 py-3 text-sm transition-colors hover:bg-secondary hover:text-primary"
-                >
-                  {link.label}
-                  <ArrowUpRight className="size-4 text-muted-foreground" aria-hidden="true" />
-                </a>
+                {isInternalRoute(link.href) ? (
+                  <Link to={routeHref(link.href)} onClick={onClose} data-analytics="navigation" className="flex items-center justify-between rounded-xl px-4 py-3 text-sm transition-colors hover:bg-secondary hover:text-primary">
+                    {link.label}
+                    <ArrowUpRight className="size-4 text-muted-foreground" aria-hidden="true" />
+                  </Link>
+                ) : link.href.startsWith('/documents/') ? (
+                  <SafeDownloadLink path={link.href} aria-label={link.label} data-analytics="document-download" className="block rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-primary">
+                    {link.label}
+                  </SafeDownloadLink>
+                ) : (
+                  <a href={link.href} target={isExternal(link.href) ? '_blank' : undefined} rel={isExternal(link.href) ? 'noopener noreferrer' : undefined} onClick={onClose} className="flex items-center justify-between rounded-xl px-4 py-3 text-sm transition-colors hover:bg-secondary hover:text-primary">
+                    {link.label}
+                    <ArrowUpRight className="size-4 text-muted-foreground" aria-hidden="true" />
+                  </a>
+                )}
               </li>
             ))
           )}
@@ -314,12 +329,17 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
                       <li key={link.href}>
                         {isInternalRoute(link.href) ? (
                           <Link
-                            to={link.href}
+                            to={routeHref(link.href)}
+                            data-analytics="navigation"
                             onClick={onClose}
                             className="block rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-primary"
                           >
                             {link.label}
                           </Link>
+                        ) : link.href.startsWith('/documents/') ? (
+                          <SafeDownloadLink path={link.href} aria-label={link.label} data-analytics="document-download" className="block rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-primary">
+                            {link.label}
+                          </SafeDownloadLink>
                         ) : (
                           <a
                             href={link.href}
@@ -338,7 +358,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
               </li>
             ) : (
               <li key={item.label}>
-                <Link to={item.href ?? ''} onClick={onClose} className="block py-4 text-lg font-semibold">
+                <Link to={routeHref(item.href ?? '')} onClick={onClose} data-analytics="navigation" className="block py-4 text-lg font-semibold">
                   {item.label}
                 </Link>
               </li>
@@ -381,6 +401,9 @@ export function SiteHeader() {
 
   return (
     <>
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:font-semibold focus:text-accent-foreground">
+        Skip to content
+      </a>
       <TopBar />
       <header
         className={cn(
@@ -393,13 +416,13 @@ export function SiteHeader() {
         )}
       >
         <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between gap-6 px-6">
-          <a href="#top" className="flex shrink-0 items-center" aria-label="NACOSTI home">
+          <Link to={routeHref('/app#top')} data-analytics="navigation" className="flex shrink-0 items-center" aria-label="NACOSTI home">
             <img
               src={`${import.meta.env.BASE_URL}nacosti-logo.jpg`}
               alt="NACOSTI - National Commission for Science, Technology and Innovation"
               className="h-11 w-auto md:h-12"
             />
-          </a>
+          </Link>
 
           <DesktopNavigation onSelect={closeMenu} />
 

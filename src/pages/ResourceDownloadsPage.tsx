@@ -4,6 +4,8 @@ import { Link } from 'react-router'
 import { informationCentre, prioritiesPdf } from '@/lib/site-data'
 import { SiteFooter } from '@/components/SiteFooter'
 import { SiteHeader } from '@/components/SiteHeader'
+import { isDocumentMetadataValid } from '@/lib/documents'
+import { SafeDownloadLink } from '@/components/SafeDownloadLink'
 
 type ResourceFilter = 'All resources' | 'Downloadable files' | 'Information pages'
 
@@ -16,7 +18,7 @@ const resourceIcons = {
 }
 
 function isDownloadable(resource: (typeof informationCentre)[number]) {
-  return resource.type === 'PDF' && resource.available === true && resource.href.startsWith('/documents/')
+  return resource.type === 'PDF' && isDocumentMetadataValid(resource.href)
 }
 
 export default function ResourceDownloadsPage() {
@@ -34,7 +36,7 @@ export default function ResourceDownloadsPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-secondary/40 px-6 py-24">
+      <main id="main" className="min-h-screen bg-secondary/40 px-6 py-24">
         <div className="mx-auto max-w-7xl">
           <Link to="/app" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
             <ArrowLeft className="size-4" aria-hidden="true" />
@@ -62,14 +64,15 @@ export default function ResourceDownloadsPage() {
                   The priorities guide public investment, research funding and policy development across Kenya.
                 </p>
               </div>
-              <a
-                href={prioritiesPdf}
-                download
+              <SafeDownloadLink
+              path={prioritiesPdf}
+              aria-label="Download priorities document"
+                data-analytics="document-download"
                 className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-deep"
               >
                 <ArrowDownToLine className="size-4" aria-hidden="true" />
                 Download priorities document
-              </a>
+              </SafeDownloadLink>
             </div>
             
           </section>
@@ -105,6 +108,7 @@ export default function ResourceDownloadsPage() {
             {visibleResources.map((resource) => {
               const Icon = resourceIcons[resource.type]
               const downloadable = isDownloadable(resource)
+              const unavailableDocument = resource.href.startsWith('/documents/') && !isDocumentMetadataValid(resource.href)
               const card = (
                 <>
                   <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-secondary text-primary">
@@ -130,13 +134,18 @@ export default function ResourceDownloadsPage() {
               return (
                 <li key={resource.href}>
                   {downloadable ? (
-                    <a
-                      href={resource.href}
-                      download
+                    <SafeDownloadLink
+                      path={resource.href}
+                      aria-label={`Download ${resource.label}`}
+                      data-analytics="document-download"
                       className="flex h-full items-start gap-4 rounded-2xl border bg-card p-5 transition-colors hover:border-primary/50 hover:bg-secondary/40"
                     >
                       {card}
-                    </a>
+                    </SafeDownloadLink>
+                  ) : unavailableDocument ? (
+                    <div aria-disabled="true" className="flex h-full items-start gap-4 rounded-2xl border border-dashed bg-muted/40 p-5 text-muted-foreground">
+                      {card}
+                    </div>
                   ) : resource.href.startsWith('/app') ? (
                     <Link
                       to={resource.href}
