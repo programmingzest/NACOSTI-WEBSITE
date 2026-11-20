@@ -82,6 +82,7 @@ export const additionalResourcePages: AdditionalResourcePage[] = [
             ['Companies', 'KES 50,000', 'KES 70,000', '—', '—'],
             ['Research Institution', 'KES 30,000', 'KES 50,000', '—', '—'],
             ['Clinical Trials', '—', '—', 'USD 1,000', '—'],
+            ['' , 'KES 250,000']
           ],
         },
       },

@@ -3,7 +3,7 @@
     "phone": "0204007000",
     "phoneHref": "tel:+254204007000",
     "email": "info@nacosti.go.ke",
-    "address": "off Waiyaki Way, Upper Kabete"
+    "address": "Off Waiyaki Way, Upper Kabete"
   },
   "socials": [
     {
@@ -118,7 +118,7 @@
       "points": [
         "STI awareness, communication and outreach",
         "Talent development and next-generation workforce",
-        "Annual Multi-Sectoral Conference on STI (MS-CORSTI)"
+        "Conferences on STI (MS-CORSTI)"
       ]
     }
   ],
@@ -210,6 +210,33 @@
       "href": "/app/resource/accredited-isercs-in-kenya/",
       "type": "Directory",
       "description": "Find accredited institutional ethics review committees and their research review scope."
+    },
+    {
+      "label": "Registered Research Institutions",
+      "href": "/app/resource/registered-research-institutions-in-kenya/",
+      "type": "Directory",
+      "description": "Browse the NACOSTI directory of registered research institutions in Kenya."
+    },
+    {
+      "label": "List of Accredited ISERCs",
+      "href": "/documents/List-of-Accredited-ISERCs-2026.pdf",
+      "type": "PDF",
+      "description": "Download the 2026 NACOSTI list of accredited Institutional Scientific and Ethics Review Committees.",
+      "available": true
+    },
+    {
+      "label": "ISERCs Accredited to Review Clinical Trials",
+      "href": "/documents/ISERCs-Accredited-to-Review-Clinical-Trials-in-Kenya.pdf",
+      "type": "PDF",
+      "description": "Download the list of ISERCs accredited to review clinical trials in Kenya.",
+      "available": true
+    },
+    {
+      "label": "Guidelines for Registration of Research Instituions",
+      "href": "/documents/Guidelines_for_Registration_of_Research_Institutions.pdf",
+      "type": "PDF",
+      "description": "Guidelines for registering research institutions with NACOSTI.",
+      "available": true
     },
     {
       "label": "Registered Research Institutions",

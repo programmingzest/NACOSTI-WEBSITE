@@ -160,6 +160,15 @@ export default function ResourcePage() {
                     <section key={section.title} className="rounded-2xl bg-secondary/60 p-5 md:p-7">
                       <h2 className="text-xl font-bold">{section.title}</h2>
                       <p className="mt-3 whitespace-pre-line text-sm leading-7 text-muted-foreground">{section.body}</p>
+                      {'download' in section && section.download ? (
+                        <a
+                          href={section.download.href}
+                          download
+                          className="mt-5 inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-deep"
+                        >
+                          {section.download.label}
+                        </a>
+                      ) : null}
                       {'table' in section && section.table ? (
                         <div className="mt-5 overflow-x-auto rounded-xl border bg-card">
                           <table className="w-full min-w-[720px] border-collapse text-left text-sm">
@@ -169,7 +178,20 @@ export default function ResourcePage() {
                             <tbody>
                               {section.table.rows.map((row) => (
                                 <tr key={row[0]} className="border-t even:bg-secondary/40">
-                                  {row.map((cell, index) => <td key={`${row[0]}-${index}`} className="px-4 py-3 whitespace-nowrap">{cell}</td>)}
+                                  {row.map((cell, index) => (
+                                    <td key={`${row[0]}-${index}`} className="px-4 py-3 whitespace-nowrap">
+                                      {/^https?:\/\//i.test(cell) ? (
+                                        <a
+                                          href={cell}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="text-primary underline underline-offset-2 hover:text-deep"
+                                        >
+                                          {cell}
+                                        </a>
+                                      ) : cell}
+                                    </td>
+                                  ))}
                                 </tr>
                               ))}
                             </tbody>

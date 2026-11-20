@@ -37,7 +37,7 @@ function StoryCard({ story, index }: { story: NewsStory; index: number }) {
   return (
     <Reveal delay={index * 100}>
       <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border/70 bg-card shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10">
-        <Link to={story.href} className="relative block aspect-[16/10] overflow-hidden" aria-label={`Read ${story.title} on NACOSTI`}>
+        <div className="relative block aspect-[16/10] overflow-hidden">
           <img
             src={story.image}
             alt=""
@@ -47,17 +47,13 @@ function StoryCard({ story, index }: { story: NewsStory; index: number }) {
           <span className="absolute left-5 top-5 rounded-full bg-white/95 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-primary shadow-sm">
             {story.tag}
           </span>
-        </Link>
+        </div>
         <div className="flex flex-1 flex-col p-6 md:p-7">
           <p className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
             <CalendarDays className="size-4 text-primary" aria-hidden="true" />
             {story.date}
           </p>
-          <h3 className="mt-4 text-xl font-bold leading-snug tracking-tight">
-            <Link to={story.href} className="transition-colors hover:text-primary">
-              {story.title}
-            </Link>
-          </h3>
+          <h3 className="mt-4 text-xl font-bold leading-snug tracking-tight">{story.title}</h3>
           <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted-foreground">{story.excerpt}</p>
           <div className="mt-auto pt-2">
             <details className="group/details mt-5 border-t pt-4">
@@ -140,11 +136,7 @@ export function LatestNews({ showAllLink = true }: { showAllLink?: boolean }) {
               </div>
               <Reveal>
                 <article className="grid overflow-hidden rounded-[2rem] bg-[#174b36] text-white shadow-xl shadow-[#174b36]/10 md:min-h-[26rem] md:grid-cols-[1.05fr_0.95fr]">
-                  <Link
-                    to={featured.href}
-                    className="group relative block min-h-64 overflow-hidden md:min-h-full"
-                    aria-label={`Read ${featured.title}`}
-                  >
+                  <div className="group relative block min-h-64 overflow-hidden md:min-h-full">
                     <img
                       src={featured.image}
                       alt=""
@@ -154,16 +146,14 @@ export function LatestNews({ showAllLink = true }: { showAllLink?: boolean }) {
                     <span className="absolute left-6 top-6 rounded-full bg-accent px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#173c2c]">
                       {featured.tag}
                     </span>
-                  </Link>
+                  </div>
                   <div className="flex flex-col justify-center p-7 md:p-10 lg:p-12">
                     <p className="flex items-center gap-2 text-xs font-medium text-white/60">
                       <CalendarDays className="size-4 text-accent" aria-hidden="true" />
                       {featured.date}
                     </p>
                     <h2 className="mt-5 text-2xl font-bold leading-tight tracking-tight md:text-3xl lg:text-4xl">
-                      <Link to={featured.href} className="hover:text-accent">
-                        {featured.title}
-                      </Link>
+                      {featured.title}
                     </h2>
                     <p className="mt-4 text-sm leading-7 text-white/75 md:text-base">{featured.excerpt}</p>
                     <StoryDetails story={featured} />

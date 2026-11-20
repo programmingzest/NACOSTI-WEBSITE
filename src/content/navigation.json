@@ -18,7 +18,6 @@
     { "label": "Research Licensing", "href": "/app/resource/research-licensing", "description": "Apply online via RIMS" },
     { "label": "Registration of Research Institutions", "href": "/app/resource/registration-of-research-institutions-in-kenya/" },
     { "label": "Accreditation of ISERCs", "href": "/app/resource/accreditation-of-institutional-ethics-review-committees-iercs/", "description": "Accreditation requirements and process" },
-    { "label": "Accredited ISERCs in Kenya", "href": "/app/resource/accredited-isercs-in-kenya/", "description": "Directory of accredited ethics review committees" },
     { "label": "Accreditation of Research Institutions", "href": "/app/resource/accreditation-of-research-institutions/" },
     { "label": "National Scientific & Ethics Review System", "href": "/app/resource/national-scientific-ethics-review-system" }
   ]}] },

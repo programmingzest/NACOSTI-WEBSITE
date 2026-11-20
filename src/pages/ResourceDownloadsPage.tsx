@@ -24,6 +24,7 @@ export default function ResourceDownloadsPage() {
   
   const visibleResources = useMemo(
     () => informationCentre.filter((resource) => {
+      if (resource.href === '/app/resource/accredited-isercs-in-kenya/') return false
       if (filter === 'Downloadable files') return isDownloadable(resource)
       if (filter === 'Information pages') return !isDownloadable(resource)
       return true
