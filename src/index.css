@@ -111,6 +111,18 @@
   * {
     @apply border-border outline-ring/50;
   }
+
+  html[data-a11y-large-text] { font-size: 112.5%; }
+  html[data-a11y-small-text] { font-size: 90%; }
+  html[data-a11y-high-contrast] { filter: contrast(1.25); }
+  html[data-a11y-dark-mode] { color-scheme: dark; --background: #102019; --foreground: #f4fff7; --card: #183126; --card-foreground: #f4fff7; --muted-foreground: #c1d5c7; --border: #41604d; }
+  html[data-a11y-grayscale] { filter: grayscale(1); }
+  html[data-a11y-dyslexia] body { font-family: Arial, sans-serif; letter-spacing: 0.02em; }
+  html[data-a11y-highlight-links] a { outline: 2px solid var(--accent); outline-offset: 2px; }
+  html[data-a11y-highlight-headings] h1, html[data-a11y-highlight-headings] h2, html[data-a11y-highlight-headings] h3, html[data-a11y-highlight-headings] h4 { background: color-mix(in srgb, var(--accent) 25%, transparent); }
+  html[data-a11y-reading-guide] body::after { content: ''; pointer-events: none; position: fixed; inset-inline: 0; top: 45%; height: 2rem; border-block: 2px solid var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); z-index: 9999; }
+  html[data-a11y-reduced-motion] *, html[data-a11y-reduced-motion] *::before, html[data-a11y-reduced-motion] *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  html[data-a11y-enhanced-focus] :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 6rem;

@@ -3,6 +3,8 @@ import { ArrowUpRight, BookOpen, Download, FileText, Gavel, Receipt } from 'luci
 import { Link } from 'react-router'
 import { informationCentre, serviceChargesHref } from '@/lib/site-data'
 import { Reveal, SectionHeading } from '@/components/Reveal'
+import { isDocumentMetadataValid } from '@/lib/documents'
+import { SafeDownloadLink } from '@/components/SafeDownloadLink'
 
 const typeIcon = {
   Legislation: Gavel,
@@ -35,7 +37,7 @@ export function InformationCentre() {
           </Reveal>
           <div className="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Information Centre categories">
             {(['All', 'Legal', 'Plans & Charter', 'Registers'] as const).map((tab) => (
-              <button key={tab} type="button" role="tab" aria-selected={filter === tab} onClick={() => setFilter(tab)} className={filter === tab ? 'rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground' : 'rounded-full border px-4 py-2 text-sm font-semibold text-muted-foreground hover:border-primary hover:text-primary'}>
+              <button key={tab} type="button" role="tab" aria-selected={filter === tab} data-analytics="information-centre-filter" onClick={() => setFilter(tab)} className={filter === tab ? 'rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground' : 'rounded-full border px-4 py-2 text-sm font-semibold text-muted-foreground hover:border-primary hover:text-primary'}>
                 {tab}
               </button>
             ))}
@@ -43,7 +45,7 @@ export function InformationCentre() {
           <ul className="mt-4 grid gap-3 sm:grid-cols-2">
             {visibleDocuments.map((doc, i) => {
               const Icon = typeIcon[doc.type]
-              const isAvailable = !doc.href.startsWith('/documents/') || doc.available === true
+              const isAvailable = !doc.href.startsWith('/documents/') || isDocumentMetadataValid(doc.href)
               return (
                 <Reveal as="li" key={doc.label} delay={i * 50}>
                   {isAvailable ? (
@@ -61,9 +63,10 @@ export function InformationCentre() {
                       <ArrowUpRight className="size-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" aria-hidden="true" />
                       </Link>
                     ) : (
-                      <a
-                        href={doc.href}
-                        download={doc.type === 'PDF' && doc.href.startsWith('/documents/') ? true : undefined}
+                      <SafeDownloadLink
+                        path={doc.href}
+                        aria-label={`Download ${doc.label}`}
+                        data-analytics="document-download"
                         className="group flex items-center gap-4 rounded-2xl border bg-card px-5 py-4 transition-colors hover:bg-secondary/60"
                       >
                         <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
@@ -73,7 +76,7 @@ export function InformationCentre() {
                         <span className="hidden rounded-full border px-2.5 py-0.5 text-xs text-muted-foreground sm:inline">{doc.type}</span>
                         {doc.type === 'PDF' ? <Download className="size-4 text-muted-foreground group-hover:text-primary" aria-hidden="true" /> : null}
                         <ArrowUpRight className="size-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" aria-hidden="true" />
-                      </a>
+                      </SafeDownloadLink>
                     )
                   ) : (
                     <div className="flex items-center gap-4 rounded-2xl border border-dashed bg-muted/40 px-5 py-4 text-muted-foreground">

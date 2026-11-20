@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router'
+import { routeHref } from '@/lib/routes'
 
 const ArrowUpRight = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -44,7 +45,7 @@ export default function LandingPage() {
               <div className="wheel-ring ring-a" />
               <div className="wheel-ring ring-b" />
               {landingNav.map((item, index) => (
-                <Link key={item.label} className={`arc-nav arc-nav-${index + 1}`} to={item.target} onClick={(e) => { e.preventDefault(); enterSite(item.target) }}>
+                <Link key={item.label} className={`arc-nav arc-nav-${index + 1}`} to={routeHref(item.target)} data-analytics="landing-navigation" onClick={(e) => { e.preventDefault(); enterSite(routeHref(item.target)) }}>
                   <span className="arc-icon">{item.icon}</span>
                   <span>{item.label}</span>
                 </Link>
@@ -52,7 +53,7 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-        <button className="gateway-enter" type="button" onClick={() => enterSite('/app')}>Enter NACOSTI <ArrowUpRight /></button>
+        <button className="gateway-enter" type="button" data-analytics="enter-site" onClick={() => enterSite(routeHref('/app'))}>Enter NACOSTI <ArrowUpRight /></button>
         <span className="gateway-scroll">Rotate. Discover. Make an impact.</span>
       </section>
     </div>
