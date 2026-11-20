@@ -7,6 +7,8 @@ import { additionalResourcePages } from '@/content/additional-resource-pages'
 import { requestedResourcePages, type RequestedResourcePage, type ResourceProfile } from '@/content/requested-resource-pages'
 import { SiteFooter } from '@/components/SiteFooter'
 import { SiteHeader } from '@/components/SiteHeader'
+import { isDocumentMetadataValid } from '@/lib/documents'
+import { SafeDownloadLink } from '@/components/SafeDownloadLink'
 
 const links = navigation.flatMap((item) =>
   item.groups?.flatMap((group) => group.links) ?? (item.href ? [{ label: item.label, href: item.href }] : []),
@@ -102,14 +104,14 @@ export default function ResourcePage() {
   const intro = content?.intro ?? resource?.description ?? 'This endpoint is managed inside the NACOSTI revamp and does not redirect automatically to the legacy website.'
   const sourceHref = resource?.href ?? ''
   const isLocalDocument = sourceHref.startsWith('/documents/')
-  const downloadHref = isLocalDocument && resource?.available === true ? sourceHref : undefined
+  const downloadHref = isLocalDocument && isDocumentMetadataValid(sourceHref) ? sourceHref : undefined
   const images = content && 'images' in content ? content.images : undefined
   const profiles = content && 'profiles' in content ? content.profiles : undefined
 
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-secondary/40 px-6 py-24">
+      <main id="main" className="min-h-screen bg-secondary/40 px-6 py-24">
         <div className="mx-auto max-w-4xl">
           <Link to="/app" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
             <ArrowLeft className="size-4" aria-hidden="true" />
@@ -144,6 +146,7 @@ export default function ResourcePage() {
                 const sectionLink = 'link' in section && typeof section.link === 'string' ? section.link : undefined
                 const sectionLinkLabel = 'linkLabel' in section && typeof section.linkLabel === 'string' ? section.linkLabel : 'Open resource'
                 const sectionIsExternal = sectionLink?.startsWith('http') ?? false
+                const sectionIsDocument = sectionLink?.startsWith('/documents/') ?? false
                 return (
                   sectionIsExternal && sectionLink ? (
                     <a
@@ -180,6 +183,10 @@ export default function ResourcePage() {
                         <Link to={sectionLink} className="mt-4 inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-deep">
                           {sectionLinkLabel}
                         </Link>
+                      ) : sectionIsDocument && sectionLink ? (
+                        <SafeDownloadLink path={sectionLink} aria-label={sectionLinkLabel} className="mt-4 inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-deep">
+                          {sectionLinkLabel}
+                        </SafeDownloadLink>
                       ) : sectionLink ? (
                         <a href={sectionLink} className="mt-4 inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-deep">
                           {sectionLinkLabel}
@@ -199,9 +206,9 @@ export default function ResourcePage() {
             ) : null}
             {downloadHref ? (
               <div className="mt-8">
-                <a href={downloadHref} download className="inline-flex rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground hover:bg-deep">
+                <SafeDownloadLink path={downloadHref} aria-label="Download resource" data-analytics="document-download" className="inline-flex rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground hover:bg-deep">
                   Download resource
-                </a>
+                </SafeDownloadLink>
               </div>
             ) : isLocalDocument ? (
               <p className="mt-8 rounded-xl border border-dashed bg-muted/40 p-4 text-sm text-muted-foreground">

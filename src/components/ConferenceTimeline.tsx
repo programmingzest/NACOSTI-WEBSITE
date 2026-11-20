@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import { conferences } from '@/lib/site-data'
 import { Reveal, SectionHeading } from '@/components/Reveal'
 import { cn } from '@/lib/utils'
+import { SafeDownloadLink } from '@/components/SafeDownloadLink'
 
 export function ConferenceTimeline() {
   const latest = conferences.length - 1
@@ -51,7 +52,7 @@ export function ConferenceTimeline() {
                     i === latest ? 'text-accent' : 'text-primary',
                   )}
                 >
-                  Visit
+                  Open document
                   <ArrowUpRight className="size-4" aria-hidden="true" />
                 </span>
                   </>
@@ -64,7 +65,7 @@ export function ConferenceTimeline() {
                 )
                 return conf.href.startsWith('/app')
                   ? <Link to={conf.href} className={className}>{card}</Link>
-                  : <a href={conf.href} className={className}>{card}</a>
+                  : <SafeDownloadLink path={conf.href} aria-label={`Download ${conf.label}`} className={className} data-analytics="document-download">{card}</SafeDownloadLink>
               })()}
             </Reveal>
           ))}
