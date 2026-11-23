@@ -1,0 +1,84 @@
+{
+  "title": "NACOSTI Virtual Assistant",
+  "welcome": "Welcome to NACOSTI.",
+  "prompt": "How can we assist you today?",
+  "options": [
+    {
+      "id": "research-licensing",
+      "label": "Research Licensing",
+      "children": [
+        { "id": "apply-license", "label": "Apply for License", "action": { "type": "external", "href": "https://research-portal.nacosti.go.ke/" } },
+        { "id": "license-requirements", "label": "Requirements", "action": { "type": "route", "href": "/app/resource/research-guidelines-and-requirements" } },
+        { "id": "license-fees", "label": "Fees", "action": { "type": "route", "href": "/app/resource/research-licensing-fees" } },
+        { "id": "license-timeline", "label": "Processing Timeline", "action": { "type": "route", "href": "/app/resource/research-guidelines-and-requirements" } },
+        { "id": "license-support", "label": "Contact Support", "action": { "type": "route", "href": "/app/contact/" } }
+      ]
+    },
+    {
+      "id": "research-permits",
+      "label": "Research Permits",
+      "children": [
+        { "id": "apply-permit", "label": "Apply for Permit", "action": { "type": "external", "href": "https://research-portal.nacosti.go.ke/" } },
+        { "id": "permit-requirements", "label": "Requirements", "action": { "type": "route", "href": "/app/resource/research-guidelines-and-requirements" } },
+        { "id": "permit-information", "label": "Processing Information", "action": { "type": "route", "href": "/app/resource/research-guidelines-and-requirements" } },
+        { "id": "permit-assistance", "label": "Get Assistance", "action": { "type": "route", "href": "/app/contact/" } }
+      ]
+    },
+    {
+      "id": "sti-policies",
+      "label": "STI Policies",
+      "children": [
+        { "id": "sti-act", "label": "STI Act", "action": { "type": "route", "href": "/app/resource/sti-act-2013" } },
+        { "id": "national-priorities", "label": "National STI Priorities", "action": { "type": "external", "href": "/documents/National STI Priorities.pdf" } },
+        { "id": "policy-advice", "label": "Policy Advisory Services", "action": { "type": "route", "href": "/app/resource/advisory" } }
+      ]
+    },
+    {
+      "id": "innovation-support",
+      "label": "Innovation Support",
+      "children": [
+        { "id": "innovation-programmes", "label": "Innovation Programmes", "action": { "type": "route", "href": "/app/resource/collaborations-and-partnership" } },
+        { "id": "fellowships-grants", "label": "Fellowships and Grants", "action": { "type": "route", "href": "/app/resource/resources/fellowships-and-grants/" } }
+      ]
+    },
+    {
+      "id": "information-centre",
+      "label": "Information Centre",
+      "children": [
+        { "id": "resources-downloads", "label": "Resources and Downloads", "action": { "type": "route", "href": "/app/resource/resources-downloads/" } },
+        { "id": "information-pages", "label": "Information Pages", "action": { "type": "route", "href": "/app#information-centre" } }
+      ]
+    },
+    {
+      "id": "conferences",
+      "label": "Conferences",
+      "children": [
+        { "id": "current-conference", "label": "Current Conferences", "action": { "type": "route", "href": "/app/resource/ms-corsti-2025" } },
+        { "id": "conference-archive", "label": "Conference Archive", "action": { "type": "route", "href": "/app/news" } },
+        { "id": "conference-resolutions", "label": "Conference Resolutions", "action": { "type": "external", "href": "/documents/Multisectoral-STI-Conference-Resolutions.pdf" } },
+        { "id": "conference-downloads", "label": "Downloads", "action": { "type": "route", "href": "/app/resource/resources-downloads/" } }
+      ]
+    },
+    {
+      "id": "contact-nacosti",
+      "label": "Contact NACOSTI",
+      "children": [
+        { "id": "telephone", "label": "Telephone", "action": { "type": "tel", "href": "tel:+254204007000" } },
+        { "id": "email", "label": "Email", "action": { "type": "email", "href": "mailto:info@nacosti.go.ke" } },
+        { "id": "submit-inquiry", "label": "Submit Inquiry", "action": { "type": "route", "href": "/app/contact/" } },
+        { "id": "complaints", "label": "Complaints Contact", "action": { "type": "email", "href": "mailto:complaints@nacosti.go.ke" } }
+      ]
+    },
+    { "id": "faqs", "label": "Frequently Asked Questions", "action": { "type": "route", "href": "/app/resource/faqs" } },
+    { "id": "report-problem", "label": "Report a Problem", "action": { "type": "route", "href": "/app/contact/" } },
+    {
+      "id": "website-accessibility",
+      "label": "Website Accessibility",
+      "children": [
+        { "id": "open-accessibility-menu", "label": "Open Accessibility Menu", "action": { "type": "accessibility" } },
+        { "id": "accessibility-features", "label": "Accessibility Features", "action": { "type": "route", "href": "/app#main" } },
+        { "id": "accessibility-help", "label": "Accessibility Help", "action": { "type": "email", "href": "mailto:info@nacosti.go.ke?subject=Website%20Accessibility%20Help" } }
+      ]
+    }
+  ]
+}

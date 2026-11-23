@@ -9,6 +9,7 @@ import NewsPage from './pages/NewsPage'
 import './App.css'
 import { initializeAnalytics, trackEvent } from './lib/analytics'
 import { FloatingActions } from './components/FloatingActions'
+import { NacostiChatbot } from './components/NacostiChatbot'
 
 function AnalyticsTracker() {
   const location = useLocation()
@@ -39,9 +40,29 @@ function NotFoundPage() {
   )
 }
 
+function SkipToContent() {
+  return (
+    <a
+      href="#main"
+      onClick={(event) => {
+        event.preventDefault()
+        const main = document.querySelector<HTMLElement>('main')
+        if (!main) return
+        main.setAttribute('tabindex', '-1')
+        main.focus()
+        main.scrollIntoView({ block: 'start' })
+      }}
+      className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-3 focus:font-bold focus:text-accent-foreground"
+    >
+      Skip to content
+    </a>
+  )
+}
+
 export default function App() {
   return (
     <HashRouter>
+      <SkipToContent />
       <AnalyticsTracker />
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -53,6 +74,7 @@ export default function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <FloatingActions />
+      <NacostiChatbot />
     </HashRouter>
   )
 }   
