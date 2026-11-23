@@ -6,13 +6,14 @@ export function FloatingActions() {
   const [showTop, setShowTop] = useState(false)
   const [open, setOpen] = useState(false)
   const panelRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
   const [settings, setSettings] = useState(() => {
     try { return JSON.parse(localStorage.getItem('nacosti-a11y') ?? '{}') as Record<string, boolean> } catch { return {} }
   })
 
   useEffect(() => {
     Object.entries(settings).forEach(([key, enabled]) => document.documentElement.toggleAttribute(`data-a11y-${key}`, enabled))
-    localStorage.setItem('nacosti-a11y', JSON.stringify(settings))
+    try { localStorage.setItem('nacosti-a11y', JSON.stringify(settings)) } catch { /* Persistence is optional when storage is unavailable. */ }
   }, [settings])
 
   const toggleSetting = (key: string) => setSettings((current) => ({ ...current, [key]: !current[key] }))
@@ -33,46 +34,67 @@ export function FloatingActions() {
   }, [])
 
   useEffect(() => {
-    if (!open) return
+    if (open) window.requestAnimationFrame(() => panelRef.current?.querySelector<HTMLButtonElement>('button')?.focus())
+    const onChatOpen = () => setOpen(false)
+    const onChatbotAccessibility = () => {
+      setOpen(true)
+      window.requestAnimationFrame(() => panelRef.current?.querySelector<HTMLButtonElement>('button')?.focus())
+    }
+    window.addEventListener('nacosti-chatbot-open', onChatOpen)
+    window.addEventListener('nacosti-chatbot-accessibility-request', onChatbotAccessibility)
     const onDown = (e: MouseEvent) => {
       if (panelRef.current && !panelRef.current.contains(e.target as Node)) setOpen(false)
     }
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setOpen(false)
+        triggerRef.current?.focus()
+      }
+    }
     document.addEventListener('mousedown', onDown)
     document.addEventListener('keydown', onKey)
     return () => {
+      window.removeEventListener('nacosti-chatbot-open', onChatOpen)
+      window.removeEventListener('nacosti-chatbot-accessibility-request', onChatbotAccessibility)
       document.removeEventListener('mousedown', onDown)
       document.removeEventListener('keydown', onKey)
     }
   }, [open])
 
   return (
-    <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3">
-      <div ref={panelRef} className="relative">
+    <div className="floating-a11y">
+      <div ref={panelRef}>
         {open ? (
           <div
             id="accessibility-panel"
-            className="absolute bottom-full right-0 mb-3 w-64 rounded-2xl border bg-popover p-3 shadow-2xl animate-in fade-in slide-in-from-bottom-2"
+            role="dialog"
+            aria-modal="false"
+            aria-labelledby="accessibility-panel-title"
+            className="accessibility-panel"
           >
-            <p className="px-3 pb-2 pt-1 text-xs font-semibold uppercase tracking-wider text-primary">Accessibility settings</p>
-            <div className="grid gap-1 border-b pb-3">
+            <p id="accessibility-panel-title" className="px-3 pb-2 pt-1 text-xs font-semibold uppercase tracking-wider text-primary">Accessibility settings</p>
+            <div className="grid gap-1">
               {accessibilitySettings.map(([key, label]) => (
                 <button key={key} type="button" aria-pressed={Boolean(settings[key])} onClick={() => toggleSetting(key)} className="rounded-lg px-3 py-2 text-left text-xs hover:bg-secondary">
                   {settings[key] ? '✓ ' : ''}{label}
                 </button>
               ))}
-              <button type="button" onClick={resetFontSize} className="px-3 py-2 text-left text-xs font-semibold text-primary hover:underline">Reset font size</button>
-              <button type="button" onClick={resetSettings} className="px-3 py-2 text-left text-xs font-semibold text-primary hover:underline">Reset accessibility settings</button>
+              <button type="button" onClick={resetFontSize} className="rounded-lg px-3 py-2 text-left text-xs font-semibold text-primary hover:bg-secondary">Reset font size</button>
+              <button type="button" onClick={resetSettings} className="rounded-lg px-3 py-2 text-left text-xs font-semibold text-primary hover:bg-secondary">Reset accessibility settings</button>
             </div>
           </div>
         ) : null}
         <button
+          ref={triggerRef}
           type="button"
           aria-expanded={open}
           aria-label="Accessibility settings"
           aria-controls="accessibility-panel"
-          onClick={() => setOpen((v) => !v)}
-          className="flex size-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-xl shadow-primary/30 ring-4 ring-primary/15 transition-transform hover:-translate-y-0.5"
+          onClick={() => {
+            if (!open) window.dispatchEvent(new CustomEvent('nacosti-accessibility-open'))
+            setOpen((v) => !v)
+          }}
+          className="floating-a11y-trigger"
         >
           {open ? <X className="size-4" aria-hidden="true" /> : <Accessibility className="size-4 text-accent" aria-hidden="true" />}
         </button>
@@ -82,7 +104,7 @@ export function FloatingActions() {
         aria-label="Scroll to top"
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         className={cn(
-          'flex size-12 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-xl transition-all duration-300 hover:-translate-y-0.5',
+          'floating-scroll-top',
           showTop ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0',
         )}
       >
