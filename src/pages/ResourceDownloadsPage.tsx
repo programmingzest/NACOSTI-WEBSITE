@@ -14,11 +14,12 @@ const filters: ResourceFilter[] = ['All resources', 'Downloadable files', 'Infor
 const resourceIcons = {
   Legislation: Gavel,
   PDF: FileText,
+  DOC: FileText,
   Directory: BookOpen,
 }
 
 function isDownloadable(resource: (typeof informationCentre)[number]) {
-  return resource.type === 'PDF' && isDocumentMetadataValid(resource.href)
+  return isDocumentMetadataValid(resource.href)
 }
 
 export default function ResourceDownloadsPage() {
@@ -118,7 +119,7 @@ export default function ResourceDownloadsPage() {
                     <span className="flex flex-wrap items-center gap-2">
                       <span className="font-bold text-foreground">{resource.label}</span>
                       <span className="rounded-full border px-2.5 py-0.5 text-xs text-muted-foreground">
-                        {downloadable ? 'PDF' : resource.type}
+                        {resource.type}
                       </span>
                     </span>
                     <span className="mt-2 block text-sm leading-6 text-muted-foreground">

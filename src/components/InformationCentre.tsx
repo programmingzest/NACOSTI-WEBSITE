@@ -9,6 +9,7 @@ import { SafeDownloadLink } from '@/components/SafeDownloadLink'
 const typeIcon = {
   Legislation: Gavel,
   PDF: FileText,
+  DOC: FileText,
   Directory: BookOpen,
 }
 
@@ -59,7 +60,7 @@ export function InformationCentre() {
                       </span>
                       <span className="flex-1 font-medium">{doc.label}</span>
                       <span className="hidden rounded-full border px-2.5 py-0.5 text-xs text-muted-foreground sm:inline">{doc.type}</span>
-                      {doc.type === 'PDF' ? <Download className="size-4 text-muted-foreground group-hover:text-primary" aria-hidden="true" /> : null}
+                      {doc.type === 'PDF' || doc.type === 'DOC' ? <Download className="size-4 text-muted-foreground group-hover:text-primary" aria-hidden="true" /> : null}
                       <ArrowUpRight className="size-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" aria-hidden="true" />
                       </Link>
                     ) : (
@@ -74,7 +75,7 @@ export function InformationCentre() {
                         </span>
                         <span className="flex-1 font-medium">{doc.label}</span>
                         <span className="hidden rounded-full border px-2.5 py-0.5 text-xs text-muted-foreground sm:inline">{doc.type}</span>
-                        {doc.type === 'PDF' ? <Download className="size-4 text-muted-foreground group-hover:text-primary" aria-hidden="true" /> : null}
+                        {doc.type === 'PDF' || doc.type === 'DOC' ? <Download className="size-4 text-muted-foreground group-hover:text-primary" aria-hidden="true" /> : null}
                         <ArrowUpRight className="size-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" aria-hidden="true" />
                       </SafeDownloadLink>
                     )
