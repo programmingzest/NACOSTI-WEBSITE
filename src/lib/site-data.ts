@@ -28,7 +28,7 @@ export const priorities = siteContent.priorities
 export type InformationResource = {
   label: string
   href: string
-  type: 'Legislation' | 'PDF' | 'Directory'
+  type: 'Legislation' | 'PDF' | 'DOC' | 'Directory'
   description?: string
   available?: boolean
 }

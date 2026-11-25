@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { ArrowLeft, ArrowUpRight } from 'lucide-react'
+import { useState, type ReactNode } from 'react'
+import { ArrowDownToLine, ArrowLeft, ArrowUpRight } from 'lucide-react'
 import { Link, useParams } from 'react-router'
 import { informationCentre, navigation } from '@/lib/site-data'
 import resourcePages from '@/content/resource-pages.json'
@@ -19,6 +19,27 @@ const allResources: ResourceLookup[] = [
   ...links.map((link) => ({ ...link, description: link.description ?? 'NACOSTI service and information resource.' })),
   ...informationCentre.map((resource) => ({ ...resource, description: 'Download or read this NACOSTI reference document.' })),
 ]
+
+function renderClinicalTrialsTableCell(cell: string): ReactNode {
+  if (!cell) return null
+
+  const website = /^https?:\/\//i.test(cell)
+
+  if (website) {
+    return (
+      <a
+        href={cell}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="break-all text-primary underline underline-offset-2 hover:text-deep"
+      >
+        {cell}
+      </a>
+    )
+  }
+
+  return cell
+}
 
 function slugFromHref(href: string) {
   try {
@@ -165,19 +186,43 @@ export default function ResourcePage() {
                       <p className="mt-3 whitespace-pre-line text-sm leading-7 text-muted-foreground">{section.body}</p>
                       {'table' in section && section.table ? (
                         <div className="mt-5 overflow-x-auto rounded-xl border bg-card">
-                          <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+                          <table className={section.title === 'ISERCs accredited for clinical trials'
+                            ? 'w-full min-w-[640px] border-collapse text-left text-sm'
+                            : 'w-full min-w-[720px] border-collapse text-left text-sm'}>
                             <thead className="bg-primary text-primary-foreground">
                               <tr>{section.table.headers.map((header) => <th key={header} className="px-4 py-3 font-semibold">{header}</th>)}</tr>
                             </thead>
                             <tbody>
                               {section.table.rows.map((row) => (
                                 <tr key={row[0]} className="border-t even:bg-secondary/40">
-                                  {row.map((cell, index) => <td key={`${row[0]}-${index}`} className="px-4 py-3 whitespace-nowrap">{cell}</td>)}
+                                  {row.map((cell, index) => (
+                                    <td
+                                      key={`${row[0]}-${index}`}
+                                      className={section.title === 'ISERCs accredited for clinical trials'
+                                        ? 'break-words px-4 py-3 align-top'
+                                        : 'whitespace-nowrap px-4 py-3'}
+                                    >
+                                      {section.title === 'ISERCs accredited for clinical trials'
+                                        ? renderClinicalTrialsTableCell(cell)
+                                        : cell}
+                                    </td>
+                                  ))}
                                 </tr>
                               ))}
                             </tbody>
                           </table>
                         </div>
+                      ) : null}
+                      {'download' in section && section.download ? (
+                        <SafeDownloadLink
+                          path={section.download.href}
+                          aria-label={section.download.label}
+                          data-analytics="document-download"
+                          className="mt-4 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-deep"
+                        >
+                          <ArrowDownToLine className="size-4" aria-hidden="true" />
+                          {section.download.label}
+                        </SafeDownloadLink>
                       ) : null}
                       {sectionLink?.startsWith('/app') ? (
                         <Link to={sectionLink} className="mt-4 inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-deep">

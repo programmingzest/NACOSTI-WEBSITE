@@ -3,7 +3,7 @@
     "phone": "0204007000",
     "phoneHref": "tel:+254204007000",
     "email": "info@nacosti.go.ke",
-    "address": "off Waiyaki Way, Upper Kabete"
+    "address": "Off Waiyaki Way, Upper Kabete"
   },
   "socials": [
     {
@@ -212,10 +212,38 @@
       "description": "Find accredited institutional ethics review committees and their research review scope."
     },
     {
+      "label": "Accredited ISERCs (2026)",
+      "href": "/documents/List-of-Accredited-ISERCs-2026.pdf",
+      "type": "PDF",
+      "description": "The 2026 list of NACOSTI-accredited Institutional Scientific and Ethics Review Committees.",
+      "available": true
+    },
+    {
+      "label": "ISERCs Accredited to Review Clinical Trials",
+      "href": "/documents/ISERCs-Accredited-to-Review-Clinical-Trials-in-Kenya.pdf",
+      "type": "PDF",
+      "description": "NACOSTI-accredited ISERCs authorized to review clinical trials in Kenya.",
+      "available": true
+    },
+    {
       "label": "Registered Research Institutions",
       "href": "/documents/Registered Research Institutions.pdf",
       "type": "PDF",
       "description": "A directory of research institutions registered with NACOSTI.",
+      "available": true
+    },
+    {
+      "label": "Guidelines for Registration of Research Institutions",
+      "href": "/documents/Guidelines_for_Registration_of_Research_Institutions.pdf",
+      "type": "PDF",
+      "description": "NACOSTI guidelines describing the criteria for registration of research institutions.",
+      "available": true
+    },
+    {
+      "label": "Research Institution Registration Application Form",
+      "href": "/documents/APPLICATION_FORM.doc",
+      "type": "DOC",
+      "description": "Application form for registration of a research institution with NACOSTI.",
       "available": true
     },
     {

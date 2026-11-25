@@ -8,6 +8,10 @@ export const availableDocuments = new Set([
   'Registered Research Institutions.pdf',
   'The-Science-Technology-and-Innovation-Regulations-2014.pdf',
   'Multisectoral-STI-Conference-Resolutions.pdf',
+  'List-of-Accredited-ISERCs-2026.pdf',
+  'ISERCs-Accredited-to-Review-Clinical-Trials-in-Kenya.pdf',
+  'Guidelines_for_Registration_of_Research_Institutions.pdf',
+  'APPLICATION_FORM.doc',
 ])
 
 export function documentUrl(path: string) {
